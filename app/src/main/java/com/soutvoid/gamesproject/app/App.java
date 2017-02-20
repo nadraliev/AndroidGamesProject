@@ -11,10 +11,13 @@ import com.github.anrwatchdog.ANRWatchDog;
 import com.soutvoid.gamesproject.app.dagger.AppComponent;
 import com.soutvoid.gamesproject.app.dagger.AppModule;
 import com.soutvoid.gamesproject.app.dagger.DaggerAppComponent;
+import com.soutvoid.gamesproject.app.log.Logger;
 import com.soutvoid.gamesproject.app.log.RemoteLogger;
 
 import io.fabric.sdk.android.Fabric;
 import io.fabric.sdk.android.Kit;
+import soutvoid.com.gamesproject.R;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
  * Created by andrew on 2/20/17.
@@ -29,6 +32,11 @@ public class App extends Application {
         MultiDex.install(getApplicationContext());
         super.onCreate();
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+        initFabric();
+        initAnrWatchDog();
+        initInjector();
+        initLog();
+        initCalligraphy();
     }
 
     private void initAnrWatchDog() {
@@ -46,6 +54,17 @@ public class App extends Application {
         appComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .build();
+    }
+
+    private void initLog() {
+        Logger.init();
+    }
+
+    private void initCalligraphy() {
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/Roboto-Regular.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build());
     }
 
     public AppComponent getAppComponent() {
