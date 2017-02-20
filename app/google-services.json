@@ -1,0 +1,86 @@
+{
+  "project_info": {
+    "project_number": "257140838555",
+    "firebase_url": "https://gamesproject-12d72.firebaseio.com",
+    "project_id": "gamesproject-12d72",
+    "storage_bucket": "gamesproject-12d72.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257140838555:android:1ebce9b9d1ceb9de",
+        "android_client_info": {
+          "package_name": "com.soutvoid.gamesproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "257140838555-4lfgsbi0t25302ffkh2lrl22o3rggla7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaFxOFNTC3ZHPrkuCDwolq9FMYMeW9V0w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257140838555:android:177b96bd5dea1807",
+        "android_client_info": {
+          "package_name": "com.soutvoid.gamesproject.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "257140838555-nba9fjcddj92fdotm4k3tgscbfv9vsbu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.soutvoid.gamesproject.debug",
+            "certificate_hash": "FE74C07B00B68E76AABEF66ED53F56C5DF6FBD79"
+          }
+        },
+        {
+          "client_id": "257140838555-4lfgsbi0t25302ffkh2lrl22o3rggla7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaFxOFNTC3ZHPrkuCDwolq9FMYMeW9V0w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "257140838555-4lfgsbi0t25302ffkh2lrl22o3rggla7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
