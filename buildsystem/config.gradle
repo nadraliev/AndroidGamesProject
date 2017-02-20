@@ -1,0 +1,11 @@
+ext {
+    applicationId = "com.soutvoid.gamesproject"
+    versioncode = 1
+    versionName = "0.0.1"
+    buildToolsVersion = "25.0.0"
+    minSdkVersion = 16
+    targetSdkVersion = 25
+    compileSdkVersion = 25
+    debugVersionNameSuffix = ".debug"
+    releaseVersionNameSuffix = ""
+}
