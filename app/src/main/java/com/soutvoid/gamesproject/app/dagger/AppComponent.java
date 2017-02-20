@@ -9,7 +9,9 @@ import dagger.Component;
  */
 @PerApplication
 @Component(modules = {
-
+        AppModule.class
 })
 public interface AppComponent {
+
+
 }
