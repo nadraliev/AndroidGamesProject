@@ -1,5 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="soutvoid.com.gamesproject">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -7,6 +10,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="6b5749ebdeeac0c5f3e6670361e6818564d70f78"/>
+
 
     </application>
 
