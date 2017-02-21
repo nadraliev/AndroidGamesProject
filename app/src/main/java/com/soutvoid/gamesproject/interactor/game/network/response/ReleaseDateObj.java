@@ -18,7 +18,7 @@ public class ReleaseDateObj implements Transformable<ReleaseDate> {
     @SerializedName("platform")
     public Integer platform;
     @SerializedName("date")
-    public Integer date;
+    public Long date;
     @SerializedName("region")
     public Integer region;
     @SerializedName("human")

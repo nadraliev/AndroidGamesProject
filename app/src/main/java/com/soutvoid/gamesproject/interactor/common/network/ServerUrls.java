@@ -9,6 +9,6 @@ public class ServerUrls {
     public static final String BASE_URL = "https://igdbcom-internet-game-database-v1.p.mashape.com/";
 
     //game
-    public static final String GAMES_URL = "games";
+    public static final String GAMES_URL = "games/";
 
 }

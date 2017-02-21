@@ -6,7 +6,6 @@ import com.google.gson.GsonBuilder;
 import com.soutvoid.gamesproject.interactor.common.network.calladapter.CallAdapterFactory;
 import com.soutvoid.gamesproject.interactor.common.network.parse.BooleanAdapter;
 import com.soutvoid.gamesproject.interactor.common.network.parse.IntAdapter;
-import com.soutvoid.gamesproject.interactor.common.network.parse.ResponseTypeAdapterFactory;
 import com.soutvoid.gamesproject.interactor.common.network.parse.StringAdapter;
 
 import dagger.Module;
@@ -41,9 +40,8 @@ public class NetworkModule {
 
     @Provides
     @PerApplication
-    Gson provideGson(ResponseTypeAdapterFactory responseTypeAdapterFactory) {
+    Gson provideGson() {
         return new GsonBuilder()
-                .registerTypeAdapterFactory(responseTypeAdapterFactory)
                 .registerTypeAdapter(Boolean.class, new BooleanAdapter())
                 .registerTypeAdapter(boolean.class, new BooleanAdapter())
                 .registerTypeAdapter(String.class, new StringAdapter())

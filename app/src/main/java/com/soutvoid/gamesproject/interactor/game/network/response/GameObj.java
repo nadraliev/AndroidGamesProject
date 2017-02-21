@@ -21,9 +21,9 @@ public class GameObj implements Transformable<Game> {
     @SerializedName("url")
     public String url;
     @SerializedName("created_at")
-    public Integer createdAt;
+    public Long createdAt;
     @SerializedName("updated_at")
-    public Integer updatedAt;
+    public Long updatedAt;
     @SerializedName("summary")
     public String summary;
     @SerializedName("storyline")
@@ -51,7 +51,7 @@ public class GameObj implements Transformable<Game> {
     @SerializedName("genres")
     public ArrayList<Integer> genres = null;
     @SerializedName("first_release_date")
-    public Integer firstReleaseDate;
+    public Long firstReleaseDate;
     @SerializedName("release_dates")
     public ArrayList<ReleaseDateObj> releaseDateObjs = null;
     @SerializedName("alternative_names")

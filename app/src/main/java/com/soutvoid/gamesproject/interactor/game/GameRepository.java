@@ -2,7 +2,6 @@ package com.soutvoid.gamesproject.interactor.game;
 
 import com.agna.ferro.mvp.component.scope.PerApplication;
 import com.soutvoid.gamesproject.domain.game.Game;
-import com.soutvoid.gamesproject.interactor.common.network.TransformUtil;
 import com.soutvoid.gamesproject.interactor.game.network.GameApi;
 import com.soutvoid.gamesproject.interactor.network.connection.NetworkConnectionChecker;
 
@@ -30,6 +29,9 @@ public class GameRepository {
 
     public Observable<ArrayList<Game>> getGames(String searchQuery) {
         return gameApi.searchForGames("*", 20, 0, "release_dates.date:desc", searchQuery)
-                .map(TransformUtil::transform);
+                .flatMap(Observable::from)
+                .flatMap(gameObj -> Observable.just(gameObj.transform()))
+                .toList()
+                .flatMap(games -> Observable.just(new ArrayList<>(games)));
     }
 }

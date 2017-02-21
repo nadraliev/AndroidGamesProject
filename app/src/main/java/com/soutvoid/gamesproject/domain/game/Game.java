@@ -18,8 +18,8 @@ public class Game implements Serializable {
     public String name;
     public String slug;
     public String url;
-    public Integer createdAt;
-    public Integer updatedAt;
+    public Long createdAt;
+    public Long updatedAt;
     public String summary;
     public String storyline;
     public Integer collection;
@@ -33,7 +33,7 @@ public class Game implements Serializable {
     public ArrayList<Integer> keywords = null;
     public ArrayList<Integer> themes = null;
     public ArrayList<Integer> genres = null;
-    public Integer firstReleaseDate;
+    public Long firstReleaseDate;
     public ArrayList<ReleaseDate> releaseDates = null;
     public ArrayList<AlternativeName> alternativeNames = null;
     public ArrayList<Screenshot> screenshots = null;

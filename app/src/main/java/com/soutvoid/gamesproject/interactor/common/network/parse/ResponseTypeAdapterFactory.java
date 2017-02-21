@@ -11,7 +11,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.soutvoid.gamesproject.app.log.Logger;
 import com.soutvoid.gamesproject.interactor.common.network.error.ConversionException;
-import com.soutvoid.gamesproject.interactor.common.network.parse.safe.SafeConverter;
 import com.soutvoid.gamesproject.interactor.common.network.response.BaseResponse;
 
 import java.io.IOException;
@@ -49,10 +48,6 @@ public class ResponseTypeAdapterFactory implements TypeAdapterFactory {
             public T read(JsonReader in) throws IOException {
                 JsonElement jsonElement = elementAdapter.read(in);
                 //пытаемся применить безопасный парсинг для известных нарушений структуры Json
-                SafeConverter<T> safeConverter = safeConverterFactory.getSafeConverter(type);
-                if (safeConverter != null) {
-                    return safeConverter.convert(ResponseTypeAdapterFactory.this, gson, jsonElement);
-                }
                 //если пытаемся распарсить элемент, производный от {@link BaseResponse} то в
                 // случае ошибки эмитим ConversionException с текстом ответа
                 if (BaseResponse.class.isAssignableFrom(type.getRawType())) {

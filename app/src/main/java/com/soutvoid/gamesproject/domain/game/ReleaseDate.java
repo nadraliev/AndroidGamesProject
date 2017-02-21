@@ -12,7 +12,7 @@ public class ReleaseDate implements Serializable {
 
     public Integer category;
     public Integer platform;
-    public Integer date;
+    public Long date;
     public Integer region;
     public String human;
     public Integer y;
