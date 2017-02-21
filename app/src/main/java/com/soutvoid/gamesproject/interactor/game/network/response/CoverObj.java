@@ -1,6 +1,8 @@
 package com.soutvoid.gamesproject.interactor.game.network.response;
 
 import com.google.gson.annotations.SerializedName;
+import com.soutvoid.gamesproject.domain.game.Cover;
+import com.soutvoid.gamesproject.util.Transformable;
 
 import lombok.Data;
 
@@ -9,7 +11,7 @@ import lombok.Data;
  */
 
 @Data
-public class CoverObj {
+public class CoverObj implements Transformable<Cover> {
 
     @SerializedName("url")
     public String url;
@@ -20,4 +22,13 @@ public class CoverObj {
     @SerializedName("height")
     public Integer height;
 
+    @Override
+    public Cover transform() {
+        return new Cover(
+                url,
+                cloudinaryId,
+                width,
+                height
+        );
+    }
 }

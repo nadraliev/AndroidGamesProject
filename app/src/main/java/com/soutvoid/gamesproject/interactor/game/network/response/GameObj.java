@@ -1,13 +1,16 @@
 package com.soutvoid.gamesproject.interactor.game.network.response;
 
 import com.google.gson.annotations.SerializedName;
+import com.soutvoid.gamesproject.domain.game.Game;
+import com.soutvoid.gamesproject.interactor.common.network.TransformUtil;
+import com.soutvoid.gamesproject.util.Transformable;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import lombok.Data;
 
 @Data
-public class GameObj {
+public class GameObj implements Transformable<Game> {
 
     @SerializedName("id")
     public Integer id;
@@ -32,31 +35,31 @@ public class GameObj {
     @SerializedName("popularity")
     public Double popularity;
     @SerializedName("developers")
-    public List<Integer> developers = null;
+    public ArrayList<Integer> developers = null;
     @SerializedName("publishers")
-    public List<Integer> publishers = null;
+    public ArrayList<Integer> publishers = null;
     @SerializedName("category")
     public Integer category;
     @SerializedName("player_perspectives")
-    public List<Integer> playerPerspectives = null;
+    public ArrayList<Integer> playerPerspectives = null;
     @SerializedName("game_modes")
-    public List<Integer> gameModes = null;
+    public ArrayList<Integer> gameModes = null;
     @SerializedName("keywords")
-    public List<Integer> keywords = null;
+    public ArrayList<Integer> keywords = null;
     @SerializedName("themes")
-    public List<Integer> themes = null;
+    public ArrayList<Integer> themes = null;
     @SerializedName("genres")
-    public List<Integer> genres = null;
+    public ArrayList<Integer> genres = null;
     @SerializedName("first_release_date")
     public Integer firstReleaseDate;
     @SerializedName("release_dates")
-    public List<ReleaseDateObj> releaseDateObjs = null;
+    public ArrayList<ReleaseDateObj> releaseDateObjs = null;
     @SerializedName("alternative_names")
-    public List<AlternativeNameObj> alternativeNameObjs = null;
+    public ArrayList<AlternativeNameObj> alternativeNameObjs = null;
     @SerializedName("screenshots")
-    public List<ScreenshotObj> screenshotObjs = null;
+    public ArrayList<ScreenshotObj> screenshotObjs = null;
     @SerializedName("videos")
-    public List<VideoObj> videoObjs = null;
+    public ArrayList<VideoObj> videoObjs = null;
     @SerializedName("cover")
     public CoverObj coverObj;
     @SerializedName("esrb")
@@ -64,4 +67,36 @@ public class GameObj {
     @SerializedName("pegi")
     public PegiObj pegiObj;
 
+    @Override
+    public Game transform() {
+        return new Game(
+                id,
+                name,
+                slug,
+                url,
+                createdAt,
+                updatedAt,
+                summary,
+                storyline,
+                collection,
+                hypes,
+                popularity,
+                developers,
+                publishers,
+                category,
+                playerPerspectives,
+                gameModes,
+                keywords,
+                themes,
+                genres,
+                firstReleaseDate,
+                TransformUtil.transformCollection(releaseDateObjs),
+                TransformUtil.transformCollection(alternativeNameObjs),
+                TransformUtil.transformCollection(screenshotObjs),
+                TransformUtil.transformCollection(videoObjs),
+                TransformUtil.transform(coverObj),
+                TransformUtil.transform(esrbObj),
+                TransformUtil.transform(pegiObj)
+        );
+    }
 }

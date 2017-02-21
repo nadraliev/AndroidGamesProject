@@ -1,9 +1,7 @@
 package com.soutvoid.gamesproject.domain.game;
 
-import android.provider.MediaStore;
-
 import java.io.Serializable;
-import java.util.List;
+import java.util.ArrayList;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,19 +25,19 @@ public class Game implements Serializable {
     public Integer collection;
     public Integer hypes;
     public Double popularity;
-    public List<Integer> developers = null;
-    public List<Integer> publishers = null;
+    public ArrayList<Integer> developers = null;
+    public ArrayList<Integer> publishers = null;
     public Integer category;
-    public List<Integer> playerPerspectives = null;
-    public List<Integer> gameModes = null;
-    public List<Integer> keywords = null;
-    public List<Integer> themes = null;
-    public List<Integer> genres = null;
+    public ArrayList<Integer> playerPerspectives = null;
+    public ArrayList<Integer> gameModes = null;
+    public ArrayList<Integer> keywords = null;
+    public ArrayList<Integer> themes = null;
+    public ArrayList<Integer> genres = null;
     public Integer firstReleaseDate;
-    public List<ReleaseDate> releaseDates = null;
-    public List<AlternativeName> alternativeNames = null;
-    public List<Screenshot> screenshots = null;
-    public List<MediaStore.Video> videos = null;
+    public ArrayList<ReleaseDate> releaseDates = null;
+    public ArrayList<AlternativeName> alternativeNames = null;
+    public ArrayList<Screenshot> screenshots = null;
+    public ArrayList<Video> videos = null;
     public Cover cover;
     public Esrb esrb;
     public Pegi pegi;

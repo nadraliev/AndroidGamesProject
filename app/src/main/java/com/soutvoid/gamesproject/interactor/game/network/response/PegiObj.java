@@ -1,6 +1,8 @@
 package com.soutvoid.gamesproject.interactor.game.network.response;
 
 import com.google.gson.annotations.SerializedName;
+import com.soutvoid.gamesproject.domain.game.Pegi;
+import com.soutvoid.gamesproject.util.Transformable;
 
 import lombok.Data;
 
@@ -9,9 +11,15 @@ import lombok.Data;
  */
 
 @Data
-public class PegiObj {
+public class PegiObj implements Transformable<Pegi> {
 
     @SerializedName("rating")
     public Integer rating;
 
+    @Override
+    public Pegi transform() {
+        return new Pegi(
+                rating
+        );
+    }
 }

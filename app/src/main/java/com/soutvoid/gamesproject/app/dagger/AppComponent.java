@@ -1,6 +1,13 @@
 package com.soutvoid.gamesproject.app.dagger;
 
+import android.content.Context;
+
 import com.agna.ferro.mvp.component.scope.PerApplication;
+import com.soutvoid.gamesproject.interactor.common.network.NetworkModule;
+import com.soutvoid.gamesproject.interactor.common.network.OkHttpModule;
+import com.soutvoid.gamesproject.interactor.game.GameModule;
+import com.soutvoid.gamesproject.interactor.game.GameRepository;
+import com.soutvoid.gamesproject.interactor.network.connection.NetworkConnectionChecker;
 
 import dagger.Component;
 
@@ -9,9 +16,17 @@ import dagger.Component;
  */
 @PerApplication
 @Component(modules = {
-        AppModule.class
+        AppModule.class,
+        OkHttpModule.class,
+        NetworkModule.class,
+        GameModule.class
 })
 public interface AppComponent {
 
+    Context context();
+
+    NetworkConnectionChecker networkConnectionChecker();
+
+    GameRepository gameRepository();
 
 }

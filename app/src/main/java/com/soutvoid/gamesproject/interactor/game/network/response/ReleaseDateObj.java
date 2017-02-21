@@ -1,6 +1,8 @@
 package com.soutvoid.gamesproject.interactor.game.network.response;
 
 import com.google.gson.annotations.SerializedName;
+import com.soutvoid.gamesproject.domain.game.ReleaseDate;
+import com.soutvoid.gamesproject.util.Transformable;
 
 import lombok.Data;
 
@@ -9,7 +11,7 @@ import lombok.Data;
  */
 
 @Data
-public class ReleaseDateObj {
+public class ReleaseDateObj implements Transformable<ReleaseDate> {
 
     @SerializedName("category")
     public Integer category;
@@ -26,4 +28,16 @@ public class ReleaseDateObj {
     @SerializedName("m")
     public Integer m;
 
+    @Override
+    public ReleaseDate transform() {
+        return new ReleaseDate(
+                category,
+                platform,
+                date,
+                region,
+                human,
+                y,
+                m
+        );
+    }
 }
