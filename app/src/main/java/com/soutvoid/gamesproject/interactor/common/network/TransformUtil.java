@@ -5,11 +5,9 @@ import android.text.Html;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.soutvoid.gamesproject.domain.game.Game;
 import com.soutvoid.gamesproject.interactor.common.CollectionUtils;
 import com.soutvoid.gamesproject.interactor.common.FilterRequestFormatList;
 import com.soutvoid.gamesproject.interactor.common.network.parse.FilterAdapter;
-import com.soutvoid.gamesproject.interactor.game.network.response.GamesResponse;
 import com.soutvoid.gamesproject.util.SdkUtil;
 import com.soutvoid.gamesproject.util.Transformable;
 
@@ -33,10 +31,6 @@ public class TransformUtil {
 
     public static <T, E extends Transformable<T>> ArrayList<T> transformCollection(Collection<E> src) {
         return CollectionUtils.mapEmptyIfNull(src, Transformable::transform);
-    }
-
-    public static ArrayList<Game> transform(GamesResponse gamesResponse) {
-        return TransformUtil.transformCollection(gamesResponse.getGameObjList());
     }
 
     /**

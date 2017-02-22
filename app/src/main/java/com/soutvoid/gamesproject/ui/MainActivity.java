@@ -11,6 +11,7 @@ import com.soutvoid.gamesproject.app.App;
 import com.soutvoid.gamesproject.domain.game.Game;
 import com.soutvoid.gamesproject.interactor.game.GameRepository;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.inject.Inject;
