@@ -11,4 +11,6 @@ public class ServerUrls {
     //game
     public static final String GAMES_URL = "games/";
 
+    public static final String CHARACTERS_URL = "characters/";
+
 }
