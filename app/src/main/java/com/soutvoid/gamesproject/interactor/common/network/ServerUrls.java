@@ -11,6 +11,10 @@ public class ServerUrls {
     //game
     public static final String GAMES_URL = "games/";
 
+    //characters
     public static final String CHARACTERS_URL = "characters/";
+
+    //collection
+    public static final String COLLECTIONS_URL = "collections/";
 
 }
