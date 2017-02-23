@@ -9,10 +9,12 @@ import android.widget.TextView;
 
 import com.soutvoid.gamesproject.app.App;
 import com.soutvoid.gamesproject.domain.game.Game;
-import com.soutvoid.gamesproject.domain.game.GameFields;
+import com.soutvoid.gamesproject.domain.game.fields.GameFields;
 import com.soutvoid.gamesproject.interactor.character.CharacterRepository;
 import com.soutvoid.gamesproject.interactor.game.GameRepository;
 import com.soutvoid.gamesproject.interactor.util.FieldsBuilder;
+import com.soutvoid.gamesproject.interactor.util.Order;
+import com.soutvoid.gamesproject.interactor.util.OrderBuilder;
 
 import java.util.ArrayList;
 
@@ -46,7 +48,11 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(view, "", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 FieldsBuilder fieldsBuilder = new FieldsBuilder();
-                gameRepository.getGamesById(1025, fieldsBuilder.addField(GameFields.NAME).build())
+                OrderBuilder orderBuilder = new OrderBuilder();
+                gameRepository.searchGames("zelda", fieldsBuilder.addAllFields().build(),
+                        2,
+                        0,
+                        orderBuilder.addField(GameFields.POPULARITY).build(Order.DESC))
                         .subscribe(new Subscriber<ArrayList<Game>>() {
                             @Override
                             public void onCompleted() {

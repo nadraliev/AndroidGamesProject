@@ -14,9 +14,15 @@
     tools:context="com.soutvoid.gamesproject.ui.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
         android:id="@+id/testText"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+    </ScrollView>
 
 </RelativeLayout>
