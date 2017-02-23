@@ -1,5 +1,7 @@
 package com.soutvoid.gamesproject.domain.game;
 
+import com.soutvoid.gamesproject.domain.game.enums.GameCategory;
+
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -63,6 +65,14 @@ public class Game implements Serializable {
             }
         }
         return result;
+    }
+
+    public String getStringCategory() {
+        return GameCategory.values()[category].toString().toLowerCase().replace("_", " ");
+    }
+
+    public String getStringStatus() {
+        return GameCategory.values()[status].toString().toLowerCase().replace("_", " ");
     }
 
 }

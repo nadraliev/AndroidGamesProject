@@ -28,4 +28,20 @@ public class Pegi implements Serializable {
         return result;
     }
 
+    public int getMinimumAge() {
+        switch (rating) {
+            case 1:
+                return 3;
+            case 2:
+                return 7;
+            case 3:
+                return 12;
+            case 4:
+                return 16;
+            case 5:
+                return 18;
+        }
+        return -1;
+    }
+
 }
