@@ -1,6 +1,7 @@
 package com.soutvoid.gamesproject.domain.game;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import lombok.AllArgsConstructor;
@@ -48,5 +49,20 @@ public class Game implements Serializable {
     private Cover cover;
     private Esrb esrb;
     private Pegi pegi;
+
+    @Override
+    public String toString() {
+        String result = "";
+        Field[] fields = getClass().getFields();
+        for (Field field :
+                fields) {
+            try {
+                result += field.getName() + ": " + field.get(this).toString() + "\n";
+            } catch (IllegalAccessException | NullPointerException e) {
+                //ignore
+            }
+        }
+        return result;
+    }
 
 }

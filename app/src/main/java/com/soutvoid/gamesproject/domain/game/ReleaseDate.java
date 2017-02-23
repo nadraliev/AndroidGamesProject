@@ -2,6 +2,7 @@
 package com.soutvoid.gamesproject.domain.game;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,4 +18,19 @@ public class ReleaseDate implements Serializable {
     public String human;
     public Integer y;
     public Integer m;
+
+    @Override
+    public String toString() {
+        String result = "";
+        Field[] fields = getClass().getFields();
+        for (Field field :
+                fields) {
+            try {
+                result += field.getName() + ": " + field.get(this).toString() + "\n";
+            } catch (IllegalAccessException | NullPointerException e) {
+                //ignore
+            }
+        }
+        return result;
+    }
 }
