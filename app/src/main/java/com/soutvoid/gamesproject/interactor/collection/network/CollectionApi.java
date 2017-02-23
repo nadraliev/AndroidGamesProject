@@ -31,10 +31,10 @@ public interface CollectionApi {
                                                            @Query("search") String searchQuery);
 
     @GET(COLLECTIONS_URL)
-    Observable<ArrayList<CollectionObj>> searchCollectionsWithFilters(@Query("fields") String fields,
-                                                                      @Query("limit") int limit,
-                                                                      @Query("offset") int offset,
-                                                                      @Query("order") String order,
-                                                                      @Query("search") String searchQuery,
-                                                                      @QueryMap Map<String, String> filters);
+    Observable<ArrayList<CollectionObj>> searchCollections(@Query("fields") String fields,
+                                                           @Query("limit") int limit,
+                                                           @Query("offset") int offset,
+                                                           @Query("order") String order,
+                                                           @Query("search") String searchQuery,
+                                                           @QueryMap Map<String, String> filters);
 }

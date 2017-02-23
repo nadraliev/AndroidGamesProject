@@ -31,11 +31,11 @@ public interface CharacterApi {
                                                             @Query("search") String searchQuery);
 
     @GET(CHARACTERS_URL)
-    Observable<ArrayList<CharacterObj>> searchForCharactersWithFilters(@Query("fields") String fields,
-                                                                       @Query("limit") int limit,
-                                                                       @Query("offset") int offset,
-                                                                       @Query("order") String order,
-                                                                       @Query("search") String searchQuery,
-                                                                       @QueryMap Map<String, String> filters);
+    Observable<ArrayList<CharacterObj>> searchForCharacters(@Query("fields") String fields,
+                                                            @Query("limit") int limit,
+                                                            @Query("offset") int offset,
+                                                            @Query("order") String order,
+                                                            @Query("search") String searchQuery,
+                                                            @QueryMap Map<String, String> filters);
 
 }

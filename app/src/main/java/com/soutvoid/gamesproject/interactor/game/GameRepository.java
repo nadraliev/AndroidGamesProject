@@ -7,6 +7,7 @@ import com.soutvoid.gamesproject.interactor.network.connection.NetworkConnection
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -28,6 +29,18 @@ public class GameRepository {
 
     public Observable<ArrayList<Game>> searchGames(String searchQuery, String fields, int limit, int offset, String order) {
         return gameApi.searchForGames(fields, limit, offset, order, searchQuery)
+                .flatMap(gameObjs -> Observable.just(TransformUtil.transformCollection(gameObjs)))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Observable<ArrayList<Game>> searchGames(String searchQuery,
+                                                   String fields,
+                                                   int limit,
+                                                   int offset,
+                                                   String order,
+                                                   Map<String, String> filters) {
+        return gameApi.searchForGames(fields, limit, offset, order, searchQuery, filters)
                 .flatMap(gameObjs -> Observable.just(TransformUtil.transformCollection(gameObjs)))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());

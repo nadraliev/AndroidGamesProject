@@ -27,12 +27,12 @@ public interface GameApi {
                                                   @Query("search") String searchQuery);
 
     @GET(GAMES_URL)
-    Observable<ArrayList<GameObj>> searchForGamesWithFilters(@Query("fields") String fields,
-                                                             @Query("limit") int limit,
-                                                             @Query("offset") int offset,
-                                                             @Query("order") String order,
-                                                             @Query("search") String searchQuery,
-                                                             @QueryMap Map<String, String> filters);
+    Observable<ArrayList<GameObj>> searchForGames(@Query("fields") String fields,
+                                                  @Query("limit") int limit,
+                                                  @Query("offset") int offset,
+                                                  @Query("order") String order,
+                                                  @Query("search") String searchQuery,
+                                                  @QueryMap Map<String, String> filters);
 
     @GET(GAMES_URL + "{id}")
     Observable<ArrayList<GameObj>> getGamesById(@Path("id") int id,

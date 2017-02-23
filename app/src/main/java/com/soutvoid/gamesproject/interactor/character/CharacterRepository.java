@@ -6,6 +6,7 @@ import com.soutvoid.gamesproject.interactor.network.connection.NetworkConnection
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -36,12 +37,24 @@ public class CharacterRepository {
 
     }
 
-    public Observable<ArrayList<Character>> getCharacters(String searchQuery,
-                                                          String fields,
-                                                          int limit,
-                                                          int offset,
-                                                          String order) {
+    public Observable<ArrayList<Character>> searchCharacters(String searchQuery,
+                                                             String fields,
+                                                             int limit,
+                                                             int offset,
+                                                             String order) {
         return characterApi.searchForCharacters(fields, limit, offset, order, searchQuery)
+                .flatMap(characterObjs -> Observable.just(TransformUtil.transformCollection(characterObjs)))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Observable<ArrayList<Character>> searchCharactersWithFilters(String searchQuery,
+                                                                        String fields,
+                                                                        int limit,
+                                                                        int offset,
+                                                                        String order,
+                                                                        Map<String, String> filters) {
+        return characterApi.searchForCharacters(fields, limit, offset, order, searchQuery, filters)
                 .flatMap(characterObjs -> Observable.just(TransformUtil.transformCollection(characterObjs)))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
