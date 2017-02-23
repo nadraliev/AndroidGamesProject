@@ -5,10 +5,20 @@ package com.soutvoid.gamesproject.domain.game.enums;
  */
 
 public enum GameStatus {
-    RELEASED,
-    ALPHA,
-    BETA,
-    EARLY_ACCESS,
-    OFFLINE,
-    CANCELLED
+    RELEASED("Released"),
+    ALPHA("Alpha"),
+    BETA("Beta"),
+    EARLY_ACCESS("Early Access"),
+    OFFLINE("Offline"),
+    CANCELLED("Cancelled");
+
+    private String s;
+
+    private GameStatus(String s) {
+        this.s = s;
+    }
+
+    public String getValue() {
+        return s;
+    }
 }

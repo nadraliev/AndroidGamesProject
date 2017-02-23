@@ -71,7 +71,7 @@ public class GameObj implements Transformable<Game> {
     private ArrayList<ReleaseDateObj> releaseDateObjs = null;
     @SerializedName("alternative_names")
     private ArrayList<AlternativeNameObj> alternativeNameObjs = null;
-    @SerializedName("screenshots")
+    @SerializedName("images")
     private ArrayList<ScreenshotObj> screenshotObjs = null;
     @SerializedName("videos")
     private ArrayList<VideoObj> videoObjs = null;

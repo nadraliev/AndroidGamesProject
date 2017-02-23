@@ -1,5 +1,5 @@
 
-package com.soutvoid.gamesproject.domain.game;
+package com.soutvoid.gamesproject.domain;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Screenshot implements Serializable {
+public class Image implements Serializable {
 
     public String url;
     public String cloudinaryId;

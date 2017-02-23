@@ -1,7 +1,7 @@
 package com.soutvoid.gamesproject.interactor.game.network.response;
 
 import com.google.gson.annotations.SerializedName;
-import com.soutvoid.gamesproject.domain.game.Screenshot;
+import com.soutvoid.gamesproject.domain.Image;
 import com.soutvoid.gamesproject.util.Transformable;
 
 import lombok.Data;
@@ -11,7 +11,7 @@ import lombok.Data;
  */
 
 @Data
-public class ScreenshotObj implements Transformable<Screenshot> {
+public class ScreenshotObj implements Transformable<Image> {
 
     @SerializedName("url")
     public String url;
@@ -23,8 +23,8 @@ public class ScreenshotObj implements Transformable<Screenshot> {
     public Integer height;
 
     @Override
-    public Screenshot transform() {
-        return new Screenshot(
+    public Image transform() {
+        return new Image(
                 url,
                 cloudinaryId,
                 width,

@@ -5,19 +5,29 @@ package com.soutvoid.gamesproject.domain.pulse.enums;
  */
 
 public enum PulseCategory {
-    REDDIT,
-    KICKSTARTER,
-    KOTAKU,
-    POLYGON,
-    KILL_SCREEN,
-    GAME_INFORMER,
-    ROCK_PAPER_SHOTGUN,
-    WIRED_GAME,
-    N4G,
-    ESCAPIST,
-    PCGAMER,
-    IGN,
-    INDIE_GAMES,
-    DESTRUCTOID,
-    NICHE_GAMER
+    REDDIT("Reddit"),
+    KICKSTARTER("Kickstarter"),
+    KOTAKU("Kotaku"),
+    POLYGON("Polygon"),
+    KILL_SCREEN("KillScreen"),
+    GAME_INFORMER("GameInformer"),
+    ROCK_PAPER_SHOTGUN("Rock, Paper, Shotgun"),
+    WIRED_GAME("Wired Game/Life"),
+    N4G("N4G"),
+    ESCAPIST("Escapist"),
+    PCGAMER("PCGamer"),
+    IGN("IGN"),
+    INDIE_GAMES("Indie Games"),
+    DESTRUCTOID("Destructoid"),
+    NICHE_GAMER("Niche Gamer");
+
+    private String s;
+
+    private PulseCategory(String s) {
+        this.s = s;
+    }
+
+    public String getValue() {
+        return s;
+    }
 }

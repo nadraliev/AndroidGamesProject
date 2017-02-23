@@ -1,5 +1,7 @@
 package com.soutvoid.gamesproject.domain.character;
 
+import com.soutvoid.gamesproject.domain.Image;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -13,14 +15,18 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Character implements Serializable {
-    
-    public Integer id;
-    public String name;
-    public Long createdAt;
-    public Long updatedAt;
-    public String slug;
-    public String url;
-    public ArrayList<Integer> people = null;
-    public ArrayList<Integer> games = null;
+
+    private Integer id;
+    private String name;
+    private Long createdAt;
+    private Long updatedAt;
+    private String slug;
+    private String url;
+    private Image mugShot;
+    private Integer gender;
+    private ArrayList<String> akas;
+    private Integer species;
+    private ArrayList<Integer> people = null;
+    private ArrayList<Integer> games = null;
 
 }

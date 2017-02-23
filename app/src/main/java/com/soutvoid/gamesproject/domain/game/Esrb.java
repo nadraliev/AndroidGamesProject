@@ -1,8 +1,6 @@
 
 package com.soutvoid.gamesproject.domain.game;
 
-import com.soutvoid.gamesproject.domain.game.enums.EsrbRating;
-
 import java.io.Serializable;
 import java.lang.reflect.Field;
 
@@ -31,8 +29,5 @@ public class Esrb implements Serializable {
         return result;
     }
 
-    public String getStringRating() {
-        return EsrbRating.values()[rating].toString().toLowerCase().replace("_", " ");
-    }
 
 }

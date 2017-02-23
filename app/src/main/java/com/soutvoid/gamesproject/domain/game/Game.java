@@ -1,6 +1,6 @@
 package com.soutvoid.gamesproject.domain.game;
 
-import com.soutvoid.gamesproject.domain.game.enums.GameCategory;
+import com.soutvoid.gamesproject.domain.Image;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -46,7 +46,7 @@ public class Game implements Serializable {
     private Integer status;
     private ArrayList<ReleaseDate> releaseDates = null;
     private ArrayList<AlternativeName> alternativeNames = null;
-    private ArrayList<Screenshot> screenshots = null;
+    private ArrayList<Image> images = null;
     private ArrayList<Video> videos = null;
     private Cover cover;
     private Esrb esrb;
@@ -67,12 +67,5 @@ public class Game implements Serializable {
         return result;
     }
 
-    public String getStringCategory() {
-        return GameCategory.values()[category].toString().toLowerCase().replace("_", " ");
-    }
-
-    public String getStringStatus() {
-        return GameCategory.values()[status].toString().toLowerCase().replace("_", " ");
-    }
 
 }

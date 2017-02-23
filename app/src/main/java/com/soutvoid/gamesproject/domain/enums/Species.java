@@ -5,9 +5,19 @@ package com.soutvoid.gamesproject.domain.enums;
  */
 
 public enum Species {
-    HUMAN,
-    ALIEN,
-    ANIMAL,
-    ANDROID,
-    UNKNOWN
+    HUMAN("Human"),
+    ALIEN("Alien"),
+    ANIMAL("Animal"),
+    ANDROID("Android"),
+    UNKNOWN("Unknown");
+
+    private String s;
+
+    private Species(String s) {
+        this.s = s;
+    }
+
+    public String getValue() {
+        return s;
+    }
 }

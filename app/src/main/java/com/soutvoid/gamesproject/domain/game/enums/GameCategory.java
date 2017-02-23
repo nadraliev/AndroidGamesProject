@@ -5,9 +5,19 @@ package com.soutvoid.gamesproject.domain.game.enums;
  */
 
 public enum GameCategory {
-    MAIN_GAME,
-    DLC,
-    EXPANSION,
-    BUNDLE,
-    STANDALONE_EXPANSION
+    MAIN_GAME("Main game"),
+    DLC("DLC/Addon"),
+    EXPANSION("Expansion"),
+    BUNDLE("Bundle"),
+    STANDALONE_EXPANSION("Standalone expansion");
+
+    private String s;
+
+    private GameCategory(String s) {
+        this.s = s;
+    }
+
+    public String getValue() {
+        return s;
+    }
 }
