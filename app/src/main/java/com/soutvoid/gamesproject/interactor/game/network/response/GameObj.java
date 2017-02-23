@@ -50,6 +50,8 @@ public class GameObj implements Transformable<Game> {
     private ArrayList<Integer> developers = null;
     @SerializedName("publishers")
     private ArrayList<Integer> publishers = null;
+    @SerializedName("game_engines")
+    private ArrayList<Long> gameEngines;
     @SerializedName("category")
     private Integer category;
     @SerializedName("time_to_beat")
@@ -73,11 +75,11 @@ public class GameObj implements Transformable<Game> {
     @SerializedName("alternative_names")
     private ArrayList<AlternativeNameObj> alternativeNameObjs = null;
     @SerializedName("images")
-    private ArrayList<ImageObj> imageObjs = null;
+    private ArrayList<ImageObj> screenshotsObjs = null;
     @SerializedName("videos")
     private ArrayList<VideoObj> videoObjs = null;
     @SerializedName("cover")
-    private CoverObj coverObj;
+    private ArrayList<ImageObj> coverObjs;
     @SerializedName("esrb")
     private EsrbObj esrbObj;
     @SerializedName("pegi")
@@ -104,6 +106,7 @@ public class GameObj implements Transformable<Game> {
                 game,
                 developers,
                 publishers,
+                gameEngines,
                 category,
                 timeToBeat,
                 playerPerspectives,
@@ -115,9 +118,9 @@ public class GameObj implements Transformable<Game> {
                 status,
                 TransformUtil.transformCollection(releaseDateObjs),
                 TransformUtil.transformCollection(alternativeNameObjs),
-                TransformUtil.transformCollection(imageObjs),
+                TransformUtil.transformCollection(screenshotsObjs),
                 TransformUtil.transformCollection(videoObjs),
-                TransformUtil.transform(coverObj),
+                TransformUtil.transformCollection(coverObjs),
                 TransformUtil.transform(esrbObj),
                 TransformUtil.transform(pegiObj)
         );

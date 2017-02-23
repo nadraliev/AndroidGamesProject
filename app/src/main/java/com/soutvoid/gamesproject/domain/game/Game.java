@@ -35,6 +35,7 @@ public class Game implements Serializable {
     private Long game;
     private ArrayList<Integer> developers = null;
     private ArrayList<Integer> publishers = null;
+    private ArrayList<Long> gameEngines = null;
     private Integer category;
     private TimeToBeat timeToBeat;
     private ArrayList<Integer> playerPerspectives = null;
@@ -46,9 +47,9 @@ public class Game implements Serializable {
     private Integer status;
     private ArrayList<ReleaseDate> releaseDates = null;
     private ArrayList<AlternativeName> alternativeNames = null;
-    private ArrayList<Image> images = null;
+    private ArrayList<Image> screenshots = null;
     private ArrayList<Video> videos = null;
-    private Cover cover;
+    private ArrayList<Image> covers;
     private Esrb esrb;
     private Pegi pegi;
 
