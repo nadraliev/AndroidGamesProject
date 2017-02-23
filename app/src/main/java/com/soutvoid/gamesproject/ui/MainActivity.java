@@ -9,8 +9,10 @@ import android.widget.TextView;
 
 import com.soutvoid.gamesproject.app.App;
 import com.soutvoid.gamesproject.domain.game.Game;
+import com.soutvoid.gamesproject.domain.game.GameFields;
 import com.soutvoid.gamesproject.interactor.character.CharacterRepository;
 import com.soutvoid.gamesproject.interactor.game.GameRepository;
+import com.soutvoid.gamesproject.interactor.util.FieldsBuilder;
 
 import java.util.ArrayList;
 
@@ -43,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                gameRepository.getGamesById(1025, "*")
+                FieldsBuilder fieldsBuilder = new FieldsBuilder();
+                gameRepository.getGamesById(1025, fieldsBuilder.addField(GameFields.NAME).build())
                         .subscribe(new Subscriber<ArrayList<Game>>() {
                             @Override
                             public void onCompleted() {

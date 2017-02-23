@@ -20,4 +20,13 @@ public class FieldsBuilder {
         return addField(field.toString());
     }
 
+    public FieldsBuilder addAllFields() {
+        fields = "*";
+        return this;
+    }
+
+    public String build() {
+        return fields;
+    }
+
 }
