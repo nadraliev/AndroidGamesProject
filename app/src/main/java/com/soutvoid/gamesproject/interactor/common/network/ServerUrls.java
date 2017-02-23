@@ -20,4 +20,7 @@ public class ServerUrls {
     //company
     public static final String COMPANIES_URL = "companies/";
 
+    //franchise
+    public static final String FRANCHISES_URL = "franchises/";
+
 }

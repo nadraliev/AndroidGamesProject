@@ -11,6 +11,8 @@ import com.soutvoid.gamesproject.interactor.common.network.NetworkModule;
 import com.soutvoid.gamesproject.interactor.common.network.OkHttpModule;
 import com.soutvoid.gamesproject.interactor.company.CompanyModule;
 import com.soutvoid.gamesproject.interactor.company.CompanyRepository;
+import com.soutvoid.gamesproject.interactor.franchise.FranchiseModule;
+import com.soutvoid.gamesproject.interactor.franchise.FranchiseRepository;
 import com.soutvoid.gamesproject.interactor.game.GameModule;
 import com.soutvoid.gamesproject.interactor.game.GameRepository;
 import com.soutvoid.gamesproject.interactor.network.connection.NetworkConnectionChecker;
@@ -28,7 +30,8 @@ import dagger.Component;
         GameModule.class,
         CharacterModule.class,
         CollectionModule.class,
-        CompanyModule.class
+        CompanyModule.class,
+        FranchiseModule.class
 })
 public interface AppComponent {
     Context context();
@@ -36,6 +39,7 @@ public interface AppComponent {
     GameRepository gameRepository();
     CharacterRepository characterRepository();
     CollectionRepository collectionRepository();
-
     CompanyRepository companyRepository();
+
+    FranchiseRepository franchiseRepository();
 }
