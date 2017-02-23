@@ -53,7 +53,7 @@ public class Game implements Serializable {
     @Override
     public String toString() {
         String result = "";
-        Field[] fields = getClass().getFields();
+        Field[] fields = this.getClass().getDeclaredFields();
         for (Field field :
                 fields) {
             try {
