@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by andrew on 22-Feb-17.
@@ -26,15 +28,23 @@ public class CharacterRepository {
         this.networkConnectionChecker = networkConnectionChecker;
     }
 
-    public Observable<ArrayList<Character>> getCharacterById(int id) {
-        return characterApi.getCharactersById(id)
-                .flatMap(characterObjs ->  Observable.just(TransformUtil.transformCollection(characterObjs)));
+    public Observable<ArrayList<Character>> getCharacterById(int id, String fields) {
+        return characterApi.getCharactersById(id, fields)
+                .flatMap(characterObjs -> Observable.just(TransformUtil.transformCollection(characterObjs)))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
 
     }
 
-    public Observable<ArrayList<Character>> getCharacters(String searchQuery) {
-        return characterApi.searchForCharacters("*", 20, 0, "release_dates.date:desc", searchQuery)   //TODO поменять статичные параметры на enum
-                .flatMap(characterObjs ->  Observable.just(TransformUtil.transformCollection(characterObjs)));
+    public Observable<ArrayList<Character>> getCharacters(String searchQuery,
+                                                          String fields,
+                                                          int limit,
+                                                          int offset,
+                                                          String order) {
+        return characterApi.searchForCharacters(fields, limit, offset, order, searchQuery)
+                .flatMap(characterObjs -> Observable.just(TransformUtil.transformCollection(characterObjs)))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
 }
