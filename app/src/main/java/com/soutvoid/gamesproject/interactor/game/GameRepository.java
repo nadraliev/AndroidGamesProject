@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 @PerApplication
 public class GameRepository {
@@ -24,8 +26,17 @@ public class GameRepository {
         this.networkConnectionChecker = networkConnectionChecker;
     }
 
-    public Observable<ArrayList<Game>> getGames(String searchQuery) {
-        return gameApi.searchForGames("*", 20, 0, "release_dates.date:desc", searchQuery)   //TODO поменять статичные параметры на enum
-                .flatMap(gameObjs -> Observable.just(TransformUtil.transformCollection(gameObjs)));
+    public Observable<ArrayList<Game>> searchGames(String searchQuery, String fields, int limit, int offset, String order) {
+        return gameApi.searchForGames(fields, limit, offset, order, searchQuery)
+                .flatMap(gameObjs -> Observable.just(TransformUtil.transformCollection(gameObjs)))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Observable<ArrayList<Game>> getGamesById(int id, String fields) {
+        return gameApi.getGamesById(id, fields)
+                .flatMap(gameObjs -> Observable.just(TransformUtil.transformCollection(gameObjs)))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 }

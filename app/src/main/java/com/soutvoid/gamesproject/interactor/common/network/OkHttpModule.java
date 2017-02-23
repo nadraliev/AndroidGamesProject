@@ -1,6 +1,7 @@
 package com.soutvoid.gamesproject.interactor.common.network;
 
 import com.agna.ferro.mvp.component.scope.PerApplication;
+import com.soutvoid.gamesproject.interactor.common.network.request.RequestHeadersInterceptor;
 
 import java.util.concurrent.TimeUnit;
 
@@ -20,12 +21,14 @@ public class OkHttpModule {
 
     @Provides
     @PerApplication
-    OkHttpClient provideOkHttpClient(HttpLoggingInterceptor httpLoggingInterceptor) {
+    OkHttpClient provideOkHttpClient(HttpLoggingInterceptor httpLoggingInterceptor,
+                                     RequestHeadersInterceptor requestHeadersInterceptor) {
         OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
         okHttpClientBuilder.connectTimeout(NETWORK_TIMEOUT, TimeUnit.SECONDS);
         okHttpClientBuilder.readTimeout(NETWORK_TIMEOUT, TimeUnit.SECONDS);
         okHttpClientBuilder.writeTimeout(NETWORK_TIMEOUT, TimeUnit.SECONDS);
 
+        okHttpClientBuilder.addInterceptor(requestHeadersInterceptor);
         okHttpClientBuilder.addInterceptor(httpLoggingInterceptor);
         return okHttpClientBuilder.build();
     }

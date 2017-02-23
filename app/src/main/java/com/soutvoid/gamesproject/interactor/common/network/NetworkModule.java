@@ -8,6 +8,7 @@ import com.soutvoid.gamesproject.interactor.common.network.parse.BooleanAdapter;
 import com.soutvoid.gamesproject.interactor.common.network.parse.IntAdapter;
 import com.soutvoid.gamesproject.interactor.common.network.parse.ResponseTypeAdapterFactory;
 import com.soutvoid.gamesproject.interactor.common.network.parse.StringAdapter;
+import com.soutvoid.gamesproject.interactor.common.network.request.RequestHeadersInterceptor;
 
 import dagger.Module;
 import dagger.Provides;
@@ -62,6 +63,12 @@ public class NetworkModule {
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
         }
         return loggingInterceptor;
+    }
+
+    @Provides
+    @PerApplication
+    RequestHeadersInterceptor provideRequestHeadersInterceptor() {
+        return new RequestHeadersInterceptor();
     }
 
 }

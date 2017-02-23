@@ -2,6 +2,7 @@ package com.soutvoid.gamesproject.interactor.game.network.response;
 
 import com.google.gson.annotations.SerializedName;
 import com.soutvoid.gamesproject.domain.game.Game;
+import com.soutvoid.gamesproject.domain.game.TimeToBeat;
 import com.soutvoid.gamesproject.interactor.common.network.TransformUtil;
 import com.soutvoid.gamesproject.util.Transformable;
 
@@ -13,59 +14,73 @@ import lombok.Data;
 public class GameObj implements Transformable<Game> {
 
     @SerializedName("id")
-    public Integer id;
+    private Integer id;
     @SerializedName("name")
-    public String name;
+    private String name;
     @SerializedName("slug")
-    public String slug;
+    private String slug;
     @SerializedName("url")
-    public String url;
+    private String url;
     @SerializedName("created_at")
-    public Long createdAt;
+    private Long createdAt;
     @SerializedName("updated_at")
-    public Long updatedAt;
+    private Long updatedAt;
     @SerializedName("summary")
-    public String summary;
+    private String summary;
     @SerializedName("storyline")
-    public String storyline;
+    private String storyline;
     @SerializedName("collection")
-    public Integer collection;
+    private Integer collection;
+    @SerializedName("franchise")
+    private Long franchise;
     @SerializedName("hypes")
-    public Integer hypes;
+    private Integer hypes;
     @SerializedName("popularity")
-    public Double popularity;
+    private Double popularity;
+    @SerializedName("aggregated_rating")
+    private Double aggregatedRating;
+    @SerializedName("game")
+    private Long game;
+    @SerializedName("rating")
+    private Double rating;
+    @SerializedName("rating_count")
+    private Integer ratingCount;
     @SerializedName("developers")
-    public ArrayList<Integer> developers = null;
+    private ArrayList<Integer> developers = null;
     @SerializedName("publishers")
-    public ArrayList<Integer> publishers = null;
+    private ArrayList<Integer> publishers = null;
     @SerializedName("category")
-    public Integer category;
+    private Integer category;
+    @SerializedName("time_to_beat")
+    private TimeToBeat timeToBeat;
     @SerializedName("player_perspectives")
-    public ArrayList<Integer> playerPerspectives = null;
+    private ArrayList<Integer> playerPerspectives = null;
     @SerializedName("game_modes")
-    public ArrayList<Integer> gameModes = null;
+    private ArrayList<Integer> gameModes = null;
     @SerializedName("keywords")
-    public ArrayList<Integer> keywords = null;
+    private ArrayList<Integer> keywords = null;
     @SerializedName("themes")
-    public ArrayList<Integer> themes = null;
+    private ArrayList<Integer> themes = null;
     @SerializedName("genres")
-    public ArrayList<Integer> genres = null;
+    private ArrayList<Integer> genres = null;
     @SerializedName("first_release_date")
-    public Long firstReleaseDate;
+    private Long firstReleaseDate;
+    @SerializedName("status")
+    private Integer status;
     @SerializedName("release_dates")
-    public ArrayList<ReleaseDateObj> releaseDateObjs = null;
+    private ArrayList<ReleaseDateObj> releaseDateObjs = null;
     @SerializedName("alternative_names")
-    public ArrayList<AlternativeNameObj> alternativeNameObjs = null;
+    private ArrayList<AlternativeNameObj> alternativeNameObjs = null;
     @SerializedName("screenshots")
-    public ArrayList<ScreenshotObj> screenshotObjs = null;
+    private ArrayList<ScreenshotObj> screenshotObjs = null;
     @SerializedName("videos")
-    public ArrayList<VideoObj> videoObjs = null;
+    private ArrayList<VideoObj> videoObjs = null;
     @SerializedName("cover")
-    public CoverObj coverObj;
+    private CoverObj coverObj;
     @SerializedName("esrb")
-    public EsrbObj esrbObj;
+    private EsrbObj esrbObj;
     @SerializedName("pegi")
-    public PegiObj pegiObj;
+    private PegiObj pegiObj;
 
     @Override
     public Game transform() {
@@ -79,17 +94,24 @@ public class GameObj implements Transformable<Game> {
                 summary,
                 storyline,
                 collection,
+                franchise,
+                rating,
+                ratingCount,
                 hypes,
                 popularity,
+                aggregatedRating,
+                game,
                 developers,
                 publishers,
                 category,
+                timeToBeat,
                 playerPerspectives,
                 gameModes,
                 keywords,
                 themes,
                 genres,
                 firstReleaseDate,
+                status,
                 TransformUtil.transformCollection(releaseDateObjs),
                 TransformUtil.transformCollection(alternativeNameObjs),
                 TransformUtil.transformCollection(screenshotObjs),
