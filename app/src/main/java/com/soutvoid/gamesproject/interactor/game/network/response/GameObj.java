@@ -3,7 +3,7 @@ package com.soutvoid.gamesproject.interactor.game.network.response;
 import com.google.gson.annotations.SerializedName;
 import com.soutvoid.gamesproject.domain.game.Game;
 import com.soutvoid.gamesproject.domain.game.TimeToBeat;
-import com.soutvoid.gamesproject.interactor.common.network.TransformUtil;
+import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 import com.soutvoid.gamesproject.util.Transformable;
 
 import java.util.ArrayList;

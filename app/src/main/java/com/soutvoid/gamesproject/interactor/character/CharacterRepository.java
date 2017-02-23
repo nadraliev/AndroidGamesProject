@@ -2,8 +2,8 @@ package com.soutvoid.gamesproject.interactor.character;
 
 import com.soutvoid.gamesproject.domain.character.Character;
 import com.soutvoid.gamesproject.interactor.character.network.CharacterApi;
-import com.soutvoid.gamesproject.interactor.common.network.TransformUtil;
 import com.soutvoid.gamesproject.interactor.network.connection.NetworkConnectionChecker;
+import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 
 import java.util.ArrayList;
 

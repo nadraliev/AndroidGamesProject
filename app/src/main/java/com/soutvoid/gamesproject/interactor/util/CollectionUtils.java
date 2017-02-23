@@ -1,4 +1,4 @@
-package com.soutvoid.gamesproject.interactor.common;
+package com.soutvoid.gamesproject.interactor.util;
 
 
 import com.soutvoid.gamesproject.util.Mapper;

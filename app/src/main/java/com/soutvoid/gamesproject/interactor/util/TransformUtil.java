@@ -1,12 +1,12 @@
-package com.soutvoid.gamesproject.interactor.common.network;
+package com.soutvoid.gamesproject.interactor.util;
 
 import android.support.annotation.Nullable;
 import android.text.Html;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.soutvoid.gamesproject.interactor.common.CollectionUtils;
 import com.soutvoid.gamesproject.interactor.common.FilterRequestFormatList;
+import com.soutvoid.gamesproject.interactor.common.network.AnnotationExclusionStrategy;
 import com.soutvoid.gamesproject.interactor.common.network.parse.FilterAdapter;
 import com.soutvoid.gamesproject.util.SdkUtil;
 import com.soutvoid.gamesproject.util.Transformable;

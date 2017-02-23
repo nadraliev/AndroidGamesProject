@@ -2,9 +2,9 @@ package com.soutvoid.gamesproject.interactor.game;
 
 import com.agna.ferro.mvp.component.scope.PerApplication;
 import com.soutvoid.gamesproject.domain.game.Game;
-import com.soutvoid.gamesproject.interactor.common.network.TransformUtil;
 import com.soutvoid.gamesproject.interactor.game.network.GameApi;
 import com.soutvoid.gamesproject.interactor.network.connection.NetworkConnectionChecker;
+import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 
 import java.util.ArrayList;
 
