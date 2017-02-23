@@ -3,6 +3,7 @@ package com.soutvoid.gamesproject.interactor.game.network.response;
 import com.google.gson.annotations.SerializedName;
 import com.soutvoid.gamesproject.domain.game.Game;
 import com.soutvoid.gamesproject.domain.game.TimeToBeat;
+import com.soutvoid.gamesproject.interactor.common.network.response.ImageObj;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 import com.soutvoid.gamesproject.util.Transformable;
 
@@ -72,7 +73,7 @@ public class GameObj implements Transformable<Game> {
     @SerializedName("alternative_names")
     private ArrayList<AlternativeNameObj> alternativeNameObjs = null;
     @SerializedName("images")
-    private ArrayList<ScreenshotObj> screenshotObjs = null;
+    private ArrayList<ImageObj> imageObjs = null;
     @SerializedName("videos")
     private ArrayList<VideoObj> videoObjs = null;
     @SerializedName("cover")
@@ -114,7 +115,7 @@ public class GameObj implements Transformable<Game> {
                 status,
                 TransformUtil.transformCollection(releaseDateObjs),
                 TransformUtil.transformCollection(alternativeNameObjs),
-                TransformUtil.transformCollection(screenshotObjs),
+                TransformUtil.transformCollection(imageObjs),
                 TransformUtil.transformCollection(videoObjs),
                 TransformUtil.transform(coverObj),
                 TransformUtil.transform(esrbObj),

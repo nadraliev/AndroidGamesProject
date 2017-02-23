@@ -1,4 +1,4 @@
-package com.soutvoid.gamesproject.interactor.game.network.response;
+package com.soutvoid.gamesproject.interactor.common.network.response;
 
 import com.google.gson.annotations.SerializedName;
 import com.soutvoid.gamesproject.domain.Image;
@@ -11,7 +11,7 @@ import lombok.Data;
  */
 
 @Data
-public class ScreenshotObj implements Transformable<Image> {
+public class ImageObj implements Transformable<Image> {
 
     @SerializedName("url")
     public String url;

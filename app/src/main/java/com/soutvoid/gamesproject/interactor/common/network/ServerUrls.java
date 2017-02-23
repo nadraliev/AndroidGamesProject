@@ -17,4 +17,7 @@ public class ServerUrls {
     //collection
     public static final String COLLECTIONS_URL = "collections/";
 
+    //company
+    public static final String COMPANIES_URL = "companies/";
+
 }

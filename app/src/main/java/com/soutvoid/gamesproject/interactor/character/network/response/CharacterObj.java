@@ -1,8 +1,9 @@
 package com.soutvoid.gamesproject.interactor.character.network.response;
 
 import com.google.gson.annotations.SerializedName;
-import com.soutvoid.gamesproject.domain.Image;
 import com.soutvoid.gamesproject.domain.character.Character;
+import com.soutvoid.gamesproject.interactor.common.network.response.ImageObj;
+import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 import com.soutvoid.gamesproject.util.Transformable;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class CharacterObj implements Transformable<Character> {
     @SerializedName("url")
     public String url;
     @SerializedName("mug_shot")
-    private Image mugShot;
+    private ImageObj mugShot;
     @SerializedName("gender")
     private Integer gender;
     @SerializedName("akas")
@@ -50,7 +51,7 @@ public class CharacterObj implements Transformable<Character> {
                 updatedAt,
                 slug,
                 url,
-                mugShot,
+                TransformUtil.transform(mugShot),
                 gender,
                 akas,
                 species,

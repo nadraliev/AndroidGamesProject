@@ -9,6 +9,8 @@ import com.soutvoid.gamesproject.interactor.collection.CollectionModule;
 import com.soutvoid.gamesproject.interactor.collection.CollectionRepository;
 import com.soutvoid.gamesproject.interactor.common.network.NetworkModule;
 import com.soutvoid.gamesproject.interactor.common.network.OkHttpModule;
+import com.soutvoid.gamesproject.interactor.company.CompanyModule;
+import com.soutvoid.gamesproject.interactor.company.CompanyRepository;
 import com.soutvoid.gamesproject.interactor.game.GameModule;
 import com.soutvoid.gamesproject.interactor.game.GameRepository;
 import com.soutvoid.gamesproject.interactor.network.connection.NetworkConnectionChecker;
@@ -25,13 +27,15 @@ import dagger.Component;
         NetworkModule.class,
         GameModule.class,
         CharacterModule.class,
-        CollectionModule.class
+        CollectionModule.class,
+        CompanyModule.class
 })
 public interface AppComponent {
     Context context();
     NetworkConnectionChecker networkConnectionChecker();
     GameRepository gameRepository();
     CharacterRepository characterRepository();
-
     CollectionRepository collectionRepository();
+
+    CompanyRepository companyRepository();
 }
