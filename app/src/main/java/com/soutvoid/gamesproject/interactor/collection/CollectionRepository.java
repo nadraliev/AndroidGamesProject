@@ -1,6 +1,7 @@
 package com.soutvoid.gamesproject.interactor.collection;
 
 
+import com.agna.ferro.mvp.component.scope.PerApplication;
 import com.soutvoid.gamesproject.domain.collection.Collection;
 import com.soutvoid.gamesproject.interactor.collection.network.CollectionApi;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
@@ -14,6 +15,7 @@ import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+@PerApplication
 public class CollectionRepository {
 
     CollectionApi collectionApi;

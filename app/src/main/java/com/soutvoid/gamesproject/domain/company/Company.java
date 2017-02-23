@@ -2,6 +2,7 @@ package com.soutvoid.gamesproject.domain.company;
 
 import com.soutvoid.gamesproject.domain.Image;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import lombok.AllArgsConstructor;
@@ -13,7 +14,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Company {
+public class Company implements Serializable {
 
     private Long id;
     private String name;

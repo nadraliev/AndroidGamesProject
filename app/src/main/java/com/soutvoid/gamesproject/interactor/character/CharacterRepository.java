@@ -1,5 +1,6 @@
 package com.soutvoid.gamesproject.interactor.character;
 
+import com.agna.ferro.mvp.component.scope.PerApplication;
 import com.soutvoid.gamesproject.domain.character.Character;
 import com.soutvoid.gamesproject.interactor.character.network.CharacterApi;
 import com.soutvoid.gamesproject.interactor.network.connection.NetworkConnectionChecker;
@@ -18,6 +19,7 @@ import rx.schedulers.Schedulers;
  * Created by andrew on 22-Feb-17.
  */
 
+@PerApplication
 public class CharacterRepository {
 
     private CharacterApi characterApi;

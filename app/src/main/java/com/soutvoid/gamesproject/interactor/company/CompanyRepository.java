@@ -1,5 +1,6 @@
 package com.soutvoid.gamesproject.interactor.company;
 
+import com.agna.ferro.mvp.component.scope.PerApplication;
 import com.soutvoid.gamesproject.domain.company.Company;
 import com.soutvoid.gamesproject.interactor.company.network.CompanyApi;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
@@ -17,6 +18,7 @@ import rx.schedulers.Schedulers;
  * Created by andrew on 2/23/17.
  */
 
+@PerApplication
 public class CompanyRepository {
 
     CompanyApi companyApi;
