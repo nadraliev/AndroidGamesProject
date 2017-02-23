@@ -3,10 +3,12 @@ package com.soutvoid.gamesproject.interactor.character.network;
 import com.soutvoid.gamesproject.interactor.character.network.response.CharacterObj;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 import rx.Observable;
 
 import static com.soutvoid.gamesproject.interactor.common.network.ServerUrls.CHARACTERS_URL;
@@ -23,9 +25,17 @@ public interface CharacterApi {
 
     @GET(CHARACTERS_URL)
     Observable<ArrayList<CharacterObj>> searchForCharacters(@Query("fields") String fields,
-                                                  @Query("limit") int limit,
-                                                  @Query("offset") int offset,
-                                                  @Query("order") String order,
-                                                  @Query("search") String searchQuery);
+                                                            @Query("limit") int limit,
+                                                            @Query("offset") int offset,
+                                                            @Query("order") String order,
+                                                            @Query("search") String searchQuery);
+
+    @GET(CHARACTERS_URL)
+    Observable<ArrayList<CharacterObj>> searchForCharactersWithFilters(@Query("fields") String fields,
+                                                                       @Query("limit") int limit,
+                                                                       @Query("offset") int offset,
+                                                                       @Query("order") String order,
+                                                                       @Query("search") String searchQuery,
+                                                                       @QueryMap Map<String, String> filters);
 
 }

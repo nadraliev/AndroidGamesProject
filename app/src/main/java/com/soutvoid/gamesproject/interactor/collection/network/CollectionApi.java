@@ -3,10 +3,12 @@ package com.soutvoid.gamesproject.interactor.collection.network;
 import com.soutvoid.gamesproject.interactor.collection.network.response.CollectionObj;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 import rx.Observable;
 
 import static com.soutvoid.gamesproject.interactor.common.network.ServerUrls.COLLECTIONS_URL;
@@ -28,4 +30,11 @@ public interface CollectionApi {
                                                            @Query("order") String order,
                                                            @Query("search") String searchQuery);
 
+    @GET(COLLECTIONS_URL)
+    Observable<ArrayList<CollectionObj>> searchCollectionsWithFilters(@Query("fields") String fields,
+                                                                      @Query("limit") int limit,
+                                                                      @Query("offset") int offset,
+                                                                      @Query("order") String order,
+                                                                      @Query("search") String searchQuery,
+                                                                      @QueryMap Map<String, String> filters);
 }
