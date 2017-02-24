@@ -23,4 +23,6 @@ public class ServerUrls {
     //franchise
     public static final String FRANCHISES_URL = "franchises/";
 
+    //game engines
+    public static final String GAME_ENGINES_URL = "game_engines/";
 }
