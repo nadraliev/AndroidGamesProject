@@ -17,6 +17,8 @@ import com.soutvoid.gamesproject.interactor.game.GameModule;
 import com.soutvoid.gamesproject.interactor.game.GameRepository;
 import com.soutvoid.gamesproject.interactor.genre.GenreModule;
 import com.soutvoid.gamesproject.interactor.genre.GenreRepository;
+import com.soutvoid.gamesproject.interactor.keyword.KeywordModule;
+import com.soutvoid.gamesproject.interactor.keyword.KeywordRepository;
 import com.soutvoid.gamesproject.interactor.network.connection.NetworkConnectionChecker;
 
 import dagger.Component;
@@ -34,7 +36,8 @@ import dagger.Component;
         CollectionModule.class,
         CompanyModule.class,
         FranchiseModule.class,
-        GenreModule.class
+        GenreModule.class,
+        KeywordModule.class
 })
 public interface AppComponent {
     Context context();
@@ -44,6 +47,7 @@ public interface AppComponent {
     CollectionRepository collectionRepository();
     CompanyRepository companyRepository();
     FranchiseRepository franchiseRepository();
-
     GenreRepository genreRepository();
+
+    KeywordRepository keywordRepository();
 }
