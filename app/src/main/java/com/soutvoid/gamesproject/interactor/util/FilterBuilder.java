@@ -8,16 +8,49 @@ import java.util.Map;
  */
 public class FilterBuilder {
 
+    /**
+     * дроступные факторы сортировки
+     */
     public enum Factor {
+        /**
+         * равно значению
+         */
         eq,
+        /**
+         * не равно значению
+         */
         not_eq,
+        /**
+         * строго больше значения
+         */
         gt,
+        /**
+         * больше или равно значению
+         */
         gte,
+        /**
+         * строго меньше значения
+         */
         lt,
+        /**
+         * меньше или равно значению
+         */
         lte,
+        /**
+         * строка начинается со значения
+         */
         prefix,
+        /**
+         * значение существует
+         */
         exists,
+        /**
+         * значение не существует
+         */
         not_exists,
+        /**
+         * значение присутсвует в массиве
+         */
         in
     }
 
@@ -26,20 +59,37 @@ public class FilterBuilder {
     private String factor = "";
     private String value = "";
 
+    /**
+     * устанавливает поле, по которому необходимо сортировать
+     */
     public FilterBuilder setField(String field) {
         this.field = field;
         return this;
     }
 
+    /**
+     * то же, что и {@link #setField(String)}, но принимает елемент enum
+     */
     public <T extends Enum> FilterBuilder setField(T field) {
         return setField(field.toString());
     }
 
+    /**
+     * устанавливает фактор сортировки из {@link Factor}
+     *
+     * @param factor
+     * @return
+     */
     public FilterBuilder setFactor(Factor factor) {
         this.factor = factor.toString();
         return this;
     }
 
+    /**
+     * устанавливает значение для сортировки по нему
+     * @param value
+     * @return
+     */
     public FilterBuilder setValue(String value) {
         this.value = value;
         return this;

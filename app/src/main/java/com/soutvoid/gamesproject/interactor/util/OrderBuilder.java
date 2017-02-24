@@ -9,11 +9,31 @@ package com.soutvoid.gamesproject.interactor.util;
  */
 public class OrderBuilder {
 
+    /**
+     * доступные направления сортировки
+     */
+    public enum Order {
+        /**
+         * по убыванию
+         */
+        DESC,
+        /**
+         * по возрастанию
+         */
+        ASC
+    }
+
     private String fieldsOrderSeparator = ":";
 
     protected String fields = "";
     protected String fieldsSeparator = ",";
 
+    /**
+     * добавить поле для сортировки
+     *
+     * @param field
+     * @return возвращает текущий экземпляр для простоты построения (цепочкой)
+     */
     public OrderBuilder addField(String field) {
         if (!fields.equals(""))
             fields += fieldsSeparator;
@@ -21,15 +41,24 @@ public class OrderBuilder {
         return this;
     }
 
+    /**
+     * то же, что и {@link #addField(String)}, но принимает элемент enum
+     */
     public <T extends Enum> OrderBuilder addField(T field) {
         return addField(field.toString().toLowerCase());
     }
 
+    /**
+     * сбрасывает текущий фильтр и добавляет все поля
+     */
     public OrderBuilder addAllFields() {
         fields = "*";
         return this;
     }
 
+    /**
+     * очищает текущий фильтр
+     */
     public OrderBuilder clear() {
         fields = "";
         return this;
