@@ -1,9 +1,7 @@
 package com.soutvoid.gamesproject.interactor.game.network.response;
 
 import com.google.gson.annotations.SerializedName;
-import com.soutvoid.gamesproject.domain.game.GameEngine;
-import com.soutvoid.gamesproject.interactor.common.network.response.ImageObj;
-import com.soutvoid.gamesproject.interactor.util.TransformUtil;
+import com.soutvoid.gamesproject.domain.game.GameMode;
 import com.soutvoid.gamesproject.util.Transformable;
 
 import java.util.ArrayList;
@@ -15,7 +13,7 @@ import lombok.Data;
  */
 
 @Data
-public class GameEngineObj implements Transformable<GameEngine> {
+public class GameModeObj implements Transformable<GameMode> {
 
     @SerializedName("id")
     private Long id;
@@ -29,28 +27,20 @@ public class GameEngineObj implements Transformable<GameEngine> {
     private Long createdAt;
     @SerializedName("updated_at")
     private Long updatedAt;
-    @SerializedName("logo")
-    private ImageObj logo;
     @SerializedName("games")
     private ArrayList<Long> games;
-    @SerializedName("companies")
-    private ArrayList<Long> companies;
-    @SerializedName("platforms")
-    private ArrayList<Long> platforms;
 
     @Override
-    public GameEngine transform() {
-        return new GameEngine(
+    public GameMode transform() {
+        return new GameMode(
                 id,
                 name,
                 slug,
                 url,
                 createdAt,
                 updatedAt,
-                TransformUtil.transform(logo),
-                games,
-                companies,
-                platforms
+                games
         );
     }
+
 }

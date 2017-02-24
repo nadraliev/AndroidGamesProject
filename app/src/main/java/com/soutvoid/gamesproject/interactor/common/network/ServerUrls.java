@@ -25,4 +25,7 @@ public class ServerUrls {
 
     //game engines
     public static final String GAME_ENGINES_URL = "game_engines/";
+
+    //game modes
+    public static final String GAME_MODES_URL = "game_modes/";
 }

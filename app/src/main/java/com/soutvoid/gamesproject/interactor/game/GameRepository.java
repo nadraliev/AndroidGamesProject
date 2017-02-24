@@ -3,6 +3,7 @@ package com.soutvoid.gamesproject.interactor.game;
 import com.agna.ferro.mvp.component.scope.PerApplication;
 import com.soutvoid.gamesproject.domain.game.Game;
 import com.soutvoid.gamesproject.domain.game.GameEngine;
+import com.soutvoid.gamesproject.domain.game.GameMode;
 import com.soutvoid.gamesproject.interactor.game.network.GameApi;
 import com.soutvoid.gamesproject.interactor.network.connection.NetworkConnectionChecker;
 import com.soutvoid.gamesproject.interactor.util.FieldsBuilder;
@@ -110,6 +111,41 @@ public class GameRepository {
     public Observable<ArrayList<GameEngine>> getGameEnginesById(int id, String fields) {
         return gameApi.getGameEnginesById(id, fields)
                 .flatMap(gameEngineObjs -> Observable.just(TransformUtil.transformCollection(gameEngineObjs)))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * то же, что {@link #searchGames(String, String, int, int, String)}, но для игровых режимов
+     */
+    public Observable<ArrayList<GameMode>> searchGameModes(String searchQuery, String fields, int limit, int offset, String order) {
+        return gameApi.searchForGameModes(fields, limit, offset, order, searchQuery)
+                .flatMap(gameModeObjs -> Observable.just(TransformUtil.transformCollection(gameModeObjs)))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * то же, что и {@link #searchGames(String, String, int, int, String, Map)}, но для игровых режимов
+     */
+    public Observable<ArrayList<GameMode>> searchGameModes(String searchQuery,
+                                                           String fields,
+                                                           int limit,
+                                                           int offset,
+                                                           String order,
+                                                           Map<String, String> filters) {
+        return gameApi.searchForGameModes(fields, limit, offset, order, searchQuery, filters)
+                .flatMap(gameModeObjs -> Observable.just(TransformUtil.transformCollection(gameModeObjs)))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * то же, что и {@link #getGamesById(int, String)}, но для игровых режимов
+     */
+    public Observable<ArrayList<GameMode>> getGameModesById(int id, String fields) {
+        return gameApi.getGameModesById(id, fields)
+                .flatMap(gameModeObjs -> Observable.just(TransformUtil.transformCollection(gameModeObjs)))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
