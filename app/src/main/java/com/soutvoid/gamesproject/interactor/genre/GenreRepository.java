@@ -35,7 +35,7 @@ public class GenreRepository {
      * @param limit       лимит кол-ва результатов
      * @param offset      пагинация ответа
      * @param order       сортировка. стрится с помощью {@link OrderBuilder}
-     * @return список игр
+     * @return список жанров
      */
     public Observable<ArrayList<Genre>> searchGenres(String searchQuery, String fields, int limit, int offset, String order) {
         return genreApi.searchForGenres(fields, limit, offset, order, searchQuery)
