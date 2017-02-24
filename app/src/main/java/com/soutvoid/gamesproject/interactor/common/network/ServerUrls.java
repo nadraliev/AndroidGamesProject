@@ -1,8 +1,5 @@
 package com.soutvoid.gamesproject.interactor.common.network;
 
-/**
- * Created by andrew on 2/21/17.
- */
 
 public class ServerUrls {
 
@@ -28,4 +25,7 @@ public class ServerUrls {
 
     //game modes
     public static final String GAME_MODES_URL = "game_modes/";
+
+    //genres
+    public static final String GENRES_URL = "genres/";
 }
