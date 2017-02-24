@@ -22,6 +22,8 @@ import com.soutvoid.gamesproject.interactor.keyword.KeywordRepository;
 import com.soutvoid.gamesproject.interactor.network.connection.NetworkConnectionChecker;
 import com.soutvoid.gamesproject.interactor.person.PersonModule;
 import com.soutvoid.gamesproject.interactor.person.PersonRepository;
+import com.soutvoid.gamesproject.interactor.platform.PlatformModule;
+import com.soutvoid.gamesproject.interactor.platform.PlatformRepository;
 
 import dagger.Component;
 
@@ -40,7 +42,8 @@ import dagger.Component;
         FranchiseModule.class,
         GenreModule.class,
         KeywordModule.class,
-        PersonModule.class
+        PersonModule.class,
+        PlatformModule.class
 })
 public interface AppComponent {
     Context context();
@@ -52,6 +55,7 @@ public interface AppComponent {
     FranchiseRepository franchiseRepository();
     GenreRepository genreRepository();
     KeywordRepository keywordRepository();
-
     PersonRepository personRepository();
+
+    PlatformRepository platformRepository();
 }
