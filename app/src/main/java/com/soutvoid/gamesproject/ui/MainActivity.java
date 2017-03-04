@@ -13,7 +13,6 @@ import com.soutvoid.gamesproject.domain.game.fields.GameFields;
 import com.soutvoid.gamesproject.interactor.character.CharacterRepository;
 import com.soutvoid.gamesproject.interactor.game.GameRepository;
 import com.soutvoid.gamesproject.interactor.util.FieldsBuilder;
-import com.soutvoid.gamesproject.interactor.util.Order;
 import com.soutvoid.gamesproject.interactor.util.OrderBuilder;
 
 import java.util.ArrayList;
@@ -22,6 +21,8 @@ import javax.inject.Inject;
 
 import rx.Subscriber;
 import soutvoid.com.gamesproject.R;
+
+import static com.soutvoid.gamesproject.interactor.util.OrderBuilder.Order.DESC;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 gameRepository.searchGames("zelda", fieldsBuilder.addAllFields().build(),
                         2,
                         0,
-                        orderBuilder.addField(GameFields.POPULARITY).build(Order.DESC))
+                        orderBuilder.addField(GameFields.POPULARITY).build(DESC))
                         .subscribe(new Subscriber<ArrayList<Game>>() {
                             @Override
                             public void onCompleted() {

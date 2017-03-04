@@ -24,6 +24,7 @@ import com.soutvoid.gamesproject.interactor.person.PersonModule;
 import com.soutvoid.gamesproject.interactor.person.PersonRepository;
 import com.soutvoid.gamesproject.interactor.platform.PlatformModule;
 import com.soutvoid.gamesproject.interactor.platform.PlatformRepository;
+import com.soutvoid.gamesproject.ui.base.activity.ActivityModule;
 
 import dagger.Component;
 
@@ -43,7 +44,8 @@ import dagger.Component;
         GenreModule.class,
         KeywordModule.class,
         PersonModule.class,
-        PlatformModule.class
+        PlatformModule.class,
+        ActivityModule.class
 })
 public interface AppComponent {
     Context context();
