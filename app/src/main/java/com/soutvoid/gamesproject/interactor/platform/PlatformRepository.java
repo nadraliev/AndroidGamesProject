@@ -14,8 +14,6 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 @PerApplication
 public class PlatformRepository {
@@ -39,9 +37,7 @@ public class PlatformRepository {
      */
     public Observable<ArrayList<Platform>> searchPlatforms(String searchQuery, String fields, int limit, int offset, String order) {
         return platformApi.searchForPlatforms(fields, limit, offset, order, searchQuery)
-                .flatMap(platformObjs -> Observable.just(TransformUtil.transformCollection(platformObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(platformObjs -> Observable.just(TransformUtil.transformCollection(platformObjs)));
     }
 
     /**
@@ -58,9 +54,7 @@ public class PlatformRepository {
                                                            String order,
                                                            Map<String, String> filters) {
         return platformApi.searchForPlatforms(fields, limit, offset, order, searchQuery, filters)
-                .flatMap(platformObjs -> Observable.just(TransformUtil.transformCollection(platformObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(platformObjs -> Observable.just(TransformUtil.transformCollection(platformObjs)));
     }
 
     /**
@@ -72,8 +66,6 @@ public class PlatformRepository {
      */
     public Observable<ArrayList<Platform>> getPlatformsById(int id, String fields) {
         return platformApi.getPlatformsById(id, fields)
-                .flatMap(platformObjs -> Observable.just(TransformUtil.transformCollection(platformObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(platformObjs -> Observable.just(TransformUtil.transformCollection(platformObjs)));
     }
 }

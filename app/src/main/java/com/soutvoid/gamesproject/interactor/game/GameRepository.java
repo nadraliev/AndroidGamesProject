@@ -17,8 +17,6 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 @PerApplication
 public class GameRepository {
@@ -44,9 +42,7 @@ public class GameRepository {
      */
     public Observable<ArrayList<Game>> searchGames(String searchQuery, String fields, int limit, int offset, String order) {
         return gameApi.searchForGames(fields, limit, offset, order, searchQuery)
-                .flatMap(gameObjs -> Observable.just(TransformUtil.transformCollection(gameObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(gameObjs -> Observable.just(TransformUtil.transformCollection(gameObjs)));
     }
 
     /**
@@ -62,9 +58,7 @@ public class GameRepository {
                                                    String order,
                                                    Map<String, String> filters) {
         return gameApi.searchForGames(fields, limit, offset, order, searchQuery, filters)
-                .flatMap(gameObjs -> Observable.just(TransformUtil.transformCollection(gameObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(gameObjs -> Observable.just(TransformUtil.transformCollection(gameObjs)));
     }
 
     /**
@@ -75,9 +69,7 @@ public class GameRepository {
      */
     public Observable<ArrayList<Game>> getGamesById(int id, String fields) {
         return gameApi.getGamesById(id, fields)
-                .flatMap(gameObjs -> Observable.just(TransformUtil.transformCollection(gameObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(gameObjs -> Observable.just(TransformUtil.transformCollection(gameObjs)));
     }
 
     /**
@@ -85,9 +77,7 @@ public class GameRepository {
      */
     public Observable<ArrayList<GameEngine>> searchGameEngines(String searchQuery, String fields, int limit, int offset, String order) {
         return gameApi.searchForGameEngines(fields, limit, offset, order, searchQuery)
-                .flatMap(gameEngineObjs -> Observable.just(TransformUtil.transformCollection(gameEngineObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(gameEngineObjs -> Observable.just(TransformUtil.transformCollection(gameEngineObjs)));
     }
 
     /**
@@ -100,9 +90,7 @@ public class GameRepository {
                                                                String order,
                                                                Map<String, String> filters) {
         return gameApi.searchForGameEngines(fields, limit, offset, order, searchQuery, filters)
-                .flatMap(gameEngineObjs -> Observable.just(TransformUtil.transformCollection(gameEngineObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(gameEngineObjs -> Observable.just(TransformUtil.transformCollection(gameEngineObjs)));
     }
 
     /**
@@ -110,9 +98,7 @@ public class GameRepository {
      */
     public Observable<ArrayList<GameEngine>> getGameEnginesById(int id, String fields) {
         return gameApi.getGameEnginesById(id, fields)
-                .flatMap(gameEngineObjs -> Observable.just(TransformUtil.transformCollection(gameEngineObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(gameEngineObjs -> Observable.just(TransformUtil.transformCollection(gameEngineObjs)));
     }
 
     /**
@@ -120,9 +106,7 @@ public class GameRepository {
      */
     public Observable<ArrayList<GameMode>> searchGameModes(String searchQuery, String fields, int limit, int offset, String order) {
         return gameApi.searchForGameModes(fields, limit, offset, order, searchQuery)
-                .flatMap(gameModeObjs -> Observable.just(TransformUtil.transformCollection(gameModeObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(gameModeObjs -> Observable.just(TransformUtil.transformCollection(gameModeObjs)));
     }
 
     /**
@@ -135,9 +119,7 @@ public class GameRepository {
                                                            String order,
                                                            Map<String, String> filters) {
         return gameApi.searchForGameModes(fields, limit, offset, order, searchQuery, filters)
-                .flatMap(gameModeObjs -> Observable.just(TransformUtil.transformCollection(gameModeObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(gameModeObjs -> Observable.just(TransformUtil.transformCollection(gameModeObjs)));
     }
 
     /**
@@ -145,8 +127,6 @@ public class GameRepository {
      */
     public Observable<ArrayList<GameMode>> getGameModesById(int id, String fields) {
         return gameApi.getGameModesById(id, fields)
-                .flatMap(gameModeObjs -> Observable.just(TransformUtil.transformCollection(gameModeObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(gameModeObjs -> Observable.just(TransformUtil.transformCollection(gameModeObjs)));
     }
 }

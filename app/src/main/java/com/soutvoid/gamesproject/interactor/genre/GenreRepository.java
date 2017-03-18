@@ -14,8 +14,6 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 @PerApplication
 public class GenreRepository {
@@ -39,9 +37,7 @@ public class GenreRepository {
      */
     public Observable<ArrayList<Genre>> searchGenres(String searchQuery, String fields, int limit, int offset, String order) {
         return genreApi.searchForGenres(fields, limit, offset, order, searchQuery)
-                .flatMap(genreObjs -> Observable.just(TransformUtil.transformCollection(genreObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(genreObjs -> Observable.just(TransformUtil.transformCollection(genreObjs)));
     }
 
     /**
@@ -58,9 +54,7 @@ public class GenreRepository {
                                                      String order,
                                                      Map<String, String> filters) {
         return genreApi.searchForGenres(fields, limit, offset, order, searchQuery, filters)
-                .flatMap(genreObjs -> Observable.just(TransformUtil.transformCollection(genreObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(genreObjs -> Observable.just(TransformUtil.transformCollection(genreObjs)));
     }
 
     /**
@@ -72,8 +66,6 @@ public class GenreRepository {
      */
     public Observable<ArrayList<Genre>> getGenresById(int id, String fields) {
         return genreApi.getGenresById(id, fields)
-                .flatMap(genreObjs -> Observable.just(TransformUtil.transformCollection(genreObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(genreObjs -> Observable.just(TransformUtil.transformCollection(genreObjs)));
     }
 }

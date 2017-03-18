@@ -11,8 +11,6 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by andrew on 2/23/17.
@@ -30,9 +28,7 @@ public class CompanyRepository {
 
     public Observable<ArrayList<Company>> searchCompanies(String searchQuery, String fields, int limit, int offset, String order) {
         return companyApi.searchForCompanies(fields, limit, offset, order, searchQuery)
-                .flatMap(companyObjs -> Observable.just(TransformUtil.transformCollection(companyObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(companyObjs -> Observable.just(TransformUtil.transformCollection(companyObjs)));
     }
 
     public Observable<ArrayList<Company>> searchCompanies(String searchQuery,
@@ -42,15 +38,11 @@ public class CompanyRepository {
                                                           String order,
                                                           Map<String, String> filters) {
         return companyApi.searchForCompanies(fields, limit, offset, order, searchQuery, filters)
-                .flatMap(companyObjs -> Observable.just(TransformUtil.transformCollection(companyObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(companyObjs -> Observable.just(TransformUtil.transformCollection(companyObjs)));
     }
 
     public Observable<ArrayList<Company>> getCompaniesById(int id, String fields) {
         return companyApi.getCompaniesById(id, fields)
-                .flatMap(companyObjs -> Observable.just(TransformUtil.transformCollection(companyObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(companyObjs -> Observable.just(TransformUtil.transformCollection(companyObjs)));
     }
 }

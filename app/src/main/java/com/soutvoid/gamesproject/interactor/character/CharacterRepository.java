@@ -12,8 +12,6 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by andrew on 22-Feb-17.
@@ -33,9 +31,7 @@ public class CharacterRepository {
 
     public Observable<ArrayList<Character>> getCharacterById(int id, String fields) {
         return characterApi.getCharactersById(id, fields)
-                .flatMap(characterObjs -> Observable.just(TransformUtil.transformCollection(characterObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(characterObjs -> Observable.just(TransformUtil.transformCollection(characterObjs)));
 
     }
 
@@ -45,9 +41,7 @@ public class CharacterRepository {
                                                              int offset,
                                                              String order) {
         return characterApi.searchForCharacters(fields, limit, offset, order, searchQuery)
-                .flatMap(characterObjs -> Observable.just(TransformUtil.transformCollection(characterObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(characterObjs -> Observable.just(TransformUtil.transformCollection(characterObjs)));
     }
 
     public Observable<ArrayList<Character>> searchCharactersWithFilters(String searchQuery,
@@ -57,9 +51,7 @@ public class CharacterRepository {
                                                                         String order,
                                                                         Map<String, String> filters) {
         return characterApi.searchForCharacters(fields, limit, offset, order, searchQuery, filters)
-                .flatMap(characterObjs -> Observable.just(TransformUtil.transformCollection(characterObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(characterObjs -> Observable.just(TransformUtil.transformCollection(characterObjs)));
     }
 
 }

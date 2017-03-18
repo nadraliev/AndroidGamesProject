@@ -12,8 +12,6 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 @PerApplication
 public class CollectionRepository {
@@ -27,9 +25,7 @@ public class CollectionRepository {
 
     public Observable<ArrayList<Collection>> searchCollections(String searchQuery, String fields, int limit, int offset, String order) {
         return collectionApi.searchCollections(fields, limit, offset, order, searchQuery)
-                .flatMap(collectionObjs -> Observable.just(TransformUtil.transformCollection(collectionObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(collectionObjs -> Observable.just(TransformUtil.transformCollection(collectionObjs)));
     }
 
     public Observable<ArrayList<Collection>> searchCollections(String searchQuery,
@@ -39,15 +35,11 @@ public class CollectionRepository {
                                                                String order,
                                                                Map<String, String> filters) {
         return collectionApi.searchCollections(fields, limit, offset, order, searchQuery, filters)
-                .flatMap(collectionObjs -> Observable.just(TransformUtil.transformCollection(collectionObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(collectionObjs -> Observable.just(TransformUtil.transformCollection(collectionObjs)));
     }
 
     public Observable<ArrayList<Collection>> getCollectionsById(int id, String fields) {
         return collectionApi.getCollectionsById(id, fields)
-                .flatMap(collectionObjs -> Observable.just(TransformUtil.transformCollection(collectionObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(collectionObjs -> Observable.just(TransformUtil.transformCollection(collectionObjs)));
     }
 }

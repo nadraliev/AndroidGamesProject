@@ -14,8 +14,6 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 @PerApplication
 public class PersonRepository {
@@ -39,9 +37,7 @@ public class PersonRepository {
      */
     public Observable<ArrayList<Person>> searchPeople(String searchQuery, String fields, int limit, int offset, String order) {
         return personApi.searchForPeople(fields, limit, offset, order, searchQuery)
-                .flatMap(personObjs -> Observable.just(TransformUtil.transformCollection(personObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(personObjs -> Observable.just(TransformUtil.transformCollection(personObjs)));
     }
 
     /**
@@ -58,9 +54,7 @@ public class PersonRepository {
                                                       String order,
                                                       Map<String, String> filters) {
         return personApi.searchForPeople(fields, limit, offset, order, searchQuery, filters)
-                .flatMap(personObjs -> Observable.just(TransformUtil.transformCollection(personObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(personObjs -> Observable.just(TransformUtil.transformCollection(personObjs)));
     }
 
     /**
@@ -72,8 +66,6 @@ public class PersonRepository {
      */
     public Observable<ArrayList<Person>> getPeopleById(int id, String fields) {
         return personApi.getPeopleById(id, fields)
-                .flatMap(personObjs -> Observable.just(TransformUtil.transformCollection(personObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(personObjs -> Observable.just(TransformUtil.transformCollection(personObjs)));
     }
 }

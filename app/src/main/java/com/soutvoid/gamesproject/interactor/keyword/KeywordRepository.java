@@ -14,8 +14,6 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 @PerApplication
 public class KeywordRepository {
@@ -39,9 +37,7 @@ public class KeywordRepository {
      */
     public Observable<ArrayList<Keyword>> searchKeywords(String searchQuery, String fields, int limit, int offset, String order) {
         return keywordApi.searchForKeywords(fields, limit, offset, order, searchQuery)
-                .flatMap(keywordObjs -> Observable.just(TransformUtil.transformCollection(keywordObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(keywordObjs -> Observable.just(TransformUtil.transformCollection(keywordObjs)));
     }
 
     /**
@@ -58,9 +54,7 @@ public class KeywordRepository {
                                                          String order,
                                                          Map<String, String> filters) {
         return keywordApi.searchForKeywords(fields, limit, offset, order, searchQuery, filters)
-                .flatMap(keywordObjs -> Observable.just(TransformUtil.transformCollection(keywordObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(keywordObjs -> Observable.just(TransformUtil.transformCollection(keywordObjs)));
     }
 
     /**
@@ -72,8 +66,6 @@ public class KeywordRepository {
      */
     public Observable<ArrayList<Keyword>> getKeywordsById(int id, String fields) {
         return keywordApi.getKeywordsById(id, fields)
-                .flatMap(keywordObjs -> Observable.just(TransformUtil.transformCollection(keywordObjs)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .flatMap(keywordObjs -> Observable.just(TransformUtil.transformCollection(keywordObjs)));
     }
 }
