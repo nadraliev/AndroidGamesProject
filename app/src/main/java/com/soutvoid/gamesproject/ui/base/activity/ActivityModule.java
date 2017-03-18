@@ -2,7 +2,7 @@ package com.soutvoid.gamesproject.ui.base.activity;
 
 import com.agna.ferro.core.PersistentScreenScope;
 import com.agna.ferro.mvp.component.provider.ActivityProvider;
-import com.agna.ferro.mvp.component.scope.PerApplication;
+import com.agna.ferro.mvp.component.scope.PerScreen;
 
 import dagger.Module;
 import dagger.Provides;
@@ -17,7 +17,7 @@ public class ActivityModule {
     }
 
     @Provides
-    @PerApplication
+    @PerScreen
     public ActivityProvider getActivityProvider() {
         return new ActivityProvider(persistentScreenScope);
     }

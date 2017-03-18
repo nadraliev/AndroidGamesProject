@@ -12,9 +12,6 @@ import com.soutvoid.gamesproject.app.log.RemoteLogger;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-/**
- * Created by andrew on 2/25/17.
- */
 
 public abstract class BaseActivityView extends MvpActivityView {
 

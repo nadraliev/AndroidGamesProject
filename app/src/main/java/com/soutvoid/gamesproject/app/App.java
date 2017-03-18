@@ -19,9 +19,6 @@ import io.fabric.sdk.android.Kit;
 import soutvoid.com.gamesproject.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
-/**
- * Created by andrew on 2/20/17.
- */
 
 public class App extends Application {
 

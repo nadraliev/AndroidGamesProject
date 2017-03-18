@@ -16,7 +16,7 @@
             android:value="6b5749ebdeeac0c5f3e6670361e6818564d70f78"/>
 
         <activity
-            android:name="com.soutvoid.gamesproject.ui.MainActivity"
+            android:name="com.soutvoid.gamesproject.ui.screen.main.MainActivityView"
             android:label="@string/title_activity_main">
 
             <intent-filter>
