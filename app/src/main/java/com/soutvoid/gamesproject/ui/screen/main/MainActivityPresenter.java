@@ -48,6 +48,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
             @Override
             public void call(ArrayList<Game> games) {
                 getView().exploreSetViewPopular.setGamesListContent(games);
+                getView().exploreSetViewPopular.chooseBackgroundFromGamesList();
             }
         }, new Action1<Throwable>() {
             @Override

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.soutvoid.gamesproject.domain.game.Game;
@@ -37,6 +38,8 @@ public class ExploreSetListAdapter extends RecyclerView.Adapter<ExploreSetListAd
 
     @Override
     public void onBindViewHolder(ExploreSetListViewHolder holder, int position) {
+        holder.title.setText(games.get(position).getName());
+
         if (games.get(position).getScreenshots() != null && games.get(position).getScreenshots().size() > 0) {
             String originalUrl = games.get(position).getScreenshots().get(0).getUrl();
             Glide.with(context)
@@ -65,11 +68,13 @@ public class ExploreSetListAdapter extends RecyclerView.Adapter<ExploreSetListAd
 
         public CardView container;
         public ImageView image;
+        public TextView title;
 
         public ExploreSetListViewHolder(View itemView) {
             super(itemView);
             container = (CardView) itemView.findViewById(R.id.main_explore_set_list_item_container);
             image = (ImageView) itemView.findViewById(R.id.main_explore_set_list_item_image);
+            title = (TextView) itemView.findViewById(R.id.main_explore_set_list_item_title);
         }
     }
 

@@ -9,12 +9,23 @@
         android:layout_width="match_parent"
         android:layout_height="230dp">
 
+        <ImageView
+            android:id="@+id/main_explore_set_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/main_explore_set_background_transparent_black_color"/>
+
         <TextView
             android:id="@+id/main_explore_set_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"
             android:textSize="20sp"
@@ -23,9 +34,11 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/main_explore_set_list"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/main_explore_set_header"
-            android:background="@color/colorPrimary"/>
+            android:paddingLeft="30dp"
+            android:paddingStart="30dp"
+            android:clipToPadding="false"/>
 
     </RelativeLayout>
 
