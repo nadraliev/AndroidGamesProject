@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.soutvoid.gamesproject.domain.game.Game;
+import com.soutvoid.gamesproject.interactor.util.ImageUrlBuilder;
 
 import java.util.ArrayList;
 
@@ -20,10 +21,12 @@ public class ExploreSetListAdapter extends RecyclerView.Adapter<ExploreSetListAd
 
     private Context context;
     private ArrayList<Game> games;
+    private ImageUrlBuilder imageUrlBuilder;
 
     public ExploreSetListAdapter(Context context, ArrayList<Game> games) {
         this.context = context;
         this.games = games;
+        imageUrlBuilder = new ImageUrlBuilder();
     }
 
     @Override
@@ -34,11 +37,15 @@ public class ExploreSetListAdapter extends RecyclerView.Adapter<ExploreSetListAd
 
     @Override
     public void onBindViewHolder(ExploreSetListViewHolder holder, int position) {
-        String url = "https:" + games.get(position).getCover().url;
-        Glide.with(context)
-                .load(url)
-                .dontAnimate()
-                .into(holder.image);
+        if (games.get(position).getScreenshots() != null && games.get(position).getScreenshots().size() > 0) {
+            String originalUrl = games.get(position).getScreenshots().get(0).getUrl();
+            Glide.with(context)
+                    .load(imageUrlBuilder.clear().parse(originalUrl).setSize(ImageUrlBuilder.ImageSize.screenshot_big).build())
+                    .dontAnimate()
+                    .into(holder.image);
+        } else {
+            //TODO insert placeholder
+        }
     }
 
     @Override
