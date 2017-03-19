@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.agna.ferro.mvp.component.ScreenComponent;
 import com.soutvoid.gamesproject.ui.base.activity.BaseActivityView;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
+import com.soutvoid.gamesproject.ui.screen.main.exploreset.widget.ExploreSetView;
 
 import javax.inject.Inject;
 
@@ -22,6 +23,7 @@ public class MainActivityView extends BaseActivityView {
 
     TextView testText;
     FloatingActionButton floatingActionButton;
+    ExploreSetView exploreSetViewPopular;
 
     public static void start(Context context) {
         Intent intent = new Intent(context, MainActivityView.class);
@@ -64,5 +66,6 @@ public class MainActivityView extends BaseActivityView {
     private void findViews() {
         testText = (TextView) findViewById(R.id.testText);
         floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
+        exploreSetViewPopular = (ExploreSetView) findViewById(R.id.main_explore_set_popular);
     }
 }

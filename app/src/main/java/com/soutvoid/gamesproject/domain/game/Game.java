@@ -49,7 +49,7 @@ public class Game implements Serializable {
     private ArrayList<AlternativeName> alternativeNames = null;
     private ArrayList<Image> screenshots = null;
     private ArrayList<Video> videos = null;
-    private ArrayList<Image> covers;
+    private Image cover;
     private Esrb esrb;
     private Pegi pegi;
 

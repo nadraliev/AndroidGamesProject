@@ -74,12 +74,12 @@ public class GameObj implements Transformable<Game> {
     private ArrayList<ReleaseDateObj> releaseDateObjs = null;
     @SerializedName("alternative_names")
     private ArrayList<AlternativeNameObj> alternativeNameObjs = null;
-    @SerializedName("images")
+    @SerializedName("screenshots")
     private ArrayList<ImageObj> screenshotsObjs = null;
     @SerializedName("videos")
     private ArrayList<VideoObj> videoObjs = null;
     @SerializedName("cover")
-    private ArrayList<ImageObj> coverObjs;
+    private ImageObj coverObj;
     @SerializedName("esrb")
     private EsrbObj esrbObj;
     @SerializedName("pegi")
@@ -120,7 +120,7 @@ public class GameObj implements Transformable<Game> {
                 TransformUtil.transformCollection(alternativeNameObjs),
                 TransformUtil.transformCollection(screenshotsObjs),
                 TransformUtil.transformCollection(videoObjs),
-                TransformUtil.transformCollection(coverObjs),
+                TransformUtil.transform(coverObj),
                 TransformUtil.transform(esrbObj),
                 TransformUtil.transform(pegiObj)
         );

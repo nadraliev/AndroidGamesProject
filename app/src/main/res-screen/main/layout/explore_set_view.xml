@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       android:orientation="vertical"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/main_explore_set_container"
+        android:layout_width="match_parent"
+        android:layout_height="230dp">
+
+        <TextView
+            android:id="@+id/main_explore_set_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
+            android:textSize="20sp"
+            android:textColor="@color/colorTextPrimary"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/main_explore_set_list"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@id/main_explore_set_header"
+            android:background="@color/colorPrimary"/>
+
+    </RelativeLayout>
+
+</merge>

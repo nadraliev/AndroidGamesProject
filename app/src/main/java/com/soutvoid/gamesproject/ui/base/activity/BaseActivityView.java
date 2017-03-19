@@ -41,7 +41,7 @@ public abstract class BaseActivityView extends MvpActivityView {
     @Override
     protected void onPause() {
         super.onPause();
-        RemoteLogger.logMessage(String.format(LogConstants.LOG_SCREEN_PAUSE_FORMAT));
+        RemoteLogger.logMessage(String.format(LogConstants.LOG_SCREEN_PAUSE_FORMAT, getName()));
     }
 
     public ActivityModule getActivityModule() {
