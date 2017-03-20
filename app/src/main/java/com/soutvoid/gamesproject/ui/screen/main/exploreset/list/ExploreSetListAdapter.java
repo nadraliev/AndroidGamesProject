@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.soutvoid.gamesproject.domain.game.Game;
 import com.soutvoid.gamesproject.interactor.util.ImageUrlBuilder;
+import com.soutvoid.gamesproject.ui.util.OnListItemClickListener;
 
 import java.util.ArrayList;
 
@@ -23,6 +24,7 @@ public class ExploreSetListAdapter extends RecyclerView.Adapter<ExploreSetListAd
     private Context context;
     private ArrayList<Game> games;
     private ImageUrlBuilder imageUrlBuilder;
+    private OnListItemClickListener listener;
 
     public ExploreSetListAdapter(Context context, ArrayList<Game> games) {
         this.context = context;
@@ -49,6 +51,13 @@ public class ExploreSetListAdapter extends RecyclerView.Adapter<ExploreSetListAd
         } else {
             //TODO insert placeholder
         }
+
+        holder.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                invokeOnListItemClickEvent(position, holder.container);
+            }
+        });
     }
 
     @Override
@@ -62,6 +71,15 @@ public class ExploreSetListAdapter extends RecyclerView.Adapter<ExploreSetListAd
 
     public void setGames(ArrayList<Game> games) {
         this.games = games;
+    }
+
+    public void setOnListItemClickListener(OnListItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    private void invokeOnListItemClickEvent(int position, View view) {
+        if (listener != null)
+            listener.click(position, view);
     }
 
     public static class ExploreSetListViewHolder extends RecyclerView.ViewHolder {
