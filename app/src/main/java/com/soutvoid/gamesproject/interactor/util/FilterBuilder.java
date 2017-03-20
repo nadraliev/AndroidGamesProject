@@ -1,6 +1,7 @@
 package com.soutvoid.gamesproject.interactor.util;
 
 import java.util.AbstractMap;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -71,7 +72,7 @@ public class FilterBuilder {
      * то же, что и {@link #setField(String)}, но принимает елемент enum
      */
     public <T extends Enum> FilterBuilder setField(T field) {
-        return setField(field.toString());
+        return setField(field.toString().toLowerCase());
     }
 
     /**
@@ -98,8 +99,14 @@ public class FilterBuilder {
     /**
      * @return возвращает поле для Map для сообщения в QueryMap
      */
-    public Map.Entry<String, String> build() {
+    public Map.Entry<String, String> buildMapEntry() {
         return new AbstractMap.SimpleEntry<>(KEY_FILTER + "[" + field + "][" + factor + "]", value);
+    }
+
+    public HashMap<String, String> buildMap() {
+        HashMap<String, String> result = new HashMap<>();
+        result.put(KEY_FILTER + "[" + field + "][" + factor + "]", value);
+        return result;
     }
 
     public FilterBuilder clear() {
