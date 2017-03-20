@@ -29,7 +29,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"
             android:text="@string/expore_set_view_default_title"
-            android:textSize="20sp"
+            android:textSize="23sp"
             android:textColor="@color/colorTextPrimary"/>
 
         <android.support.v7.widget.RecyclerView
