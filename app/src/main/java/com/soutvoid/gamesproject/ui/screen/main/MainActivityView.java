@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.widget.LinearLayout;
 
 import com.agna.ferro.mvp.component.ScreenComponent;
@@ -25,6 +26,7 @@ public class MainActivityView extends BaseActivityView {
     @Inject
     MainActivityPresenter presenter;
 
+    private Toolbar toolbar;
     private LinearLayout exploreSetsContainer;
 
     private ArrayList<ExploreSetView> exploreSetViews;
@@ -65,10 +67,16 @@ public class MainActivityView extends BaseActivityView {
     @Override
     protected void onCreate(Bundle savedInstanceState, boolean viewRecreated) {
         findViews();
+        setupToolbar();
     }
 
     private void findViews() {
+        toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         exploreSetsContainer = (LinearLayout) findViewById(R.id.main_explore_sets_container);
+    }
+
+    private void setupToolbar() {
+
     }
 
     /**
