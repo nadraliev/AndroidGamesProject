@@ -14,21 +14,12 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/main_explore_sets_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/testText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
 
-            <com.soutvoid.gamesproject.ui.screen.main.exploreset.widget.ExploreSetView
-                android:id="@+id/main_explore_set_popular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:header="@string/app_name"
-                android:background="@color/colorAccent"/>
 
         </LinearLayout>
 

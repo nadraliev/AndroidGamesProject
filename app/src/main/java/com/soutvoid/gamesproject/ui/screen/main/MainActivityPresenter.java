@@ -1,7 +1,6 @@
 package com.soutvoid.gamesproject.ui.screen.main;
 
 import com.agna.ferro.mvp.component.scope.PerScreen;
-import com.soutvoid.gamesproject.domain.game.Game;
 import com.soutvoid.gamesproject.domain.game.fields.GameFields;
 import com.soutvoid.gamesproject.interactor.game.GameRepository;
 import com.soutvoid.gamesproject.interactor.util.FieldsBuilder;
@@ -10,11 +9,7 @@ import com.soutvoid.gamesproject.interactor.util.OrderBuilder;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
 import com.soutvoid.gamesproject.ui.common.error.ErrorHandler;
 
-import java.util.ArrayList;
-
 import javax.inject.Inject;
-
-import rx.functions.Action1;
 
 
 @PerScreen
@@ -42,17 +37,10 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
                 0,
                 orderBuilder.addField(GameFields.POPULARITY).build(),
                 filterBuilder.setField(GameFields.FIRST_RELEASE_DATE).setFactor(FilterBuilder.Factor.gt).setValue("1483228800000").buildMap()
-        ), new Action1<ArrayList<Game>>() {
-            @Override
-            public void call(ArrayList<Game> games) {
-                getView().exploreSetViewPopular.setGamesListContent(games);
-                getView().exploreSetViewPopular.chooseBackgroundFromGamesList();
-            }
-        }, new Action1<Throwable>() {
-            @Override
-            public void call(Throwable throwable) {
+        ), games -> {
+            getView().onAddExploreSetView("Fresh popular", games);
+        }, throwable -> {
 
-            }
         });
     }
 }

@@ -76,8 +76,8 @@ public class ExploreSetView extends FrameLayout {
         return header;
     }
 
-    public void setHeader(TextView header) {
-        this.header = header;
+    public void setHeader(String header) {
+        this.header.setText(header);
     }
 
     public void setGamesListContent(ArrayList<Game> games) {
