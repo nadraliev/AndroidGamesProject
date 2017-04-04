@@ -65,8 +65,10 @@ public class ExploreSetView extends FrameLayout {
                     R.styleable.ExploreSetView, 0, 0);
             int textResourceId = typedArray.getResourceId(R.styleable.ExploreSetView_header, 0);
             int backgroundResourceId = typedArray.getResourceId(R.styleable.ExploreSetView_background, 0);
+            int headerColorId = typedArray.getResourceId(R.styleable.ExploreSetView_headerColor, 0);
             background.setImageResource(backgroundResourceId);
             header.setText(textResourceId);
+            setHeaderColor(headerColorId);
             typedArray.recycle();
         }
     }
@@ -83,6 +85,10 @@ public class ExploreSetView extends FrameLayout {
 
     public void setHeader(String header) {
         this.header.setText(header);
+    }
+
+    public void setHeaderColor(int colorId) {
+        header.setTextColor(colorId);
     }
 
     public void setGamesListContent(ArrayList<Game> games) {

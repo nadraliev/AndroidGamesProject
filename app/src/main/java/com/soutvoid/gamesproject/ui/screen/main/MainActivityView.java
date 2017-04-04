@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.widget.LinearLayout;
 
@@ -79,7 +80,7 @@ public class MainActivityView extends BaseActivityView {
     }
 
     /**
-     * добавляет пустой блок ExploreSetView
+     * добавляет пустой блок ExploreSetView и задает параметры по умолчанию
      *
      * @return возвращает номер блока для последующей манипуляции
      */
@@ -87,9 +88,14 @@ public class MainActivityView extends BaseActivityView {
         if (exploreSetViews == null)
             exploreSetViews = new ArrayList<>();
         ExploreSetView exploreSetView = new ExploreSetView(this);
+        onApplyExploreSetViewDefaults(exploreSetView);
         exploreSetViews.add(exploreSetView);
         exploreSetsContainer.addView(exploreSetView);
         return exploreSetViews.size() - 1;
+    }
+
+    private void onApplyExploreSetViewDefaults(ExploreSetView exploreSetView) {
+        exploreSetView.setHeaderColor(ContextCompat.getColor(this, R.color.main_explore_set_header_color));
     }
 
     public int onAddExploreSetView(ArrayList<Game> games) {

@@ -3,5 +3,6 @@
     <declare-styleable name="ExploreSetView">
         <attr name="header" format="reference"/>
         <attr name="background" format="reference"/>
+        <attr name="headerColor" format="reference"/>
     </declare-styleable>
 </resources>
