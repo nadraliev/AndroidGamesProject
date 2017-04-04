@@ -3,7 +3,6 @@ package com.soutvoid.gamesproject.ui.screen.main;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.LinearLayout;
@@ -84,7 +83,7 @@ public class MainActivityView extends BaseActivityView {
      *
      * @return возвращает номер блока для последующей манипуляции
      */
-    private int onAddExploreSetView() {
+    public int onAddExploreSetView() {
         if (exploreSetViews == null)
             exploreSetViews = new ArrayList<>();
         ExploreSetView exploreSetView = new ExploreSetView(this);
@@ -93,52 +92,32 @@ public class MainActivityView extends BaseActivityView {
         return exploreSetViews.size() - 1;
     }
 
-    /**
-     * добавляет новый блок ExploreSetView на экран под существующими
-     *
-     * @param header     заголовок блока
-     * @param games      список игр для отображения
-     * @param background фон блока
-     * @return возвращает номер блока для последующей манипуляции
-     */
-    public int onAddExploreSetView(String header, ArrayList<Game> games, Drawable background) {
-        int index = onAddExploreSetView();
-        exploreSetViews.get(index).setHeader(header);
-        exploreSetViews.get(index).setGamesListContent(games);
-        exploreSetViews.get(index).setBackgroundSource(background);
-        return index;
-    }
-
-    /**
-     * то же, что и {@link #onAddExploreSetView(String, ArrayList, Drawable)}, но принимает Bitmap
-     */
-    public int onAddExploreSetView(String header, ArrayList<Game> games, Bitmap background) {
-        int index = onAddExploreSetView();
-        exploreSetViews.get(index).setHeader(header);
-        exploreSetViews.get(index).setGamesListContent(games);
-        exploreSetViews.get(index).setBackgroundSource(background);
-        return index;
-    }
-
-    /**
-     * то же, что и {@link #onAddExploreSetView(String, ArrayList, Drawable)}, но выбирает фон из скриншотов игр
-     */
-    public int onAddExploreSetView(String header, ArrayList<Game> games) {
-        int index = onAddExploreSetView();
-        exploreSetViews.get(index).setHeader(header);
-        exploreSetViews.get(index).setGamesListContent(games);
-        exploreSetViews.get(index).chooseBackgroundFromGamesList();
-        return index;
-    }
-
-    /**
-     * то же, что и {@link #onAddExploreSetView(String, ArrayList)}, но с дефолтным заголовком
-     */
     public int onAddExploreSetView(ArrayList<Game> games) {
         int index = onAddExploreSetView();
-        exploreSetViews.get(index).setGamesListContent(games);
-        exploreSetViews.get(index).chooseBackgroundFromGamesList();
+        onSetExploreViewGames(index, games);
         return index;
+    }
+
+    public int onAddExploreSetView(String header, ArrayList<Game> games) {
+        int index = onAddExploreSetView(games);
+        onSetExploreViewHeader(index, header);
+        return index;
+    }
+
+    public void onSetExploreViewHeader(int index, String header) {
+        exploreSetViews.get(index).setHeader(header);
+    }
+
+    public void onSetExploreViewGames(int index, ArrayList<Game> games) {
+        exploreSetViews.get(index).setGamesListContent(games);
+    }
+
+    public void onSetExploreViewBackgroundBitmap(int index, Bitmap bitmap) {
+        exploreSetViews.get(index).setBackgroundSource(bitmap);
+    }
+
+    public void onSetExploreSetViewBackgroundFromGames(int index) {
+        exploreSetViews.get(index).chooseBackgroundFromGamesList();
     }
 
     public void onAddGamesToExploreSetView(int index, ArrayList<Game> games) {

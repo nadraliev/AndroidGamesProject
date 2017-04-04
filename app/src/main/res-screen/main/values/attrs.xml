@@ -2,5 +2,6 @@
 <resources>
     <declare-styleable name="ExploreSetView">
         <attr name="header" format="reference"/>
+        <attr name="background" format="reference"/>
     </declare-styleable>
 </resources>

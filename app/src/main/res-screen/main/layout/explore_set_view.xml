@@ -16,9 +16,12 @@
             android:scaleType="centerCrop"/>
 
         <View
+            android:id="@+id/main_explore_set_background_tint"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/main_explore_set_background_transparent_black_color"/>
+            android:visibility="invisible"
+            android:background="#000000"
+            android:alpha="0.5"/>
 
         <TextView
             android:id="@+id/main_explore_set_header"
@@ -30,7 +33,7 @@
             android:layout_marginStart="30dp"
             android:text="@string/expore_set_view_default_title"
             android:textSize="23sp"
-            android:textColor="@color/colorTextPrimary"/>
+            android:textColor="@color/colorTextPrimaryDark"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/main_explore_set_list"

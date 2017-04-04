@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -27,6 +28,7 @@ public class ExploreSetView extends FrameLayout {
     private Context context;
     private ViewGroup container;
     private ImageView background;
+    private View backgroundTint;
     private TextView header;
     private RecyclerView list;
     private ExploreSetListAdapter exploreSetListAdapter;
@@ -51,6 +53,7 @@ public class ExploreSetView extends FrameLayout {
     private void findViews() {
         container = (ViewGroup) findViewById(R.id.main_explore_set_container);
         background = (ImageView) findViewById(R.id.main_explore_set_background);
+        backgroundTint = findViewById(R.id.main_explore_set_background_tint);
         header = (TextView) findViewById(R.id.main_explore_set_header);
         list = (RecyclerView) findViewById(R.id.main_explore_set_list);
     }
@@ -61,6 +64,8 @@ public class ExploreSetView extends FrameLayout {
                     attrs,
                     R.styleable.ExploreSetView, 0, 0);
             int textResourceId = typedArray.getResourceId(R.styleable.ExploreSetView_header, 0);
+            int backgroundResourceId = typedArray.getResourceId(R.styleable.ExploreSetView_background, 0);
+            background.setImageResource(backgroundResourceId);
             header.setText(textResourceId);
             typedArray.recycle();
         }
@@ -107,6 +112,10 @@ public class ExploreSetView extends FrameLayout {
         background.setImageBitmap(bitmap);
     }
 
+    public void setBackgroundColor(int color) {
+        background.setBackgroundColor(color);
+    }
+
     public void chooseBackgroundFromGamesList() {
         String chosenUrl = null;
         for (Game game : exploreSetListAdapter.getGames()) {
@@ -121,5 +130,21 @@ public class ExploreSetView extends FrameLayout {
                     .load(imageUrlBuilder.setSize(ImageUrlBuilder.ImageSize.screenshot_big).build())
                     .into(background);
         }
+    }
+
+    public void setBackgroundTintVisibility(boolean visibility) {
+        if (visibility)
+            backgroundTint.setVisibility(VISIBLE);
+        else {
+            backgroundTint.setVisibility(INVISIBLE);
+        }
+    }
+
+    public void setBackgroundTintAlpha(float alpha) {
+        backgroundTint.setAlpha(alpha);
+    }
+
+    public void setBackgroundTintColor(int color) {
+        backgroundTint.setBackgroundColor(color);
     }
 }
