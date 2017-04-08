@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.LinearLayout;
@@ -139,6 +140,7 @@ public class MainActivityView extends BaseActivityView {
     private void setupShowcase(ArrayList<Game> games) {
         showcaseRecyclerAdapter = new ShowcaseRecyclerAdapter(this, games);
         showCaseList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        new LinearSnapHelper().attachToRecyclerView(showCaseList);
         showCaseList.setAdapter(showcaseRecyclerAdapter);
         showCaseList.scrollToPosition(games.size() / 2);
     }
