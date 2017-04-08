@@ -1,4 +1,4 @@
-package com.soutvoid.gamesproject.ui.screen.main.exploreset.widget;
+package com.soutvoid.gamesproject.ui.screen.main.widgets.exploreset.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.soutvoid.gamesproject.domain.game.Game;
 import com.soutvoid.gamesproject.interactor.util.ImageUrlBuilder;
-import com.soutvoid.gamesproject.ui.screen.main.exploreset.list.ExploreSetListAdapter;
+import com.soutvoid.gamesproject.ui.screen.main.widgets.exploreset.list.ExploreSetListAdapter;
 
 import java.util.ArrayList;
 

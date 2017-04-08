@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.LinearLayout;
 
@@ -12,7 +14,8 @@ import com.agna.ferro.mvp.component.ScreenComponent;
 import com.soutvoid.gamesproject.domain.game.Game;
 import com.soutvoid.gamesproject.ui.base.activity.BaseActivityView;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
-import com.soutvoid.gamesproject.ui.screen.main.exploreset.widget.ExploreSetView;
+import com.soutvoid.gamesproject.ui.screen.main.list.ShowcaseRecyclerAdapter;
+import com.soutvoid.gamesproject.ui.screen.main.widgets.exploreset.widget.ExploreSetView;
 
 import java.util.ArrayList;
 
@@ -28,6 +31,8 @@ public class MainActivityView extends BaseActivityView {
 
     private Toolbar toolbar;
     private LinearLayout exploreSetsContainer;
+    private RecyclerView showCaseList;
+    private ShowcaseRecyclerAdapter showcaseRecyclerAdapter;
 
     private ArrayList<ExploreSetView> exploreSetViews;
 
@@ -73,6 +78,7 @@ public class MainActivityView extends BaseActivityView {
     private void findViews() {
         toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         exploreSetsContainer = (LinearLayout) findViewById(R.id.main_explore_sets_container);
+        showCaseList = (RecyclerView) findViewById(R.id.main_showcase_list);
     }
 
     private void setupToolbar() {
@@ -128,5 +134,20 @@ public class MainActivityView extends BaseActivityView {
 
     public void onAddGamesToExploreSetView(int index, ArrayList<Game> games) {
         exploreSetViews.get(index).addGamesListContent(games);
+    }
+
+    private void setupShowcase(ArrayList<Game> games) {
+        showcaseRecyclerAdapter = new ShowcaseRecyclerAdapter(this, games);
+        showCaseList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        showCaseList.setAdapter(showcaseRecyclerAdapter);
+    }
+
+    public void onSetShowcaseGames(ArrayList<Game> games) {
+        if (showcaseRecyclerAdapter == null)
+            setupShowcase(games);
+        else {
+            showcaseRecyclerAdapter.setGames(games);
+            showcaseRecyclerAdapter.notifyDataSetChanged();
+        }
     }
 }

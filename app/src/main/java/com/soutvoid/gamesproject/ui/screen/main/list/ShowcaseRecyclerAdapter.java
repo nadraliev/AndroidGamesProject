@@ -1,7 +1,6 @@
-package com.soutvoid.gamesproject.ui.screen.main.exploreset.list;
+package com.soutvoid.gamesproject.ui.screen.main.list;
 
 import android.content.Context;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,35 +18,35 @@ import java.util.ArrayList;
 import soutvoid.com.gamesproject.R;
 
 
-public class ExploreSetListAdapter extends RecyclerView.Adapter<ExploreSetListAdapter.ExploreSetListViewHolder> {
+public class ShowcaseRecyclerAdapter extends RecyclerView.Adapter<ShowcaseRecyclerAdapter.ShowcaseRecyclerViewHolder> {
 
     private Context context;
     private ArrayList<Game> games;
-    private ImageUrlBuilder imageUrlBuilder;
     private OnListItemClickListener listener;
+    private ImageUrlBuilder imageUrlBuilder;
 
-    public ExploreSetListAdapter(Context context, ArrayList<Game> games) {
+    public ShowcaseRecyclerAdapter(Context context, ArrayList<Game> games) {
         this.context = context;
         this.games = games;
         imageUrlBuilder = new ImageUrlBuilder();
     }
 
     @Override
-    public ExploreSetListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.explore_set_view_list_item, parent, false);
-        return new ExploreSetListViewHolder(view);
+    public ShowcaseRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.showcase_list_item, parent, false);
+        return new ShowcaseRecyclerViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ExploreSetListViewHolder holder, int position) {
-        holder.title.setText(games.get(position).getName());
+    public void onBindViewHolder(ShowcaseRecyclerViewHolder holder, int position) {
+        holder.textView.setText(games.get(position).getName());
 
         if (games.get(position).getScreenshots() != null && games.get(position).getScreenshots().size() > 0) {
             String originalUrl = games.get(position).getScreenshots().get(0).getUrl();
             Glide.with(context)
                     .load(imageUrlBuilder.clear().parse(originalUrl).setSize(ImageUrlBuilder.ImageSize.screenshot_big).build())
                     .dontAnimate()
-                    .into(holder.image);
+                    .into(holder.imageView);
         } else {
             //TODO insert placeholder
         }
@@ -55,7 +54,8 @@ public class ExploreSetListAdapter extends RecyclerView.Adapter<ExploreSetListAd
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                invokeOnListItemClickEvent(position, holder.container);
+                if (listener != null)
+                    listener.click(position, v);
             }
         });
     }
@@ -73,26 +73,22 @@ public class ExploreSetListAdapter extends RecyclerView.Adapter<ExploreSetListAd
         this.games = games;
     }
 
-    public void setOnListItemClickListener(OnListItemClickListener listener) {
+    public void setListener(OnListItemClickListener listener) {
         this.listener = listener;
     }
 
-    private void invokeOnListItemClickEvent(int position, View view) {
-        if (listener != null)
-            listener.click(position, view);
-    }
+    public static class ShowcaseRecyclerViewHolder extends RecyclerView.ViewHolder {
 
-    public static class ExploreSetListViewHolder extends RecyclerView.ViewHolder {
+        public ViewGroup container;
+        public ImageView imageView;
+        public TextView textView;
 
-        public CardView container;
-        public ImageView image;
-        public TextView title;
-
-        public ExploreSetListViewHolder(View itemView) {
+        public ShowcaseRecyclerViewHolder(View itemView) {
             super(itemView);
-            container = (CardView) itemView.findViewById(R.id.main_explore_set_list_item_container);
-            image = (ImageView) itemView.findViewById(R.id.main_explore_set_list_item_image);
-            title = (TextView) itemView.findViewById(R.id.main_explore_set_list_item_title);
+
+            container = (ViewGroup) itemView.findViewById(R.id.main_showcase_list_item_container);
+            imageView = (ImageView) itemView.findViewById(R.id.main_showcase_list_item_image);
+            textView = (TextView) itemView.findViewById(R.id.main_showcase_list_item_text);
         }
     }
 

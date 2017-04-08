@@ -40,6 +40,15 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
                 0,
                 orderBuilder.addField(GameFields.POPULARITY).build(),
                 filterBuilder.setField(GameFields.FIRST_RELEASE_DATE).setFactor(FilterBuilder.Factor.gt).setValue("1483228800000").buildMap()
+        ), games -> getView().onSetShowcaseGames(games));
+
+        subscribeNetworkQuery(gameRepository.searchGames(
+                null,
+                fieldsBuilder.addAllFields().build(),
+                20,
+                0,
+                orderBuilder.clear().addField(GameFields.POPULARITY).build(),
+                filterBuilder.clear().setField(GameFields.FIRST_RELEASE_DATE).setFactor(FilterBuilder.Factor.gt).setValue("1483228800000").buildMap()
         ), games -> getView().onAddExploreSetView("Fresh popular", games));
 
         subscribeNetworkQuery(gameRepository.searchGames(
@@ -47,7 +56,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
                 fieldsBuilder.clear().addAllFields().build(),
                 20,
                 0,
-                orderBuilder.addField(GameFields.FIRST_RELEASE_DATE).build(),
+                orderBuilder.clear().addField(GameFields.FIRST_RELEASE_DATE).build(),
                 new HashMap<String, String>()
         ), games -> getView().onAddExploreSetView("Just came out", games));
 
