@@ -140,6 +140,7 @@ public class MainActivityView extends BaseActivityView {
         showcaseRecyclerAdapter = new ShowcaseRecyclerAdapter(this, games);
         showCaseList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         showCaseList.setAdapter(showcaseRecyclerAdapter);
+        showCaseList.scrollToPosition(games.size() / 2);
     }
 
     public void onSetShowcaseGames(ArrayList<Game> games) {
@@ -148,6 +149,7 @@ public class MainActivityView extends BaseActivityView {
         else {
             showcaseRecyclerAdapter.setGames(games);
             showcaseRecyclerAdapter.notifyDataSetChanged();
+            showCaseList.scrollToPosition(games.size() / 2);
         }
     }
 }
