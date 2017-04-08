@@ -45,7 +45,6 @@ public class ShowcaseRecyclerAdapter extends RecyclerView.Adapter<ShowcaseRecycl
             String originalUrl = games.get(position).getScreenshots().get(0).getUrl();
             Glide.with(context)
                     .load(imageUrlBuilder.clear().parse(originalUrl).setSize(ImageUrlBuilder.ImageSize.screenshot_big).build())
-                    .dontAnimate()
                     .into(holder.imageView);
         } else {
             //TODO insert placeholder
