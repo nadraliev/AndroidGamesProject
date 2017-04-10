@@ -34,6 +34,7 @@ public class ShowcaseRecyclerAdapter extends RecyclerView.Adapter<ShowcaseRecycl
     @Override
     public ShowcaseRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.showcase_list_item, parent, false);
+        view.getLayoutParams().width = parent.getMeasuredWidth() * 80 / 100;
         return new ShowcaseRecyclerViewHolder(view);
     }
 
