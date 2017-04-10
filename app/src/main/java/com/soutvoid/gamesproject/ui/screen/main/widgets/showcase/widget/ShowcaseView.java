@@ -21,10 +21,12 @@ public class ShowcaseView extends FrameLayout {
     private Context context;
 
     private RecyclerView list;
-    private View leftButton;
-    private View rightButton;
+    private View leftArrow;
+    private View rightArrow;
+    private int currentPosition = 0;
 
     private ShowcaseRecyclerAdapter showcaseRecyclerAdapter;
+    private LinearLayoutManager layoutManager;
 
     public ShowcaseView(Context context) {
         super(context);
@@ -39,18 +41,55 @@ public class ShowcaseView extends FrameLayout {
     private void init(Context context, AttributeSet attributeSet) {
         this.context = context;
         inflate(context, R.layout.showcase_view, this);
-        findViews(context);
+        findViews();
     }
 
-    private void findViews(Context context) {
+    private void findViews() {
         list = (RecyclerView) findViewById(R.id.main_showcase_view_list);
+        leftArrow = findViewById(R.id.main_showcase_view_left_arrow);
+        rightArrow = findViewById(R.id.main_showcase_view_right_arrow);
+    }
+
+    private void initNavigationButtons() {
+        leftArrow.setOnClickListener(v -> {
+                    if (currentPosition - 1 >= 0)
+                        list.smoothScrollToPosition(--currentPosition);
+                }
+        );
+
+        rightArrow.setOnClickListener(v -> {
+                    if (currentPosition + 1 < showcaseRecyclerAdapter.getItemCount())
+                        list.smoothScrollToPosition(++currentPosition);
+                }
+        );
     }
 
     private void initList(ArrayList<Game> games) {
         showcaseRecyclerAdapter = new ShowcaseRecyclerAdapter(context, games);
-        list.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+        layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        list.setLayoutManager(layoutManager);
         list.setAdapter(showcaseRecyclerAdapter);
         new LinearSnapHelper().attachToRecyclerView(list);
+
+        list.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                currentPosition = layoutManager.findFirstVisibleItemPosition();
+
+                if (layoutManager.findFirstCompletelyVisibleItemPosition() == 0)
+                    leftArrow.setVisibility(GONE);
+                else if (layoutManager.findLastCompletelyVisibleItemPosition() == showcaseRecyclerAdapter.getItemCount() - 1)
+                    rightArrow.setVisibility(GONE);
+                else {
+                    leftArrow.setVisibility(VISIBLE);
+                    rightArrow.setVisibility(VISIBLE);
+                }
+            }
+        });
+
+        initNavigationButtons();
     }
 
     public void setGamesListContent(ArrayList<Game> games) {
