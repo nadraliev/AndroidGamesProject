@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.LinearSnapHelper;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.LinearLayout;
 
@@ -15,8 +12,8 @@ import com.agna.ferro.mvp.component.ScreenComponent;
 import com.soutvoid.gamesproject.domain.game.Game;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
 import com.soutvoid.gamesproject.ui.base.activity.TranslucentStatusActivityView;
-import com.soutvoid.gamesproject.ui.screen.main.list.ShowcaseRecyclerAdapter;
 import com.soutvoid.gamesproject.ui.screen.main.widgets.exploreset.widget.ExploreSetView;
+import com.soutvoid.gamesproject.ui.screen.main.widgets.showcase.widget.ShowcaseView;
 
 import java.util.ArrayList;
 
@@ -32,8 +29,7 @@ public class MainActivityView extends TranslucentStatusActivityView {
 
     private Toolbar toolbar;
     private LinearLayout exploreSetsContainer;
-    private RecyclerView showCaseList;
-    private ShowcaseRecyclerAdapter showcaseRecyclerAdapter;
+    private ShowcaseView showcaseView;
 
     private ArrayList<ExploreSetView> exploreSetViews;
 
@@ -80,7 +76,7 @@ public class MainActivityView extends TranslucentStatusActivityView {
 
     private void findViews() {
         exploreSetsContainer = (LinearLayout) findViewById(R.id.main_explore_sets_container);
-        showCaseList = (RecyclerView) findViewById(R.id.main_showcase_list);
+        showcaseView = (ShowcaseView) findViewById(R.id.main_showcase_view);
     }
 
     private void setupToolbar() {
@@ -138,21 +134,7 @@ public class MainActivityView extends TranslucentStatusActivityView {
         exploreSetViews.get(index).addGamesListContent(games);
     }
 
-    private void setupShowcase(ArrayList<Game> games) {
-        showcaseRecyclerAdapter = new ShowcaseRecyclerAdapter(this, games);
-        showCaseList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        new LinearSnapHelper().attachToRecyclerView(showCaseList);
-        showCaseList.setAdapter(showcaseRecyclerAdapter);
-        showCaseList.scrollToPosition(games.size() / 2);
-    }
-
-    public void onSetShowcaseGames(ArrayList<Game> games) {
-        if (showcaseRecyclerAdapter == null)
-            setupShowcase(games);
-        else {
-            showcaseRecyclerAdapter.setGames(games);
-            showcaseRecyclerAdapter.notifyDataSetChanged();
-            showCaseList.scrollToPosition(games.size() / 2);
-        }
+    public void onSetShowcaseViewGames(ArrayList<Game> games) {
+        showcaseView.setGamesListContent(games);
     }
 }

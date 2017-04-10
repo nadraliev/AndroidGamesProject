@@ -1,4 +1,4 @@
-package com.soutvoid.gamesproject.ui.screen.main.list;
+package com.soutvoid.gamesproject.ui.screen.main.widgets.showcase.list;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -34,7 +34,6 @@ public class ShowcaseRecyclerAdapter extends RecyclerView.Adapter<ShowcaseRecycl
     @Override
     public ShowcaseRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.showcase_list_item, parent, false);
-        view.getLayoutParams().width = parent.getMeasuredWidth() * 80 / 100;
         return new ShowcaseRecyclerViewHolder(view);
     }
 

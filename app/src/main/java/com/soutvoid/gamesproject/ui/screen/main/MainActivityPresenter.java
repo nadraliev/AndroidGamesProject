@@ -40,7 +40,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
                 0,
                 orderBuilder.addField(GameFields.POPULARITY).build(),
                 filterBuilder.setField(GameFields.FIRST_RELEASE_DATE).setFactor(FilterBuilder.Factor.gt).setValue("1483228800000").buildMap()
-        ), games -> getView().onSetShowcaseGames(games));
+        ), games -> getView().onSetShowcaseViewGames(games));
 
         subscribeNetworkQuery(gameRepository.searchGames(
                 null,
