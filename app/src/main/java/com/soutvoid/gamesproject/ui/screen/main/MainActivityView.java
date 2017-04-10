@@ -13,8 +13,8 @@ import android.widget.LinearLayout;
 
 import com.agna.ferro.mvp.component.ScreenComponent;
 import com.soutvoid.gamesproject.domain.game.Game;
-import com.soutvoid.gamesproject.ui.base.activity.BaseActivityView;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
+import com.soutvoid.gamesproject.ui.base.activity.TranslucentStatusActivityView;
 import com.soutvoid.gamesproject.ui.screen.main.list.ShowcaseRecyclerAdapter;
 import com.soutvoid.gamesproject.ui.screen.main.widgets.exploreset.widget.ExploreSetView;
 
@@ -25,7 +25,7 @@ import javax.inject.Inject;
 import soutvoid.com.gamesproject.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class MainActivityView extends BaseActivityView {
+public class MainActivityView extends TranslucentStatusActivityView {
 
     @Inject
     MainActivityPresenter presenter;
@@ -72,12 +72,13 @@ public class MainActivityView extends BaseActivityView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState, boolean viewRecreated) {
+        super.onCreate(savedInstanceState, viewRecreated);
+
         findViews();
         setupToolbar();
     }
 
     private void findViews() {
-        toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         exploreSetsContainer = (LinearLayout) findViewById(R.id.main_explore_sets_container);
         showCaseList = (RecyclerView) findViewById(R.id.main_showcase_list);
     }
