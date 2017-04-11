@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.soutvoid.gamesproject.domain.game.Game;
+import com.soutvoid.gamesproject.ui.base.widgets.AutoScrollingRecyclerView;
 import com.soutvoid.gamesproject.ui.screen.main.widgets.showcase.list.ShowcaseRecyclerAdapter;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class ShowcaseView extends FrameLayout {
 
     private Context context;
 
-    private RecyclerView list;
+    private AutoScrollingRecyclerView list;
     private View leftArrow;
     private View rightArrow;
     private int currentPosition = 0;
@@ -45,7 +46,7 @@ public class ShowcaseView extends FrameLayout {
     }
 
     private void findViews() {
-        list = (RecyclerView) findViewById(R.id.main_showcase_view_list);
+        list = (AutoScrollingRecyclerView) findViewById(R.id.main_showcase_view_list);
         leftArrow = findViewById(R.id.main_showcase_view_left_arrow);
         rightArrow = findViewById(R.id.main_showcase_view_right_arrow);
     }
