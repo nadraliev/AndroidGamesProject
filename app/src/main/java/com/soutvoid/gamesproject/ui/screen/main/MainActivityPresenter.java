@@ -17,7 +17,10 @@ import javax.inject.Inject;
 @PerScreen
 public class MainActivityPresenter extends BasePresenter<MainActivityView> {
 
+    private final int DATA_TO_LOAD = 4;
+
     private GameRepository gameRepository;
+    private int dataLoaded = 0;
 
     @Inject
     public MainActivityPresenter(ErrorHandler errorHandler, GameRepository gameRepository) {
@@ -33,6 +36,8 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
         OrderBuilder orderBuilder = new OrderBuilder();
         FilterBuilder filterBuilder = new FilterBuilder();
 
+        getView().showPlaceholderWithBackground();
+
         subscribeNetworkQuery(gameRepository.searchGames(
                 null,
                 fieldsBuilder.addAllFields().build(),
@@ -40,7 +45,10 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
                 0,
                 orderBuilder.addField(GameFields.POPULARITY).build(),
                 filterBuilder.setField(GameFields.FIRST_RELEASE_DATE).setFactor(FilterBuilder.Factor.gt).setValue("1483228800000").buildMap()
-        ), games -> getView().onSetShowcaseViewGames(games));
+        ), games -> {
+            getView().onSetShowcaseViewGames(games);
+            dataLoaded();
+        });
 
         subscribeNetworkQuery(gameRepository.searchGames(
                 null,
@@ -49,7 +57,10 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
                 0,
                 orderBuilder.clear().addField(GameFields.POPULARITY).build(),
                 filterBuilder.clear().setField(GameFields.FIRST_RELEASE_DATE).setFactor(FilterBuilder.Factor.gt).setValue("1483228800000").buildMap()
-        ), games -> getView().onAddExploreSetView("Fresh popular", games));
+        ), games -> {
+            getView().onAddExploreSetView("Fresh popular", games);
+            dataLoaded();
+        });
 
         subscribeNetworkQuery(gameRepository.searchGames(
                 null,
@@ -58,7 +69,10 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
                 0,
                 orderBuilder.clear().addField(GameFields.FIRST_RELEASE_DATE).build(),
                 new HashMap<String, String>()
-        ), games -> getView().onAddExploreSetView("Just came out", games));
+        ), games -> {
+            getView().onAddExploreSetView("Just came out", games);
+            dataLoaded();
+        });
 
         subscribeNetworkQuery(gameRepository.searchGames(
                 null,
@@ -67,6 +81,14 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
                 0,
                 orderBuilder.clear().addField(GameFields.POPULARITY).build(),
                 filterBuilder.clear().setField(GameFields.GENRES).setFactor(FilterBuilder.Factor.in).setValue("2").buildMap()   //TODO make enum for genres
-        ), games -> getView().onAddExploreSetView("Point-and-click", games));
+        ), games -> {
+            getView().onAddExploreSetView("Point-and-click", games);
+            dataLoaded();
+        });
+    }
+
+    private void dataLoaded() {
+        if (++dataLoaded == DATA_TO_LOAD)
+            getView().hidePlaceholder();
     }
 }

@@ -181,6 +181,7 @@ dependencies {
 
     //debug
     debugCompile "com.github.brianPlummer:tinydancer:0.1.0"
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }
 
 apply plugin: 'com.google.gms.google-services'

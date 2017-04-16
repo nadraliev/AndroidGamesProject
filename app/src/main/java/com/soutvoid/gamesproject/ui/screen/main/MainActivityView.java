@@ -6,12 +6,15 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.agna.ferro.mvp.component.ScreenComponent;
 import com.soutvoid.gamesproject.domain.game.Game;
+import com.soutvoid.gamesproject.ui.base.LoadableContent;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
 import com.soutvoid.gamesproject.ui.base.activity.TranslucentStatusActivityView;
+import com.soutvoid.gamesproject.ui.base.widgets.PlaceholderView;
 import com.soutvoid.gamesproject.ui.screen.main.widgets.exploreset.widget.ExploreSetView;
 import com.soutvoid.gamesproject.ui.screen.main.widgets.showcase.widget.ShowcaseView;
 
@@ -22,7 +25,7 @@ import javax.inject.Inject;
 import soutvoid.com.gamesproject.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class MainActivityView extends TranslucentStatusActivityView {
+public class MainActivityView extends TranslucentStatusActivityView implements LoadableContent {
 
     @Inject
     MainActivityPresenter presenter;
@@ -30,6 +33,7 @@ public class MainActivityView extends TranslucentStatusActivityView {
     private Toolbar toolbar;
     private LinearLayout exploreSetsContainer;
     private ShowcaseView showcaseView;
+    private PlaceholderView placeholderView;
 
     private ArrayList<ExploreSetView> exploreSetViews;
 
@@ -77,10 +81,32 @@ public class MainActivityView extends TranslucentStatusActivityView {
     private void findViews() {
         exploreSetsContainer = (LinearLayout) findViewById(R.id.main_explore_sets_container);
         showcaseView = (ShowcaseView) findViewById(R.id.main_showcase_view);
+        placeholderView = (PlaceholderView) findViewById(R.id.main_placeholder_view);
     }
 
     private void setupToolbar() {
 
+    }
+
+    @Override
+    public void showTransparentPlaceholder() {
+        placeholderView.setBackgroundResource(R.color.colorTransparent);
+        placeholderView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showPlaceholderWithBackground() {
+        placeholderView.setBackgroundResource(R.color.colorBackground);
+        placeholderView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hidePlaceholder() {
+        placeholderView.setVisibility(View.GONE);
+    }
+
+    public void setPlaceholderState(PlaceholderView.State state) {
+        placeholderView.setState(state);
     }
 
     /**
