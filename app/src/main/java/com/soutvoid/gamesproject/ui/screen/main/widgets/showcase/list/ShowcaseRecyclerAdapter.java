@@ -38,6 +38,8 @@ public class ShowcaseRecyclerAdapter extends RecyclerView.Adapter<ShowcaseRecycl
 
     @Override
     public void onBindViewHolder(ShowcaseRecyclerViewHolder holder, int position) {
+        holder.bind(games.get(position));
+
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +92,7 @@ public class ShowcaseRecyclerAdapter extends RecyclerView.Adapter<ShowcaseRecycl
                         .load(imageUrlBuilder.clear().parse(originalUrl).setSize(ImageUrlBuilder.ImageSize.screenshot_big).build())
                         .into(imageView);
             } else {
-                //TODO insert placeholder
+                imageView.setImageResource(R.color.colorTransparent);
             }
         }
     }

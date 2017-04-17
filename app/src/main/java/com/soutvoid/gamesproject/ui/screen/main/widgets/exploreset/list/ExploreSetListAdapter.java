@@ -96,7 +96,7 @@ public class ExploreSetListAdapter extends RecyclerView.Adapter<ExploreSetListAd
                         .load(imageUrlBuilder.clear().parse(originalUrl).setSize(ImageUrlBuilder.ImageSize.screenshot_big).build())
                         .into(image);
             } else {
-                //TODO insert placeholder
+                image.setImageResource(R.color.colorTransparent);
             }
 
         }
