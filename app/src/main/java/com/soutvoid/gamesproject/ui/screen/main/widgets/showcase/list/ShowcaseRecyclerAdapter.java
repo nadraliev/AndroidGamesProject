@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.soutvoid.gamesproject.domain.game.Game;
 import com.soutvoid.gamesproject.interactor.util.ImageUrlBuilder;
+import com.soutvoid.gamesproject.ui.common.recycler.BindableViewHolder;
 import com.soutvoid.gamesproject.ui.util.OnListItemClickListener;
 
 import java.util.ArrayList;
@@ -23,12 +24,10 @@ public class ShowcaseRecyclerAdapter extends RecyclerView.Adapter<ShowcaseRecycl
     private Context context;
     private ArrayList<Game> games;
     private OnListItemClickListener listener;
-    private ImageUrlBuilder imageUrlBuilder;
 
     public ShowcaseRecyclerAdapter(Context context, ArrayList<Game> games) {
         this.context = context;
         this.games = games;
-        imageUrlBuilder = new ImageUrlBuilder();
     }
 
     @Override
@@ -39,17 +38,6 @@ public class ShowcaseRecyclerAdapter extends RecyclerView.Adapter<ShowcaseRecycl
 
     @Override
     public void onBindViewHolder(ShowcaseRecyclerViewHolder holder, int position) {
-        holder.textView.setText(games.get(position).getName());
-
-        if (games.get(position).getScreenshots() != null && games.get(position).getScreenshots().size() > 0) {
-            String originalUrl = games.get(position).getScreenshots().get(0).getUrl();
-            Glide.with(context)
-                    .load(imageUrlBuilder.clear().parse(originalUrl).setSize(ImageUrlBuilder.ImageSize.screenshot_big).build())
-                    .into(holder.imageView);
-        } else {
-            //TODO insert placeholder
-        }
-
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,11 +64,12 @@ public class ShowcaseRecyclerAdapter extends RecyclerView.Adapter<ShowcaseRecycl
         this.listener = listener;
     }
 
-    public static class ShowcaseRecyclerViewHolder extends RecyclerView.ViewHolder {
+    public static class ShowcaseRecyclerViewHolder extends BindableViewHolder<Game> {
 
         public ViewGroup container;
         public ImageView imageView;
         public TextView textView;
+        private ImageUrlBuilder imageUrlBuilder;
 
         public ShowcaseRecyclerViewHolder(View itemView) {
             super(itemView);
@@ -88,6 +77,21 @@ public class ShowcaseRecyclerAdapter extends RecyclerView.Adapter<ShowcaseRecycl
             container = (ViewGroup) itemView.findViewById(R.id.main_showcase_list_item_container);
             imageView = (ImageView) itemView.findViewById(R.id.main_showcase_list_item_image);
             textView = (TextView) itemView.findViewById(R.id.main_showcase_list_item_text);
+            imageUrlBuilder = new ImageUrlBuilder();
+        }
+
+        @Override
+        public void bind(Game data) {
+            textView.setText(data.getName());
+
+            if (data.getScreenshots() != null && data.getScreenshots().size() > 0) {
+                String originalUrl = data.getScreenshots().get(0).getUrl();
+                Glide.with(itemView.getContext())
+                        .load(imageUrlBuilder.clear().parse(originalUrl).setSize(ImageUrlBuilder.ImageSize.screenshot_big).build())
+                        .into(imageView);
+            } else {
+                //TODO insert placeholder
+            }
         }
     }
 

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.soutvoid.gamesproject.domain.game.Game;
 import com.soutvoid.gamesproject.interactor.util.ImageUrlBuilder;
+import com.soutvoid.gamesproject.ui.common.recycler.BindableViewHolder;
 import com.soutvoid.gamesproject.ui.util.OnListItemClickListener;
 
 import java.util.ArrayList;
@@ -23,13 +24,11 @@ public class ExploreSetListAdapter extends RecyclerView.Adapter<ExploreSetListAd
 
     private Context context;
     private ArrayList<Game> games;
-    private ImageUrlBuilder imageUrlBuilder;
     private OnListItemClickListener listener;
 
     public ExploreSetListAdapter(Context context, ArrayList<Game> games) {
         this.context = context;
         this.games = games;
-        imageUrlBuilder = new ImageUrlBuilder();
     }
 
     @Override
@@ -40,17 +39,7 @@ public class ExploreSetListAdapter extends RecyclerView.Adapter<ExploreSetListAd
 
     @Override
     public void onBindViewHolder(ExploreSetListViewHolder holder, int position) {
-        holder.title.setText(games.get(position).getName());
-
-        if (games.get(position).getScreenshots() != null && games.get(position).getScreenshots().size() > 0) {
-            String originalUrl = games.get(position).getScreenshots().get(0).getUrl();
-            Glide.with(context)
-                    .load(imageUrlBuilder.clear().parse(originalUrl).setSize(ImageUrlBuilder.ImageSize.screenshot_big).build())
-                    .dontAnimate()
-                    .into(holder.image);
-        } else {
-            //TODO insert placeholder
-        }
+        holder.bind(games.get(position));
 
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,17 +71,34 @@ public class ExploreSetListAdapter extends RecyclerView.Adapter<ExploreSetListAd
             listener.click(position, view);
     }
 
-    public static class ExploreSetListViewHolder extends RecyclerView.ViewHolder {
+    public static class ExploreSetListViewHolder extends BindableViewHolder<Game> {
 
         public CardView container;
         public ImageView image;
         public TextView title;
+        private ImageUrlBuilder imageUrlBuilder;
 
         public ExploreSetListViewHolder(View itemView) {
             super(itemView);
             container = (CardView) itemView.findViewById(R.id.main_explore_set_list_item_container);
             image = (ImageView) itemView.findViewById(R.id.main_explore_set_list_item_image);
             title = (TextView) itemView.findViewById(R.id.main_explore_set_list_item_title);
+            imageUrlBuilder = new ImageUrlBuilder();
+        }
+
+        @Override
+        public void bind(Game data) {
+            title.setText(data.getName());
+
+            if (data.getScreenshots() != null && data.getScreenshots().size() > 0) {
+                String originalUrl = data.getScreenshots().get(0).getUrl();
+                Glide.with(itemView.getContext())
+                        .load(imageUrlBuilder.clear().parse(originalUrl).setSize(ImageUrlBuilder.ImageSize.screenshot_big).build())
+                        .into(image);
+            } else {
+                //TODO insert placeholder
+            }
+
         }
     }
 
