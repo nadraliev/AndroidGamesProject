@@ -9,6 +9,7 @@ import com.soutvoid.gamesproject.interactor.collection.CollectionModule;
 import com.soutvoid.gamesproject.interactor.collection.CollectionRepository;
 import com.soutvoid.gamesproject.interactor.common.network.NetworkModule;
 import com.soutvoid.gamesproject.interactor.common.network.OkHttpModule;
+import com.soutvoid.gamesproject.interactor.common.network.cache.CacheModule;
 import com.soutvoid.gamesproject.interactor.company.CompanyModule;
 import com.soutvoid.gamesproject.interactor.company.CompanyRepository;
 import com.soutvoid.gamesproject.interactor.franchise.FranchiseModule;
@@ -36,6 +37,7 @@ import dagger.Component;
         AppModule.class,
         OkHttpModule.class,
         NetworkModule.class,
+        CacheModule.class,
         GameModule.class,
         CharacterModule.class,
         CollectionModule.class,

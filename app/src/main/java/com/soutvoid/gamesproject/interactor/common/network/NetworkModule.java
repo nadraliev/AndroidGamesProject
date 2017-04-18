@@ -8,7 +8,10 @@ import com.soutvoid.gamesproject.interactor.common.network.parse.BooleanAdapter;
 import com.soutvoid.gamesproject.interactor.common.network.parse.IntAdapter;
 import com.soutvoid.gamesproject.interactor.common.network.parse.ResponseTypeAdapterFactory;
 import com.soutvoid.gamesproject.interactor.common.network.parse.StringAdapter;
+import com.soutvoid.gamesproject.interactor.common.network.request.RequestCacheInterceptor;
 import com.soutvoid.gamesproject.interactor.common.network.request.RequestHeadersInterceptor;
+import com.soutvoid.gamesproject.interactor.common.network.response.ResponseCacheInterceptor;
+import com.soutvoid.gamesproject.interactor.network.connection.NetworkConnectionChecker;
 
 import dagger.Module;
 import dagger.Provides;
@@ -19,9 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import soutvoid.com.gamesproject.BuildConfig;
 import timber.log.Timber;
 
-/**
- * Created by andrew on 2/21/17.
- */
+
 @Module
 public class NetworkModule {
 
@@ -69,6 +70,18 @@ public class NetworkModule {
     @PerApplication
     RequestHeadersInterceptor provideRequestHeadersInterceptor() {
         return new RequestHeadersInterceptor();
+    }
+
+    @Provides
+    @PerApplication
+    ResponseCacheInterceptor provideResponseCacheInterceptor() {
+        return new ResponseCacheInterceptor();
+    }
+
+    @Provides
+    @PerApplication
+    RequestCacheInterceptor provideRequestCacheInterceptor(NetworkConnectionChecker networkConnectionChecker) {
+        return new RequestCacheInterceptor(networkConnectionChecker);
     }
 
 }

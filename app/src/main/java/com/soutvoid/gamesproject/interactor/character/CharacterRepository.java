@@ -13,9 +13,6 @@ import javax.inject.Inject;
 
 import rx.Observable;
 
-/**
- * Created by andrew on 22-Feb-17.
- */
 
 @PerApplication
 public class CharacterRepository {
