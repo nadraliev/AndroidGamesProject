@@ -4,6 +4,7 @@ import com.agna.ferro.mvp.component.scope.PerApplication;
 import com.soutvoid.gamesproject.domain.character.Character;
 import com.soutvoid.gamesproject.interactor.character.network.CharacterApi;
 import com.soutvoid.gamesproject.interactor.network.connection.NetworkConnectionChecker;
+import com.soutvoid.gamesproject.interactor.util.Fields;
 import com.soutvoid.gamesproject.interactor.util.Filter;
 import com.soutvoid.gamesproject.interactor.util.Order;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
@@ -27,28 +28,28 @@ public class CharacterRepository {
         this.networkConnectionChecker = networkConnectionChecker;
     }
 
-    public Observable<ArrayList<Character>> getCharacterById(int id, String fields) {
-        return characterApi.getCharactersById(id, fields)
+    public Observable<ArrayList<Character>> getCharacterById(int id, Fields fields) {
+        return characterApi.getCharactersById(id, fields.toString())
                 .flatMap(characterObjs -> Observable.just(TransformUtil.transformCollection(characterObjs)));
 
     }
 
     public Observable<ArrayList<Character>> searchCharacters(String searchQuery,
-                                                             String fields,
+                                                             Fields fields,
                                                              int limit,
                                                              int offset,
                                                              Order order) {
-        return characterApi.searchForCharacters(fields, limit, offset, order.toString(), searchQuery)
+        return characterApi.searchForCharacters(fields.toString(), limit, offset, order.toString(), searchQuery)
                 .flatMap(characterObjs -> Observable.just(TransformUtil.transformCollection(characterObjs)));
     }
 
     public Observable<ArrayList<Character>> searchCharactersWithFilters(String searchQuery,
-                                                                        String fields,
+                                                                        Fields fields,
                                                                         int limit,
                                                                         int offset,
                                                                         Order order,
                                                                         Filter filter) {
-        return characterApi.searchForCharacters(fields, limit, offset, order.toString(), searchQuery, filter.toMap())
+        return characterApi.searchForCharacters(fields.toString(), limit, offset, order.toString(), searchQuery, filter.toMap())
                 .flatMap(characterObjs -> Observable.just(TransformUtil.transformCollection(characterObjs)));
     }
 

@@ -3,6 +3,7 @@ package com.soutvoid.gamesproject.interactor.company;
 import com.agna.ferro.mvp.component.scope.PerApplication;
 import com.soutvoid.gamesproject.domain.company.Company;
 import com.soutvoid.gamesproject.interactor.company.network.CompanyApi;
+import com.soutvoid.gamesproject.interactor.util.Fields;
 import com.soutvoid.gamesproject.interactor.util.Filter;
 import com.soutvoid.gamesproject.interactor.util.Order;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
@@ -24,23 +25,23 @@ public class CompanyRepository {
         this.companyApi = companyApi;
     }
 
-    public Observable<ArrayList<Company>> searchCompanies(String searchQuery, String fields, int limit, int offset, Order order) {
-        return companyApi.searchForCompanies(fields, limit, offset, order.toString(), searchQuery)
+    public Observable<ArrayList<Company>> searchCompanies(String searchQuery, Fields fields, int limit, int offset, Order order) {
+        return companyApi.searchForCompanies(fields.toString(), limit, offset, order.toString(), searchQuery)
                 .flatMap(companyObjs -> Observable.just(TransformUtil.transformCollection(companyObjs)));
     }
 
     public Observable<ArrayList<Company>> searchCompanies(String searchQuery,
-                                                          String fields,
+                                                          Fields fields,
                                                           int limit,
                                                           int offset,
                                                           Order order,
                                                           Filter filter) {
-        return companyApi.searchForCompanies(fields, limit, offset, order.toString(), searchQuery, filter.toMap())
+        return companyApi.searchForCompanies(fields.toString(), limit, offset, order.toString(), searchQuery, filter.toMap())
                 .flatMap(companyObjs -> Observable.just(TransformUtil.transformCollection(companyObjs)));
     }
 
-    public Observable<ArrayList<Company>> getCompaniesById(int id, String fields) {
-        return companyApi.getCompaniesById(id, fields)
+    public Observable<ArrayList<Company>> getCompaniesById(int id, Fields fields) {
+        return companyApi.getCompaniesById(id, fields.toString())
                 .flatMap(companyObjs -> Observable.just(TransformUtil.transformCollection(companyObjs)));
     }
 }

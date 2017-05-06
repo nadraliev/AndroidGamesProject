@@ -3,6 +3,7 @@ package com.soutvoid.gamesproject.interactor.franchise;
 import com.agna.ferro.mvp.component.scope.PerApplication;
 import com.soutvoid.gamesproject.domain.franchise.Franchise;
 import com.soutvoid.gamesproject.interactor.franchise.network.FranchiseApi;
+import com.soutvoid.gamesproject.interactor.util.Fields;
 import com.soutvoid.gamesproject.interactor.util.Filter;
 import com.soutvoid.gamesproject.interactor.util.Order;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
@@ -24,23 +25,23 @@ public class FranchiseRepository {
         this.franchiseApi = franchiseApi;
     }
 
-    public Observable<ArrayList<Franchise>> searchFranchises(String searchQuery, String fields, int limit, int offset, Order order) {
-        return franchiseApi.searchForFranchises(fields, limit, offset, order.toString(), searchQuery)
+    public Observable<ArrayList<Franchise>> searchFranchises(String searchQuery, Fields fields, int limit, int offset, Order order) {
+        return franchiseApi.searchForFranchises(fields.toString(), limit, offset, order.toString(), searchQuery)
                 .flatMap(franchiseObjs -> Observable.just(TransformUtil.transformCollection(franchiseObjs)));
     }
 
     public Observable<ArrayList<Franchise>> searchFranchises(String searchQuery,
-                                                             String fields,
+                                                             Fields fields,
                                                              int limit,
                                                              int offset,
                                                              Order order,
                                                              Filter filter) {
-        return franchiseApi.searchForFranchises(fields, limit, offset, order.toString(), searchQuery, filter.toMap())
+        return franchiseApi.searchForFranchises(fields.toString(), limit, offset, order.toString(), searchQuery, filter.toMap())
                 .flatMap(franchiseObjs -> Observable.just(TransformUtil.transformCollection(franchiseObjs)));
     }
 
-    public Observable<ArrayList<Franchise>> getFranchisesById(int id, String fields) {
-        return franchiseApi.getFranchisesById(id, fields)
+    public Observable<ArrayList<Franchise>> getFranchisesById(int id, Fields fields) {
+        return franchiseApi.getFranchisesById(id, fields.toString())
                 .flatMap(franchiseObjs -> Observable.just(TransformUtil.transformCollection(franchiseObjs)));
     }
 

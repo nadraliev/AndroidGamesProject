@@ -3,7 +3,7 @@ package com.soutvoid.gamesproject.ui.screen.main;
 import com.agna.ferro.mvp.component.scope.PerScreen;
 import com.soutvoid.gamesproject.domain.game.fields.GameFields;
 import com.soutvoid.gamesproject.interactor.game.GameRepository;
-import com.soutvoid.gamesproject.interactor.util.FieldsBuilder;
+import com.soutvoid.gamesproject.interactor.util.Fields;
 import com.soutvoid.gamesproject.interactor.util.Filter;
 import com.soutvoid.gamesproject.interactor.util.Order;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
@@ -30,13 +30,12 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
     @Override
     public void onLoad(boolean viewRecreated) {
         super.onLoad(viewRecreated);
-        FieldsBuilder fieldsBuilder = new FieldsBuilder();
 
         getView().showPlaceholderWithBackground();
 
         subscribeNetworkQuery(gameRepository.searchGames(
                 null,
-                fieldsBuilder.addAllFields().build(),
+                Fields.builder().build(),
                 20,
                 0,
                 Order.builder().field(GameFields.POPULARITY.toString()).build(),
@@ -48,7 +47,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
 
         subscribeNetworkQuery(gameRepository.searchGames(
                 null,
-                fieldsBuilder.addAllFields().build(),
+                Fields.builder().build(),
                 20,
                 0,
                 Order.builder().field(GameFields.POPULARITY.toString()).build(),
@@ -60,7 +59,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
 
         subscribeNetworkQuery(gameRepository.searchGames(
                 null,
-                fieldsBuilder.clear().addAllFields().build(),
+                Fields.builder().build(),
                 20,
                 0,
                 Order.builder().field(GameFields.FIRST_RELEASE_DATE.toString()).build(),
@@ -72,7 +71,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
 
         subscribeNetworkQuery(gameRepository.searchGames(
                 null,
-                fieldsBuilder.clear().addAllFields().build(),
+                Fields.builder().build(),
                 20,
                 0,
                 Order.builder().field(GameFields.POPULARITY.toString()).build(),
