@@ -5,6 +5,7 @@ import com.soutvoid.gamesproject.domain.character.Character;
 import com.soutvoid.gamesproject.interactor.character.network.CharacterApi;
 import com.soutvoid.gamesproject.interactor.network.connection.NetworkConnectionChecker;
 import com.soutvoid.gamesproject.interactor.util.Filter;
+import com.soutvoid.gamesproject.interactor.util.Order;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 
 import java.util.ArrayList;
@@ -36,8 +37,8 @@ public class CharacterRepository {
                                                              String fields,
                                                              int limit,
                                                              int offset,
-                                                             String order) {
-        return characterApi.searchForCharacters(fields, limit, offset, order, searchQuery)
+                                                             Order order) {
+        return characterApi.searchForCharacters(fields, limit, offset, order.toString(), searchQuery)
                 .flatMap(characterObjs -> Observable.just(TransformUtil.transformCollection(characterObjs)));
     }
 
@@ -45,9 +46,9 @@ public class CharacterRepository {
                                                                         String fields,
                                                                         int limit,
                                                                         int offset,
-                                                                        String order,
+                                                                        Order order,
                                                                         Filter filter) {
-        return characterApi.searchForCharacters(fields, limit, offset, order, searchQuery, filter.toMap())
+        return characterApi.searchForCharacters(fields, limit, offset, order.toString(), searchQuery, filter.toMap())
                 .flatMap(characterObjs -> Observable.just(TransformUtil.transformCollection(characterObjs)));
     }
 

@@ -4,6 +4,7 @@ import com.agna.ferro.mvp.component.scope.PerApplication;
 import com.soutvoid.gamesproject.domain.franchise.Franchise;
 import com.soutvoid.gamesproject.interactor.franchise.network.FranchiseApi;
 import com.soutvoid.gamesproject.interactor.util.Filter;
+import com.soutvoid.gamesproject.interactor.util.Order;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 
 import java.util.ArrayList;
@@ -23,8 +24,8 @@ public class FranchiseRepository {
         this.franchiseApi = franchiseApi;
     }
 
-    public Observable<ArrayList<Franchise>> searchFranchises(String searchQuery, String fields, int limit, int offset, String order) {
-        return franchiseApi.searchForFranchises(fields, limit, offset, order, searchQuery)
+    public Observable<ArrayList<Franchise>> searchFranchises(String searchQuery, String fields, int limit, int offset, Order order) {
+        return franchiseApi.searchForFranchises(fields, limit, offset, order.toString(), searchQuery)
                 .flatMap(franchiseObjs -> Observable.just(TransformUtil.transformCollection(franchiseObjs)));
     }
 
@@ -32,9 +33,9 @@ public class FranchiseRepository {
                                                              String fields,
                                                              int limit,
                                                              int offset,
-                                                             String order,
+                                                             Order order,
                                                              Filter filter) {
-        return franchiseApi.searchForFranchises(fields, limit, offset, order, searchQuery, filter.toMap())
+        return franchiseApi.searchForFranchises(fields, limit, offset, order.toString(), searchQuery, filter.toMap())
                 .flatMap(franchiseObjs -> Observable.just(TransformUtil.transformCollection(franchiseObjs)));
     }
 

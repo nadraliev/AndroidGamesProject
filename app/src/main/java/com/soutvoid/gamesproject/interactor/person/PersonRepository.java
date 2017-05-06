@@ -5,7 +5,7 @@ import com.soutvoid.gamesproject.domain.person.Person;
 import com.soutvoid.gamesproject.interactor.person.network.PersonApi;
 import com.soutvoid.gamesproject.interactor.util.FieldsBuilder;
 import com.soutvoid.gamesproject.interactor.util.Filter;
-import com.soutvoid.gamesproject.interactor.util.OrderBuilder;
+import com.soutvoid.gamesproject.interactor.util.Order;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 
 import java.util.ArrayList;
@@ -31,16 +31,16 @@ public class PersonRepository {
      * @param fields      поля, которые необходимо включить в ответ. стрится с помощью {@link FieldsBuilder}
      * @param limit       лимит кол-ва результатов
      * @param offset      пагинация ответа
-     * @param order       сортировка. стрится с помощью {@link OrderBuilder}
+     * @param order       сортировка. стрится с помощью {@link Order}
      * @return список людей
      */
-    public Observable<ArrayList<Person>> searchPeople(String searchQuery, String fields, int limit, int offset, String order) {
-        return personApi.searchForPeople(fields, limit, offset, order, searchQuery)
+    public Observable<ArrayList<Person>> searchPeople(String searchQuery, String fields, int limit, int offset, Order order) {
+        return personApi.searchForPeople(fields, limit, offset, order.toString(), searchQuery)
                 .flatMap(personObjs -> Observable.just(TransformUtil.transformCollection(personObjs)));
     }
 
     /**
-     * то же, что {@link #searchPeople(String, String, int, int, String)}, но с фильтром
+     * то же, что {@link #searchPeople(String, String, int, int, Order)}, но с фильтром
      *
      * @param filter объект с фильтрами
      *                (ключ - параметры фильтрования, значение - собственно, значение, относительно которого сортировать)
@@ -50,9 +50,9 @@ public class PersonRepository {
                                                       String fields,
                                                       int limit,
                                                       int offset,
-                                                      String order,
+                                                      Order order,
                                                       Filter filter) {
-        return personApi.searchForPeople(fields, limit, offset, order, searchQuery, filter.toMap())
+        return personApi.searchForPeople(fields, limit, offset, order.toString(), searchQuery, filter.toMap())
                 .flatMap(personObjs -> Observable.just(TransformUtil.transformCollection(personObjs)));
     }
 

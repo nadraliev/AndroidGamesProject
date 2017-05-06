@@ -5,7 +5,7 @@ import com.soutvoid.gamesproject.domain.genre.Genre;
 import com.soutvoid.gamesproject.interactor.genre.network.GenreApi;
 import com.soutvoid.gamesproject.interactor.util.FieldsBuilder;
 import com.soutvoid.gamesproject.interactor.util.Filter;
-import com.soutvoid.gamesproject.interactor.util.OrderBuilder;
+import com.soutvoid.gamesproject.interactor.util.Order;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 
 import java.util.ArrayList;
@@ -31,16 +31,16 @@ public class GenreRepository {
      * @param fields      поля, которые необходимо включить в ответ. стрится с помощью {@link FieldsBuilder}
      * @param limit       лимит кол-ва результатов
      * @param offset      пагинация ответа
-     * @param order       сортировка. стрится с помощью {@link OrderBuilder}
+     * @param order       сортировка. стрится с помощью {@link Order}
      * @return список жанров
      */
-    public Observable<ArrayList<Genre>> searchGenres(String searchQuery, String fields, int limit, int offset, String order) {
-        return genreApi.searchForGenres(fields, limit, offset, order, searchQuery)
+    public Observable<ArrayList<Genre>> searchGenres(String searchQuery, String fields, int limit, int offset, Order order) {
+        return genreApi.searchForGenres(fields, limit, offset, order.toString(), searchQuery)
                 .flatMap(genreObjs -> Observable.just(TransformUtil.transformCollection(genreObjs)));
     }
 
     /**
-     * то же, что {@link #searchGenres(String, String, int, int, String)}, но с фильтром
+     * то же, что {@link #searchGenres(String, String, int, int, Order)}, но с фильтром
      *
      * @param filter объект с фильтрами
      *                (ключ - параметры фильтрования, значение - собственно, значение, относительно которого сортировать)
@@ -50,9 +50,9 @@ public class GenreRepository {
                                                      String fields,
                                                      int limit,
                                                      int offset,
-                                                     String order,
+                                                     Order order,
                                                      Filter filter) {
-        return genreApi.searchForGenres(fields, limit, offset, order, searchQuery, filter.toMap())
+        return genreApi.searchForGenres(fields, limit, offset, order.toString(), searchQuery, filter.toMap())
                 .flatMap(genreObjs -> Observable.just(TransformUtil.transformCollection(genreObjs)));
     }
 

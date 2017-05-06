@@ -5,7 +5,7 @@ import com.soutvoid.gamesproject.domain.keyword.Keyword;
 import com.soutvoid.gamesproject.interactor.keyword.network.KeywordApi;
 import com.soutvoid.gamesproject.interactor.util.FieldsBuilder;
 import com.soutvoid.gamesproject.interactor.util.Filter;
-import com.soutvoid.gamesproject.interactor.util.OrderBuilder;
+import com.soutvoid.gamesproject.interactor.util.Order;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 
 import java.util.ArrayList;
@@ -31,16 +31,16 @@ public class KeywordRepository {
      * @param fields      поля, которые необходимо включить в ответ. стрится с помощью {@link FieldsBuilder}
      * @param limit       лимит кол-ва результатов
      * @param offset      пагинация ответа
-     * @param order       сортировка. стрится с помощью {@link OrderBuilder}
+     * @param order       сортировка. стрится с помощью {@link Order}
      * @return список ключевых слов
      */
-    public Observable<ArrayList<Keyword>> searchKeywords(String searchQuery, String fields, int limit, int offset, String order) {
-        return keywordApi.searchForKeywords(fields, limit, offset, order, searchQuery)
+    public Observable<ArrayList<Keyword>> searchKeywords(String searchQuery, String fields, int limit, int offset, Order order) {
+        return keywordApi.searchForKeywords(fields, limit, offset, order.toString(), searchQuery)
                 .flatMap(keywordObjs -> Observable.just(TransformUtil.transformCollection(keywordObjs)));
     }
 
     /**
-     * то же, что {@link #searchKeywords(String, String, int, int, String)}, но с фильтром
+     * то же, что {@link #searchKeywords(String, String, int, int, Order)}, но с фильтром
      *
      * @param filter объект с фильтрами
      *                (ключ - параметры фильтрования, значение - собственно, значение, относительно которого сортировать)
@@ -50,9 +50,9 @@ public class KeywordRepository {
                                                          String fields,
                                                          int limit,
                                                          int offset,
-                                                         String order,
+                                                         Order order,
                                                          Filter filter) {
-        return keywordApi.searchForKeywords(fields, limit, offset, order, searchQuery, filter.toMap())
+        return keywordApi.searchForKeywords(fields, limit, offset, order.toString(), searchQuery, filter.toMap())
                 .flatMap(keywordObjs -> Observable.just(TransformUtil.transformCollection(keywordObjs)));
     }
 

@@ -5,7 +5,7 @@ import com.soutvoid.gamesproject.domain.game.fields.GameFields;
 import com.soutvoid.gamesproject.interactor.game.GameRepository;
 import com.soutvoid.gamesproject.interactor.util.FieldsBuilder;
 import com.soutvoid.gamesproject.interactor.util.Filter;
-import com.soutvoid.gamesproject.interactor.util.OrderBuilder;
+import com.soutvoid.gamesproject.interactor.util.Order;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
 import com.soutvoid.gamesproject.ui.common.error.ErrorHandler;
 
@@ -31,7 +31,6 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
     public void onLoad(boolean viewRecreated) {
         super.onLoad(viewRecreated);
         FieldsBuilder fieldsBuilder = new FieldsBuilder();
-        OrderBuilder orderBuilder = new OrderBuilder();
 
         getView().showPlaceholderWithBackground();
 
@@ -40,7 +39,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
                 fieldsBuilder.addAllFields().build(),
                 20,
                 0,
-                orderBuilder.addField(GameFields.POPULARITY).build(),
+                Order.builder().field(GameFields.POPULARITY.toString()).build(),
                 Filter.builder().field(GameFields.FIRST_RELEASE_DATE.toString()).factor(Filter.Factor.gt.toString()).value("1483228800000").build()
         ), games -> {
             getView().onSetShowcaseViewGames(games);
@@ -52,7 +51,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
                 fieldsBuilder.addAllFields().build(),
                 20,
                 0,
-                orderBuilder.clear().addField(GameFields.POPULARITY).build(),
+                Order.builder().field(GameFields.POPULARITY.toString()).build(),
                 Filter.builder().field(GameFields.FIRST_RELEASE_DATE.toString()).factor(Filter.Factor.gt.toString()).value("1483228800000").build()
         ), games -> {
             getView().onAddExploreSetView("Fresh popular", games);
@@ -64,7 +63,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
                 fieldsBuilder.clear().addAllFields().build(),
                 20,
                 0,
-                orderBuilder.clear().addField(GameFields.FIRST_RELEASE_DATE).build(),
+                Order.builder().field(GameFields.FIRST_RELEASE_DATE.toString()).build(),
                 Filter.builder().build()
         ), games -> {
             getView().onAddExploreSetView("Just came out", games);
@@ -76,7 +75,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
                 fieldsBuilder.clear().addAllFields().build(),
                 20,
                 0,
-                orderBuilder.clear().addField(GameFields.POPULARITY).build(),
+                Order.builder().field(GameFields.POPULARITY.toString()).build(),
                 Filter.builder().field(GameFields.GENRES.toString()).factor(Filter.Factor.in.toString()).value("2").build() //TODO make enum for genres
         ), games -> {
             getView().onAddExploreSetView("Point-and-click", games);
