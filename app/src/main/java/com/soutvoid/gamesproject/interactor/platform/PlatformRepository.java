@@ -6,6 +6,7 @@ import com.soutvoid.gamesproject.interactor.platform.network.PlatformApi;
 import com.soutvoid.gamesproject.interactor.util.Fields;
 import com.soutvoid.gamesproject.interactor.util.Filter;
 import com.soutvoid.gamesproject.interactor.util.Order;
+import com.soutvoid.gamesproject.interactor.util.Query;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 
 import java.util.ArrayList;
@@ -54,6 +55,16 @@ public class PlatformRepository {
                                                            Filter filter) {
         return platformApi.searchForPlatforms(fields.toString(), limit, offset, order.toString(), searchQuery, filter.toMap())
                 .flatMap(platformObjs -> Observable.just(TransformUtil.transformCollection(platformObjs)));
+    }
+
+    public Observable<ArrayList<Platform>> searchPlatforms(Query query) {
+        return searchPlatforms(
+                query.getSearchQuery(),
+                query.getFields(),
+                query.getLimit(),
+                query.getOffset(),
+                query.getOrder(),
+                query.getFilter());
     }
 
     /**

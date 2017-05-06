@@ -9,6 +9,7 @@ import com.soutvoid.gamesproject.interactor.network.connection.NetworkConnection
 import com.soutvoid.gamesproject.interactor.util.Fields;
 import com.soutvoid.gamesproject.interactor.util.Filter;
 import com.soutvoid.gamesproject.interactor.util.Order;
+import com.soutvoid.gamesproject.interactor.util.Query;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 
 import java.util.ArrayList;
@@ -60,6 +61,16 @@ public class GameRepository {
                 .flatMap(gameObjs -> Observable.just(TransformUtil.transformCollection(gameObjs)));
     }
 
+    public Observable<ArrayList<Game>> searchGames(Query query) {
+        return searchGames(
+                query.getSearchQuery(),
+                query.getFields(),
+                query.getLimit(),
+                query.getOffset(),
+                query.getOrder(),
+                query.getFilter());
+    }
+
     /**
      * получение игры по id
      * @param id
@@ -92,6 +103,16 @@ public class GameRepository {
                 .flatMap(gameEngineObjs -> Observable.just(TransformUtil.transformCollection(gameEngineObjs)));
     }
 
+    public Observable<ArrayList<GameEngine>> searchGameEngines(Query query) {
+        return searchGameEngines(
+                query.getSearchQuery(),
+                query.getFields(),
+                query.getLimit(),
+                query.getOffset(),
+                query.getOrder(),
+                query.getFilter());
+    }
+
     /**
      * то же, что и {@link #getGamesById(int, Fields)}, но для для движков
      */
@@ -119,6 +140,16 @@ public class GameRepository {
                                                            Filter filter) {
         return gameApi.searchForGameModes(fields.toString(), limit, offset, order.toString(), searchQuery, filter.toMap())
                 .flatMap(gameModeObjs -> Observable.just(TransformUtil.transformCollection(gameModeObjs)));
+    }
+
+    public Observable<ArrayList<GameMode>> searchGameModes(Query query) {
+        return searchGameModes(
+                query.getSearchQuery(),
+                query.getFields(),
+                query.getLimit(),
+                query.getOffset(),
+                query.getOrder(),
+                query.getFilter());
     }
 
     /**

@@ -6,6 +6,7 @@ import com.soutvoid.gamesproject.interactor.genre.network.GenreApi;
 import com.soutvoid.gamesproject.interactor.util.Fields;
 import com.soutvoid.gamesproject.interactor.util.Filter;
 import com.soutvoid.gamesproject.interactor.util.Order;
+import com.soutvoid.gamesproject.interactor.util.Query;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 
 import java.util.ArrayList;
@@ -54,6 +55,16 @@ public class GenreRepository {
                                                      Filter filter) {
         return genreApi.searchForGenres(fields.toString(), limit, offset, order.toString(), searchQuery, filter.toMap())
                 .flatMap(genreObjs -> Observable.just(TransformUtil.transformCollection(genreObjs)));
+    }
+
+    public Observable<ArrayList<Genre>> searchGenres(Query query) {
+        return searchGenres(
+                query.getSearchQuery(),
+                query.getFields(),
+                query.getLimit(),
+                query.getOffset(),
+                query.getOrder(),
+                query.getFilter());
     }
 
     /**

@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Query extends RealmObject {
 
+    private String name;
     private String searchQuery;
     private Fields fields;
     private int limit = 20;

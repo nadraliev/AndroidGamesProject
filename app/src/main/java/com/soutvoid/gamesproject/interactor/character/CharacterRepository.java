@@ -7,6 +7,7 @@ import com.soutvoid.gamesproject.interactor.network.connection.NetworkConnection
 import com.soutvoid.gamesproject.interactor.util.Fields;
 import com.soutvoid.gamesproject.interactor.util.Filter;
 import com.soutvoid.gamesproject.interactor.util.Order;
+import com.soutvoid.gamesproject.interactor.util.Query;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 
 import java.util.ArrayList;
@@ -43,14 +44,24 @@ public class CharacterRepository {
                 .flatMap(characterObjs -> Observable.just(TransformUtil.transformCollection(characterObjs)));
     }
 
-    public Observable<ArrayList<Character>> searchCharactersWithFilters(String searchQuery,
-                                                                        Fields fields,
-                                                                        int limit,
-                                                                        int offset,
-                                                                        Order order,
-                                                                        Filter filter) {
+    public Observable<ArrayList<Character>> searchCharacters(String searchQuery,
+                                                             Fields fields,
+                                                             int limit,
+                                                             int offset,
+                                                             Order order,
+                                                             Filter filter) {
         return characterApi.searchForCharacters(fields.toString(), limit, offset, order.toString(), searchQuery, filter.toMap())
                 .flatMap(characterObjs -> Observable.just(TransformUtil.transformCollection(characterObjs)));
+    }
+
+    public Observable<ArrayList<Character>> searchCharacters(Query query) {
+        return searchCharacters(
+                query.getSearchQuery(),
+                query.getFields(),
+                query.getLimit(),
+                query.getOffset(),
+                query.getOrder(),
+                query.getFilter());
     }
 
 }

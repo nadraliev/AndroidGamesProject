@@ -6,6 +6,7 @@ import com.soutvoid.gamesproject.interactor.franchise.network.FranchiseApi;
 import com.soutvoid.gamesproject.interactor.util.Fields;
 import com.soutvoid.gamesproject.interactor.util.Filter;
 import com.soutvoid.gamesproject.interactor.util.Order;
+import com.soutvoid.gamesproject.interactor.util.Query;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 
 import java.util.ArrayList;
@@ -43,6 +44,16 @@ public class FranchiseRepository {
     public Observable<ArrayList<Franchise>> getFranchisesById(int id, Fields fields) {
         return franchiseApi.getFranchisesById(id, fields.toString())
                 .flatMap(franchiseObjs -> Observable.just(TransformUtil.transformCollection(franchiseObjs)));
+    }
+
+    public Observable<ArrayList<Franchise>> searchFranchises(Query query) {
+        return searchFranchises(
+                query.getSearchQuery(),
+                query.getFields(),
+                query.getLimit(),
+                query.getOffset(),
+                query.getOrder(),
+                query.getFilter());
     }
 
 }

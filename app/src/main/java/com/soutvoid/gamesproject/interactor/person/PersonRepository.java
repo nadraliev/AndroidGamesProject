@@ -6,6 +6,7 @@ import com.soutvoid.gamesproject.interactor.person.network.PersonApi;
 import com.soutvoid.gamesproject.interactor.util.Fields;
 import com.soutvoid.gamesproject.interactor.util.Filter;
 import com.soutvoid.gamesproject.interactor.util.Order;
+import com.soutvoid.gamesproject.interactor.util.Query;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 
 import java.util.ArrayList;
@@ -54,6 +55,16 @@ public class PersonRepository {
                                                       Filter filter) {
         return personApi.searchForPeople(fields.toString(), limit, offset, order.toString(), searchQuery, filter.toMap())
                 .flatMap(personObjs -> Observable.just(TransformUtil.transformCollection(personObjs)));
+    }
+
+    public Observable<ArrayList<Person>> searchPeople(Query query) {
+        return searchPeople(
+                query.getSearchQuery(),
+                query.getFields(),
+                query.getLimit(),
+                query.getOffset(),
+                query.getOrder(),
+                query.getFilter());
     }
 
     /**

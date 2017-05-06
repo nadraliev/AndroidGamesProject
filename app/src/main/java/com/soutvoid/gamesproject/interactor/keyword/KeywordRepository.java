@@ -6,6 +6,7 @@ import com.soutvoid.gamesproject.interactor.keyword.network.KeywordApi;
 import com.soutvoid.gamesproject.interactor.util.Fields;
 import com.soutvoid.gamesproject.interactor.util.Filter;
 import com.soutvoid.gamesproject.interactor.util.Order;
+import com.soutvoid.gamesproject.interactor.util.Query;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 
 import java.util.ArrayList;
@@ -54,6 +55,16 @@ public class KeywordRepository {
                                                          Filter filter) {
         return keywordApi.searchForKeywords(fields.toString(), limit, offset, order.toString(), searchQuery, filter.toMap())
                 .flatMap(keywordObjs -> Observable.just(TransformUtil.transformCollection(keywordObjs)));
+    }
+
+    public Observable<ArrayList<Keyword>> searchKeywords(Query query) {
+        return searchKeywords(
+                query.getSearchQuery(),
+                query.getFields(),
+                query.getLimit(),
+                query.getOffset(),
+                query.getOrder(),
+                query.getFilter());
     }
 
     /**

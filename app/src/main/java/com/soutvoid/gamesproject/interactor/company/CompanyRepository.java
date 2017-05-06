@@ -6,6 +6,7 @@ import com.soutvoid.gamesproject.interactor.company.network.CompanyApi;
 import com.soutvoid.gamesproject.interactor.util.Fields;
 import com.soutvoid.gamesproject.interactor.util.Filter;
 import com.soutvoid.gamesproject.interactor.util.Order;
+import com.soutvoid.gamesproject.interactor.util.Query;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 
 import java.util.ArrayList;
@@ -43,5 +44,15 @@ public class CompanyRepository {
     public Observable<ArrayList<Company>> getCompaniesById(int id, Fields fields) {
         return companyApi.getCompaniesById(id, fields.toString())
                 .flatMap(companyObjs -> Observable.just(TransformUtil.transformCollection(companyObjs)));
+    }
+
+    public Observable<ArrayList<Company>> searchCompanies(Query query) {
+        return searchCompanies(
+                query.getSearchQuery(),
+                query.getFields(),
+                query.getLimit(),
+                query.getOffset(),
+                query.getOrder(),
+                query.getFilter());
     }
 }
