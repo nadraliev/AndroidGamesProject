@@ -1,17 +1,15 @@
 package com.soutvoid.gamesproject.ui.screen.main;
 
 import com.agna.ferro.mvp.component.scope.PerScreen;
-import com.soutvoid.gamesproject.domain.game.fields.GameFields;
 import com.soutvoid.gamesproject.interactor.game.GameRepository;
-import com.soutvoid.gamesproject.interactor.util.Fields;
-import com.soutvoid.gamesproject.interactor.util.Filter;
-import com.soutvoid.gamesproject.interactor.util.Order;
+import com.soutvoid.gamesproject.interactor.util.Query;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
 import com.soutvoid.gamesproject.ui.common.error.ErrorHandler;
 
 import javax.inject.Inject;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 
 @PerScreen
@@ -39,59 +37,58 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
 
         getView().showPlaceholderWithBackground();
 
+        RealmResults<Query> queries = realm.where(Query.class).findAll();
+
         subscribeNetworkQuery(gameRepository.searchGames(
-                null,
-                Fields.builder().build(),
-                20,
-                0,
-                Order.builder().field(GameFields.POPULARITY.toString()).build(),
-                Filter.builder().field(GameFields.FIRST_RELEASE_DATE.toString()).factor(Filter.Factor.gt.toString()).value("1483228800000").build()
+                queries.get(0).getSearchQuery(),
+                queries.get(0).getFields(),
+                queries.get(0).getLimit(),
+                queries.get(0).getOffset(),
+                queries.get(0).getOrder(),
+                queries.get(0).getFilter()
         ), games -> {
             getView().onSetShowcaseViewGames(games);
             dataLoaded();
         });
 
         subscribeNetworkQuery(gameRepository.searchGames(
-                null,
-                Fields.builder().build(),
-                20,
-                0,
-                Order.builder().field(GameFields.POPULARITY.toString()).build(),
-                Filter.builder().field(GameFields.FIRST_RELEASE_DATE.toString()).factor(Filter.Factor.gt.toString()).value("1483228800000").build()
+                queries.get(1).getSearchQuery(),
+                queries.get(1).getFields(),
+                queries.get(1).getLimit(),
+                queries.get(1).getOffset(),
+                queries.get(1).getOrder(),
+                queries.get(1).getFilter()
         ), games -> {
             getView().onAddExploreSetView("Fresh popular", games);
             dataLoaded();
         });
 
         subscribeNetworkQuery(gameRepository.searchGames(
-                null,
-                Fields.builder().build(),
-                20,
-                0,
-                Order.builder().field(GameFields.FIRST_RELEASE_DATE.toString()).build(),
-                Filter.builder().build()
+                queries.get(2).getSearchQuery(),
+                queries.get(2).getFields(),
+                queries.get(2).getLimit(),
+                queries.get(2).getOffset(),
+                queries.get(2).getOrder(),
+                queries.get(2).getFilter()
         ), games -> {
             getView().onAddExploreSetView("Just came out", games);
             dataLoaded();
         });
 
         subscribeNetworkQuery(gameRepository.searchGames(
-                null,
-                Fields.builder().build(),
-                20,
-                0,
-                Order.builder().field(GameFields.POPULARITY.toString()).build(),
-                Filter.builder().field(GameFields.GENRES.toString()).factor(Filter.Factor.in.toString()).value("2").build() //TODO make enum for genres
+                queries.get(3).getSearchQuery(),
+                queries.get(3).getFields(),
+                queries.get(3).getLimit(),
+                queries.get(3).getOffset(),
+                queries.get(3).getOrder(),
+                queries.get(3).getFilter()
         ), games -> {
             getView().onAddExploreSetView("Point-and-click", games);
             dataLoaded();
         });
-    }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
         realm.close();
+
     }
 
     private void dataLoaded() {
