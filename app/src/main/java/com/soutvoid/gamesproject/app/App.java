@@ -18,6 +18,7 @@ import com.uphyca.stetho_realm.RealmInspectorModulesProvider;
 
 import io.fabric.sdk.android.Fabric;
 import io.fabric.sdk.android.Kit;
+import io.realm.Realm;
 import soutvoid.com.gamesproject.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
@@ -37,6 +38,7 @@ public class App extends Application {
         initLog();
         initCalligraphy();
         initStetho();
+        initRealm();
     }
 
     private void initAnrWatchDog() {
@@ -74,6 +76,10 @@ public class App extends Application {
                         .enableWebKitInspector(RealmInspectorModulesProvider.builder(this).build())
                         .build()
         );
+    }
+
+    private void initRealm() {
+        Realm.init(this);
     }
 
     public AppComponent getAppComponent() {

@@ -11,6 +11,8 @@ import com.soutvoid.gamesproject.ui.common.error.ErrorHandler;
 
 import javax.inject.Inject;
 
+import io.realm.Realm;
+
 
 @PerScreen
 public class MainActivityPresenter extends BasePresenter<MainActivityView> {
@@ -18,12 +20,16 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
     private final int DATA_TO_LOAD = 4;
 
     private GameRepository gameRepository;
+    private Realm realm;
     private int dataLoaded = 0;
 
     @Inject
-    public MainActivityPresenter(ErrorHandler errorHandler, GameRepository gameRepository) {
+    public MainActivityPresenter(ErrorHandler errorHandler,
+                                 GameRepository gameRepository,
+                                 Realm realm) {
         super(errorHandler);
         this.gameRepository = gameRepository;
+        this.realm = realm;
     }
 
 
@@ -80,6 +86,12 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
             getView().onAddExploreSetView("Point-and-click", games);
             dataLoaded();
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        realm.close();
     }
 
     private void dataLoaded() {
