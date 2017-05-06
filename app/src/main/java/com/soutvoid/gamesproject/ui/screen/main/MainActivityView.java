@@ -13,7 +13,7 @@ import com.agna.ferro.mvp.component.ScreenComponent;
 import com.soutvoid.gamesproject.domain.game.Game;
 import com.soutvoid.gamesproject.ui.base.LoadableContent;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
-import com.soutvoid.gamesproject.ui.base.activity.TranslucentStatusActivityView;
+import com.soutvoid.gamesproject.ui.base.activity.NoLimitsActivityView;
 import com.soutvoid.gamesproject.ui.base.widgets.PlaceholderView;
 import com.soutvoid.gamesproject.ui.screen.main.widgets.exploreset.widget.ExploreSetView;
 import com.soutvoid.gamesproject.ui.screen.main.widgets.showcase.widget.ShowcaseView;
@@ -27,7 +27,7 @@ import butterknife.ButterKnife;
 import soutvoid.com.gamesproject.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class MainActivityView extends TranslucentStatusActivityView implements LoadableContent {
+public class MainActivityView extends NoLimitsActivityView implements LoadableContent {
 
     @Inject
     MainActivityPresenter presenter;

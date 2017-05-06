@@ -9,7 +9,7 @@ import android.view.WindowManager;
  * Created by andrew on 4/10/17.
  */
 
-public abstract class TranslucentStatusActivityView extends BaseActivityView {
+public abstract class NoLimitsActivityView extends BaseActivityView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState, boolean viewRecreated) {
