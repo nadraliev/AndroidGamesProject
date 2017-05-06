@@ -11,5 +11,10 @@ public enum ReleaseDateFields {
     REGION,
     HUMAN,
     Y,
-    M
+    M;
+
+    @Override
+    public String toString() {
+        return super.toString().toLowerCase();
+    }
 }

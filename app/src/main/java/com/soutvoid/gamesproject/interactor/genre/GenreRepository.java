@@ -9,7 +9,6 @@ import com.soutvoid.gamesproject.interactor.util.OrderBuilder;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -43,7 +42,7 @@ public class GenreRepository {
     /**
      * то же, что {@link #searchGenres(String, String, int, int, String)}, но с фильтром
      *
-     * @param filters map с фильтрами
+     * @param filter объект с фильтрами
      *                (ключ - параметры фильтрования, значение - собственно, значение, относительно которого сортировать)
      *                строится с помощью {@link Filter}
      */
@@ -52,8 +51,8 @@ public class GenreRepository {
                                                      int limit,
                                                      int offset,
                                                      String order,
-                                                     Map<String, String> filters) {
-        return genreApi.searchForGenres(fields, limit, offset, order, searchQuery, filters)
+                                                     Filter filter) {
+        return genreApi.searchForGenres(fields, limit, offset, order, searchQuery, filter.toMap())
                 .flatMap(genreObjs -> Observable.just(TransformUtil.transformCollection(genreObjs)));
     }
 

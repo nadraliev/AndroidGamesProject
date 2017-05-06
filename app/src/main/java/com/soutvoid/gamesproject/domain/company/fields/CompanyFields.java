@@ -22,5 +22,10 @@ public enum CompanyFields {
     CHANGE_DATE_CATEGORY,
     TWITTER,
     PUBLISHED,
-    DEVELOPED
+    DEVELOPED;
+
+    @Override
+    public String toString() {
+        return super.toString().toLowerCase();
+    }
 }

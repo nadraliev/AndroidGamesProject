@@ -5,5 +5,10 @@ package com.soutvoid.gamesproject.domain.game.fields;
  */
 
 public enum PegiFields {
-    RATING
+    RATING;
+
+    @Override
+    public String toString() {
+        return super.toString().toLowerCase();
+    }
 }

@@ -1,8 +1,6 @@
 package com.soutvoid.gamesproject.domain.game.fields;
 
-/**
- * Created by andrew on 2/24/17.
- */
+
 
 public enum GameEngineFields {
     ID,
@@ -14,5 +12,10 @@ public enum GameEngineFields {
     LOGO,
     GAMES,
     COMPANIES,
-    PLATFORMS
+    PLATFORMS;
+
+    @Override
+    public String toString() {
+        return super.toString().toLowerCase();
+    }
 }

@@ -1,8 +1,5 @@
 package com.soutvoid.gamesproject.domain.game.fields;
 
-/**
- * Created by andrew on 2/23/17.
- */
 
 public enum GameFields {
     ID,
@@ -39,5 +36,11 @@ public enum GameFields {
     VIDEOS,
     COVER,
     ESRB,
-    PEGI
+    PEGI;
+
+
+    @Override
+    public String toString() {
+        return super.toString().toLowerCase();
+    }
 }

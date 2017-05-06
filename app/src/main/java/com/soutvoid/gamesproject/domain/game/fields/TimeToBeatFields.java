@@ -7,5 +7,10 @@ package com.soutvoid.gamesproject.domain.game.fields;
 public enum TimeToBeatFields {
     HASTLY,
     NORMALLY,
-    COMPLETELY
+    COMPLETELY;
+
+    @Override
+    public String toString() {
+        return super.toString().toLowerCase();
+    }
 }

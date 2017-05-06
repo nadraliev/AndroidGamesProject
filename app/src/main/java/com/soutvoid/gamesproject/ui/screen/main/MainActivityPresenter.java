@@ -9,8 +9,6 @@ import com.soutvoid.gamesproject.interactor.util.OrderBuilder;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
 import com.soutvoid.gamesproject.ui.common.error.ErrorHandler;
 
-import java.util.HashMap;
-
 import javax.inject.Inject;
 
 
@@ -34,7 +32,6 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
         super.onLoad(viewRecreated);
         FieldsBuilder fieldsBuilder = new FieldsBuilder();
         OrderBuilder orderBuilder = new OrderBuilder();
-        Filter filterBuilder = new Filter();
 
         getView().showPlaceholderWithBackground();
 
@@ -44,7 +41,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
                 20,
                 0,
                 orderBuilder.addField(GameFields.POPULARITY).build(),
-                filterBuilder.setField(GameFields.FIRST_RELEASE_DATE).setFactor(Filter.Factor.gt).setValue("1483228800000").buildMap()
+                Filter.builder().field(GameFields.FIRST_RELEASE_DATE.toString()).factor(Filter.Factor.gt.toString()).value("1483228800000").build()
         ), games -> {
             getView().onSetShowcaseViewGames(games);
             dataLoaded();
@@ -56,7 +53,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
                 20,
                 0,
                 orderBuilder.clear().addField(GameFields.POPULARITY).build(),
-                filterBuilder.clear().setField(GameFields.FIRST_RELEASE_DATE).setFactor(Filter.Factor.gt).setValue("1483228800000").buildMap()
+                Filter.builder().field(GameFields.FIRST_RELEASE_DATE.toString()).factor(Filter.Factor.gt.toString()).value("1483228800000").build()
         ), games -> {
             getView().onAddExploreSetView("Fresh popular", games);
             dataLoaded();
@@ -68,7 +65,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
                 20,
                 0,
                 orderBuilder.clear().addField(GameFields.FIRST_RELEASE_DATE).build(),
-                new HashMap<String, String>()
+                Filter.builder().build()
         ), games -> {
             getView().onAddExploreSetView("Just came out", games);
             dataLoaded();
@@ -80,7 +77,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
                 20,
                 0,
                 orderBuilder.clear().addField(GameFields.POPULARITY).build(),
-                filterBuilder.clear().setField(GameFields.GENRES).setFactor(Filter.Factor.in).setValue("2").buildMap()   //TODO make enum for genres
+                Filter.builder().field(GameFields.GENRES.toString()).factor(Filter.Factor.in.toString()).value("2").build() //TODO make enum for genres
         ), games -> {
             getView().onAddExploreSetView("Point-and-click", games);
             dataLoaded();

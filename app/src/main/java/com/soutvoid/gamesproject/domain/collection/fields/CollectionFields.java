@@ -1,9 +1,5 @@
 package com.soutvoid.gamesproject.domain.collection.fields;
 
-/**
- * Created by andrew on 2/23/17.
- */
-
 public enum CollectionFields {
     ID,
     NAME,
@@ -11,5 +7,11 @@ public enum CollectionFields {
     URL,
     CREATED_AT,
     UPDATED_AT,
-    GAMES
+    GAMES;
+
+
+    @Override
+    public String toString() {
+        return super.toString().toLowerCase();
+    }
 }

@@ -4,10 +4,10 @@ import com.agna.ferro.mvp.component.scope.PerApplication;
 import com.soutvoid.gamesproject.domain.character.Character;
 import com.soutvoid.gamesproject.interactor.character.network.CharacterApi;
 import com.soutvoid.gamesproject.interactor.network.connection.NetworkConnectionChecker;
+import com.soutvoid.gamesproject.interactor.util.Filter;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -46,8 +46,8 @@ public class CharacterRepository {
                                                                         int limit,
                                                                         int offset,
                                                                         String order,
-                                                                        Map<String, String> filters) {
-        return characterApi.searchForCharacters(fields, limit, offset, order, searchQuery, filters)
+                                                                        Filter filter) {
+        return characterApi.searchForCharacters(fields, limit, offset, order, searchQuery, filter.toMap())
                 .flatMap(characterObjs -> Observable.just(TransformUtil.transformCollection(characterObjs)));
     }
 

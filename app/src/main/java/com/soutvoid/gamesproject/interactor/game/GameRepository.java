@@ -12,7 +12,6 @@ import com.soutvoid.gamesproject.interactor.util.OrderBuilder;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -47,7 +46,7 @@ public class GameRepository {
 
     /**
      * то же, что {@link #searchGames(String, String, int, int, String)}, но с фильтром
-     * @param filters map с фильтрами
+     * @param filter  объект с фильтрами
      *                (ключ - параметры фильтрования, значение - собственно, значение, относительно которого сортировать)
      *                строится с помощью {@link Filter}
      */
@@ -56,8 +55,8 @@ public class GameRepository {
                                                    int limit,
                                                    int offset,
                                                    String order,
-                                                   Map<String, String> filters) {
-        return gameApi.searchForGames(fields, limit, offset, order, searchQuery, filters)
+                                                   Filter filter) {
+        return gameApi.searchForGames(fields, limit, offset, order, searchQuery, filter.toMap())
                 .flatMap(gameObjs -> Observable.just(TransformUtil.transformCollection(gameObjs)));
     }
 
@@ -81,15 +80,15 @@ public class GameRepository {
     }
 
     /**
-     * то же, что и {@link #searchGames(String, String, int, int, String, Map)}, но для движков
+     * то же, что и {@link #searchGames(String, String, int, int, String, Filter)}, но для движков
      */
     public Observable<ArrayList<GameEngine>> searchGameEngines(String searchQuery,
                                                                String fields,
                                                                int limit,
                                                                int offset,
                                                                String order,
-                                                               Map<String, String> filters) {
-        return gameApi.searchForGameEngines(fields, limit, offset, order, searchQuery, filters)
+                                                               Filter filter) {
+        return gameApi.searchForGameEngines(fields, limit, offset, order, searchQuery, filter.toMap())
                 .flatMap(gameEngineObjs -> Observable.just(TransformUtil.transformCollection(gameEngineObjs)));
     }
 
@@ -110,15 +109,15 @@ public class GameRepository {
     }
 
     /**
-     * то же, что и {@link #searchGames(String, String, int, int, String, Map)}, но для игровых режимов
+     * то же, что и {@link #searchGames(String, String, int, int, String, Filter)}, но для игровых режимов
      */
     public Observable<ArrayList<GameMode>> searchGameModes(String searchQuery,
                                                            String fields,
                                                            int limit,
                                                            int offset,
                                                            String order,
-                                                           Map<String, String> filters) {
-        return gameApi.searchForGameModes(fields, limit, offset, order, searchQuery, filters)
+                                                           Filter filter) {
+        return gameApi.searchForGameModes(fields, limit, offset, order, searchQuery, filter.toMap())
                 .flatMap(gameModeObjs -> Observable.just(TransformUtil.transformCollection(gameModeObjs)));
     }
 

@@ -11,5 +11,10 @@ public enum FranchiseFields {
     URL,
     CREATED_AT,
     UPDATED_AT,
-    GAMES
+    GAMES;
+
+    @Override
+    public String toString() {
+        return super.toString().toLowerCase();
+    }
 }

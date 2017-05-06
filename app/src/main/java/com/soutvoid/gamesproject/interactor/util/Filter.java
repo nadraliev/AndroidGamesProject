@@ -1,10 +1,16 @@
 package com.soutvoid.gamesproject.interactor.util;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import lombok.Builder;
+import lombok.Singular;
 
 /**
  * помогает строить строки с фильтром для запросов
  */
+@Builder
 public class Filter {
 
     /**
@@ -53,32 +59,20 @@ public class Filter {
         in
     }
 
-    private String KEY_FILTER = "filter";
-    private ArrayList<String> fields = new ArrayList<>();
-    private ArrayList<String> factors = new ArrayList<>();
-    private ArrayList<String> values = new ArrayList<>();
+    private final String KEY_FILTER = "filter";
+    @Singular
+    private List<String> fields;
+    @Singular
+    private List<String> factors;
+    @Singular
+    private List<String> values;
 
-
-    public class Builder {
-
-        public Builder addFilter(String field, Factor factor, String value) {
-            Filter.this.fields.add(field);
-            Filter.this.factors.add(factor.toString());
-            Filter.this.values.add(value);
-            return this;
-
-        }
-
-        public <T extends Enum> Builder addFilter(T field, Factor factor, String value) {
-            return addFilter(field.toString(), factor, value);
-        }
-
-        /**
-         * @return возвращает Filter
-         */
-        public Filter buildMap() {
-            return Filter.this;
-        }
+    public Map<String, String> toMap() {
+        HashMap<String, String> result = new HashMap<>();
+        int numberOfElements = Math.min(Math.min(fields.size(), factors.size()), values.size());
+        for (int i = 0; i < numberOfElements; i++)
+            result.put(KEY_FILTER + "[" + fields.get(i) + "][" + factors.get(i) + "]", values.get(i));
+        return result;
     }
 
 }
