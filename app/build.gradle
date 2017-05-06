@@ -13,6 +13,7 @@ apply plugin: 'com.android.application'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
+    maven { url 'https://github.com/uPhyca/stetho-realm/raw/master/maven-repo' }
 }
 
 apply plugin: 'com.android.application'
@@ -163,6 +164,7 @@ dependencies {
     compile 'com.yayandroid:ParallaxRecyclerView:1.1'
     compile 'konifar:fab-transformation:1.0.0'
     compile 'com.facebook.stetho:stetho:1.5.0'
+    compile 'com.uphyca:stetho_realm:2.0.0'
 
     //--------------------------------- test dependencies ------------------------------------------
     //unit test

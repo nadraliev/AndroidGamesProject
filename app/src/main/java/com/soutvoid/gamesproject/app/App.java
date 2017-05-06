@@ -7,12 +7,14 @@ import android.support.v7.app.AppCompatDelegate;
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.BuildConfig;
 import com.crashlytics.android.core.CrashlyticsCore;
+import com.facebook.stetho.Stetho;
 import com.github.anrwatchdog.ANRWatchDog;
 import com.soutvoid.gamesproject.app.dagger.AppComponent;
 import com.soutvoid.gamesproject.app.dagger.AppModule;
 import com.soutvoid.gamesproject.app.dagger.DaggerAppComponent;
 import com.soutvoid.gamesproject.app.log.Logger;
 import com.soutvoid.gamesproject.app.log.RemoteLogger;
+import com.uphyca.stetho_realm.RealmInspectorModulesProvider;
 
 import io.fabric.sdk.android.Fabric;
 import io.fabric.sdk.android.Kit;
@@ -34,6 +36,7 @@ public class App extends Application {
         initInjector();
         initLog();
         initCalligraphy();
+        initStetho();
     }
 
     private void initAnrWatchDog() {
@@ -62,6 +65,15 @@ public class App extends Application {
                 .setDefaultFontPath("fonts/Roboto-Regular.ttf")
                 .setFontAttrId(R.attr.fontPath)
                 .build());
+    }
+
+    private void initStetho() {
+        Stetho.initialize(
+                Stetho.newInitializerBuilder(this)
+                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+                        .enableWebKitInspector(RealmInspectorModulesProvider.builder(this).build())
+                        .build()
+        );
     }
 
     public AppComponent getAppComponent() {
