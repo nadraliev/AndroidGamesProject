@@ -21,16 +21,25 @@ import com.soutvoid.gamesproject.ui.screen.main.widgets.exploreset.list.ExploreS
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import soutvoid.com.gamesproject.R;
 
 public class ExploreSetView extends FrameLayout {
 
     private Context context;
-    private ViewGroup container;
-    private ImageView background;
-    private View backgroundTint;
-    private TextView header;
-    private RecyclerView list;
+
+    @BindView(R.id.main_explore_set_container)
+    ViewGroup container;
+    @BindView(R.id.main_explore_set_background)
+    ImageView background;
+    @BindView(R.id.main_explore_set_background_tint)
+    View backgroundTint;
+    @BindView(R.id.main_explore_set_header)
+    TextView header;
+    @BindView(R.id.main_explore_set_list)
+    RecyclerView list;
+
     private ExploreSetListAdapter exploreSetListAdapter;
 
     public ExploreSetView(Context context) {
@@ -46,16 +55,8 @@ public class ExploreSetView extends FrameLayout {
     private void init(Context context, @Nullable AttributeSet attrs) {
         this.context = context;
         inflate(context, R.layout.explore_set_view, this);
-        findViews();
+        ButterKnife.bind(this);
         fillFromAttrs(context, attrs);
-    }
-
-    private void findViews() {
-        container = (ViewGroup) findViewById(R.id.main_explore_set_container);
-        background = (ImageView) findViewById(R.id.main_explore_set_background);
-        backgroundTint = findViewById(R.id.main_explore_set_background_tint);
-        header = (TextView) findViewById(R.id.main_explore_set_header);
-        list = (RecyclerView) findViewById(R.id.main_explore_set_list);
     }
 
     private void fillFromAttrs(Context context, @Nullable AttributeSet attrs) {

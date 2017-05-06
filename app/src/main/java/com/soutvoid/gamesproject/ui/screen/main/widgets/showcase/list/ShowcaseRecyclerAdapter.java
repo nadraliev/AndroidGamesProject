@@ -16,6 +16,8 @@ import com.soutvoid.gamesproject.ui.util.OnListItemClickListener;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import soutvoid.com.gamesproject.R;
 
 
@@ -68,17 +70,20 @@ public class ShowcaseRecyclerAdapter extends RecyclerView.Adapter<ShowcaseRecycl
 
     public static class ShowcaseRecyclerViewHolder extends BindableViewHolder<Game> {
 
-        public ViewGroup container;
-        public ImageView imageView;
-        public TextView textView;
+        @BindView(R.id.main_showcase_list_item_container)
+        ViewGroup container;
+        @BindView(R.id.main_showcase_list_item_image)
+        ImageView imageView;
+        @BindView(R.id.main_showcase_list_item_text)
+        TextView textView;
+
         private ImageUrlBuilder imageUrlBuilder;
 
         public ShowcaseRecyclerViewHolder(View itemView) {
             super(itemView);
 
-            container = (ViewGroup) itemView.findViewById(R.id.main_showcase_list_item_container);
-            imageView = (ImageView) itemView.findViewById(R.id.main_showcase_list_item_image);
-            textView = (TextView) itemView.findViewById(R.id.main_showcase_list_item_text);
+            ButterKnife.bind(this, itemView);
+
             imageUrlBuilder = new ImageUrlBuilder();
         }
 

@@ -15,15 +15,21 @@ import com.soutvoid.gamesproject.ui.screen.main.widgets.showcase.list.ShowcaseRe
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import soutvoid.com.gamesproject.R;
 
 public class ShowcaseView extends FrameLayout {
 
     private Context context;
 
-    private AutoScrollingRecyclerView list;
-    private View leftArrow;
-    private View rightArrow;
+    @BindView(R.id.main_showcase_view_list)
+    AutoScrollingRecyclerView list;
+    @BindView(R.id.main_showcase_view_left_arrow)
+    View leftArrow;
+    @BindView(R.id.main_showcase_view_right_arrow)
+    View rightArrow;
+
     private int currentPosition = 0;
 
     private ShowcaseRecyclerAdapter showcaseRecyclerAdapter;
@@ -42,13 +48,7 @@ public class ShowcaseView extends FrameLayout {
     private void init(Context context, AttributeSet attributeSet) {
         this.context = context;
         inflate(context, R.layout.showcase_view, this);
-        findViews();
-    }
-
-    private void findViews() {
-        list = (AutoScrollingRecyclerView) findViewById(R.id.main_showcase_view_list);
-        leftArrow = findViewById(R.id.main_showcase_view_left_arrow);
-        rightArrow = findViewById(R.id.main_showcase_view_right_arrow);
+        ButterKnife.bind(this);
     }
 
     private void initNavigationButtons() {

@@ -17,6 +17,8 @@ import com.soutvoid.gamesproject.ui.util.OnListItemClickListener;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import soutvoid.com.gamesproject.R;
 
 
@@ -73,16 +75,18 @@ public class ExploreSetListAdapter extends RecyclerView.Adapter<ExploreSetListAd
 
     public static class ExploreSetListViewHolder extends BindableViewHolder<Game> {
 
-        public CardView container;
-        public ImageView image;
-        public TextView title;
+        @BindView(R.id.main_explore_set_list_item_container)
+        CardView container;
+        @BindView(R.id.main_explore_set_list_item_image)
+        ImageView image;
+        @BindView(R.id.main_explore_set_list_item_title)
+        TextView title;
+
         private ImageUrlBuilder imageUrlBuilder;
 
         public ExploreSetListViewHolder(View itemView) {
             super(itemView);
-            container = (CardView) itemView.findViewById(R.id.main_explore_set_list_item_container);
-            image = (ImageView) itemView.findViewById(R.id.main_explore_set_list_item_image);
-            title = (TextView) itemView.findViewById(R.id.main_explore_set_list_item_title);
+            ButterKnife.bind(this, itemView);
             imageUrlBuilder = new ImageUrlBuilder();
         }
 

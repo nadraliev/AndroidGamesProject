@@ -22,6 +22,8 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import soutvoid.com.gamesproject.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -30,10 +32,14 @@ public class MainActivityView extends TranslucentStatusActivityView implements L
     @Inject
     MainActivityPresenter presenter;
 
-    private Toolbar toolbar;
-    private LinearLayout exploreSetsContainer;
-    private ShowcaseView showcaseView;
-    private PlaceholderView placeholderView;
+    @BindView(R.id.main_toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.main_explore_sets_container)
+    LinearLayout exploreSetsContainer;
+    @BindView(R.id.main_showcase_view)
+    ShowcaseView showcaseView;
+    @BindView(R.id.main_placeholder_view)
+    PlaceholderView placeholderView;
 
     private ArrayList<ExploreSetView> exploreSetViews;
 
@@ -74,14 +80,8 @@ public class MainActivityView extends TranslucentStatusActivityView implements L
     protected void onCreate(Bundle savedInstanceState, boolean viewRecreated) {
         super.onCreate(savedInstanceState, viewRecreated);
 
-        findViews();
+        ButterKnife.bind(this);
         setupToolbar();
-    }
-
-    private void findViews() {
-        exploreSetsContainer = (LinearLayout) findViewById(R.id.main_explore_sets_container);
-        showcaseView = (ShowcaseView) findViewById(R.id.main_showcase_view);
-        placeholderView = (PlaceholderView) findViewById(R.id.main_placeholder_view);
     }
 
     private void setupToolbar() {
