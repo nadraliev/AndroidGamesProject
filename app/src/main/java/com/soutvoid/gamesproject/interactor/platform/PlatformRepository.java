@@ -4,7 +4,7 @@ import com.agna.ferro.mvp.component.scope.PerApplication;
 import com.soutvoid.gamesproject.domain.platform.Platform;
 import com.soutvoid.gamesproject.interactor.platform.network.PlatformApi;
 import com.soutvoid.gamesproject.interactor.util.FieldsBuilder;
-import com.soutvoid.gamesproject.interactor.util.FilterBuilder;
+import com.soutvoid.gamesproject.interactor.util.Filter;
 import com.soutvoid.gamesproject.interactor.util.OrderBuilder;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 
@@ -45,7 +45,7 @@ public class PlatformRepository {
      *
      * @param filters map с фильтрами
      *                (ключ - параметры фильтрования, значение - собственно, значение, относительно которого сортировать)
-     *                строится с помощью {@link FilterBuilder}
+     *                строится с помощью {@link Filter}
      */
     public Observable<ArrayList<Platform>> searchPlatforms(String searchQuery,
                                                            String fields,

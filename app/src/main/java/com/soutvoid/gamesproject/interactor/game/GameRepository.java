@@ -7,7 +7,7 @@ import com.soutvoid.gamesproject.domain.game.GameMode;
 import com.soutvoid.gamesproject.interactor.game.network.GameApi;
 import com.soutvoid.gamesproject.interactor.network.connection.NetworkConnectionChecker;
 import com.soutvoid.gamesproject.interactor.util.FieldsBuilder;
-import com.soutvoid.gamesproject.interactor.util.FilterBuilder;
+import com.soutvoid.gamesproject.interactor.util.Filter;
 import com.soutvoid.gamesproject.interactor.util.OrderBuilder;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 
@@ -49,7 +49,7 @@ public class GameRepository {
      * то же, что {@link #searchGames(String, String, int, int, String)}, но с фильтром
      * @param filters map с фильтрами
      *                (ключ - параметры фильтрования, значение - собственно, значение, относительно которого сортировать)
-     *                строится с помощью {@link FilterBuilder}
+     *                строится с помощью {@link Filter}
      */
     public Observable<ArrayList<Game>> searchGames(String searchQuery,
                                                    String fields,

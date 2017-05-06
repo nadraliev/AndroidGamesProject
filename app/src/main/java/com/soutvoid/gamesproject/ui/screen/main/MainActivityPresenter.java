@@ -4,7 +4,7 @@ import com.agna.ferro.mvp.component.scope.PerScreen;
 import com.soutvoid.gamesproject.domain.game.fields.GameFields;
 import com.soutvoid.gamesproject.interactor.game.GameRepository;
 import com.soutvoid.gamesproject.interactor.util.FieldsBuilder;
-import com.soutvoid.gamesproject.interactor.util.FilterBuilder;
+import com.soutvoid.gamesproject.interactor.util.Filter;
 import com.soutvoid.gamesproject.interactor.util.OrderBuilder;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
 import com.soutvoid.gamesproject.ui.common.error.ErrorHandler;
@@ -34,7 +34,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
         super.onLoad(viewRecreated);
         FieldsBuilder fieldsBuilder = new FieldsBuilder();
         OrderBuilder orderBuilder = new OrderBuilder();
-        FilterBuilder filterBuilder = new FilterBuilder();
+        Filter filterBuilder = new Filter();
 
         getView().showPlaceholderWithBackground();
 
@@ -44,7 +44,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
                 20,
                 0,
                 orderBuilder.addField(GameFields.POPULARITY).build(),
-                filterBuilder.setField(GameFields.FIRST_RELEASE_DATE).setFactor(FilterBuilder.Factor.gt).setValue("1483228800000").buildMap()
+                filterBuilder.setField(GameFields.FIRST_RELEASE_DATE).setFactor(Filter.Factor.gt).setValue("1483228800000").buildMap()
         ), games -> {
             getView().onSetShowcaseViewGames(games);
             dataLoaded();
@@ -56,7 +56,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
                 20,
                 0,
                 orderBuilder.clear().addField(GameFields.POPULARITY).build(),
-                filterBuilder.clear().setField(GameFields.FIRST_RELEASE_DATE).setFactor(FilterBuilder.Factor.gt).setValue("1483228800000").buildMap()
+                filterBuilder.clear().setField(GameFields.FIRST_RELEASE_DATE).setFactor(Filter.Factor.gt).setValue("1483228800000").buildMap()
         ), games -> {
             getView().onAddExploreSetView("Fresh popular", games);
             dataLoaded();
@@ -80,7 +80,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
                 20,
                 0,
                 orderBuilder.clear().addField(GameFields.POPULARITY).build(),
-                filterBuilder.clear().setField(GameFields.GENRES).setFactor(FilterBuilder.Factor.in).setValue("2").buildMap()   //TODO make enum for genres
+                filterBuilder.clear().setField(GameFields.GENRES).setFactor(Filter.Factor.in).setValue("2").buildMap()   //TODO make enum for genres
         ), games -> {
             getView().onAddExploreSetView("Point-and-click", games);
             dataLoaded();

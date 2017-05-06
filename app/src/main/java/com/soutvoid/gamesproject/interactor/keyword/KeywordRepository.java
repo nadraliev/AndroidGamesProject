@@ -4,7 +4,7 @@ import com.agna.ferro.mvp.component.scope.PerApplication;
 import com.soutvoid.gamesproject.domain.keyword.Keyword;
 import com.soutvoid.gamesproject.interactor.keyword.network.KeywordApi;
 import com.soutvoid.gamesproject.interactor.util.FieldsBuilder;
-import com.soutvoid.gamesproject.interactor.util.FilterBuilder;
+import com.soutvoid.gamesproject.interactor.util.Filter;
 import com.soutvoid.gamesproject.interactor.util.OrderBuilder;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 
@@ -45,7 +45,7 @@ public class KeywordRepository {
      *
      * @param filters map с фильтрами
      *                (ключ - параметры фильтрования, значение - собственно, значение, относительно которого сортировать)
-     *                строится с помощью {@link FilterBuilder}
+     *                строится с помощью {@link Filter}
      */
     public Observable<ArrayList<Keyword>> searchKeywords(String searchQuery,
                                                          String fields,

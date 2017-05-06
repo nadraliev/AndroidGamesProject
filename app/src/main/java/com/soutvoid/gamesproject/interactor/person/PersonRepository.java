@@ -4,7 +4,7 @@ import com.agna.ferro.mvp.component.scope.PerApplication;
 import com.soutvoid.gamesproject.domain.person.Person;
 import com.soutvoid.gamesproject.interactor.person.network.PersonApi;
 import com.soutvoid.gamesproject.interactor.util.FieldsBuilder;
-import com.soutvoid.gamesproject.interactor.util.FilterBuilder;
+import com.soutvoid.gamesproject.interactor.util.Filter;
 import com.soutvoid.gamesproject.interactor.util.OrderBuilder;
 import com.soutvoid.gamesproject.interactor.util.TransformUtil;
 
@@ -45,7 +45,7 @@ public class PersonRepository {
      *
      * @param filters map с фильтрами
      *                (ключ - параметры фильтрования, значение - собственно, значение, относительно которого сортировать)
-     *                строится с помощью {@link FilterBuilder}
+     *                строится с помощью {@link Filter}
      */
     public Observable<ArrayList<Person>> searchPeople(String searchQuery,
                                                       String fields,
