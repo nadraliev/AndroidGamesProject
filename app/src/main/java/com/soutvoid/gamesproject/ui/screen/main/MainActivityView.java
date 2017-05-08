@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import soutvoid.com.gamesproject.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -84,7 +83,6 @@ public class MainActivityView extends BaseActivityView implements LoadableConten
     protected void onCreate(Bundle savedInstanceState, boolean viewRecreated) {
         super.onCreate(savedInstanceState, viewRecreated);
 
-        ButterKnife.bind(this);
         setupToolbar();
         setupViews();
     }

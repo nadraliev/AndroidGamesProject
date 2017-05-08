@@ -48,6 +48,7 @@ android {
         versionCode config["versionCode"]
         versionName config["versionName"]
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
 
     dexOptions { jumboMode = true }
@@ -92,7 +93,7 @@ dependencies {
     // Library, Apt versions
     def daggerVersion = '2.6.1'
     def lombokVersion = '1.16.10'
-    def appcompatVersion = '25.1.1'
+    def appcompatVersion = '25.3.1'
     def retrofitVersion = '2.1.0'
     def okHttpVersion = '3.4.1'
     def playServicesVersion = '10.0.1'
@@ -165,6 +166,7 @@ dependencies {
     compile 'konifar:fab-transformation:1.0.0'
     compile 'com.facebook.stetho:stetho:1.5.0'
     compile 'com.uphyca:stetho_realm:2.0.0'
+    compile 'com.google.android:flexbox:0.2.6'
 
     //--------------------------------- test dependencies ------------------------------------------
     //unit test

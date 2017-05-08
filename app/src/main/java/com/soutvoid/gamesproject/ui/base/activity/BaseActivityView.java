@@ -10,6 +10,7 @@ import com.soutvoid.gamesproject.app.dagger.AppComponent;
 import com.soutvoid.gamesproject.app.log.LogConstants;
 import com.soutvoid.gamesproject.app.log.RemoteLogger;
 
+import butterknife.ButterKnife;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
@@ -25,6 +26,8 @@ public abstract class BaseActivityView extends MvpActivityView {
     @Override
     protected void onCreate(Bundle savedInstanceState, boolean viewRecreated) {
         super.onCreate(savedInstanceState, viewRecreated);
+
+        ButterKnife.bind(this);
     }
 
     @Override
