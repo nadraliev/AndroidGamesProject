@@ -13,6 +13,7 @@ import com.agna.ferro.mvp.component.ScreenComponent;
 import com.soutvoid.gamesproject.interactor.util.Query;
 import com.soutvoid.gamesproject.ui.base.activity.BaseActivityView;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
+import com.soutvoid.gamesproject.ui.screen.editQuery.EditQueryActivityView;
 import com.soutvoid.gamesproject.ui.screen.personalize.list.PersonalizeExploreListAdapter;
 
 import java.util.List;
@@ -69,12 +70,17 @@ public class PersonalizeActivityView extends BaseActivityView {
         super.onCreate(savedInstanceState, viewRecreated);
 
         initList();
+        setupFab();
     }
 
     private void initList() {
         list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        adapter = new PersonalizeExploreListAdapter();
+        adapter = new PersonalizeExploreListAdapter(this);
         list.setAdapter(adapter);
+    }
+
+    private void setupFab() {
+        fab.setOnClickListener(v -> EditQueryActivityView.start(this));
     }
 
     void setQueriesContent(List<Query> queriesContent) {

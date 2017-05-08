@@ -1,5 +1,6 @@
 package com.soutvoid.gamesproject.ui.screen.personalize;
 
+import com.agna.ferro.mvp.component.scope.PerScreen;
 import com.soutvoid.gamesproject.interactor.util.Query;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
 import com.soutvoid.gamesproject.ui.common.error.ErrorHandler;
@@ -9,6 +10,7 @@ import javax.inject.Inject;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
+@PerScreen
 public class PersonalizeActivityPresenter extends BasePresenter<PersonalizeActivityView> {
 
     private Realm realm;

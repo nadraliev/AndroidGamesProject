@@ -16,18 +16,20 @@ import java.util.List;
 import butterknife.BindView;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import soutvoid.com.gamesproject.R;
 
 @AllArgsConstructor
-@NoArgsConstructor
 public class PersonalizeExploreListAdapter extends RecyclerView.Adapter<PersonalizeExploreListAdapter.PersonalizeExploreListViewHolder> {
 
     private Context context;
     @Setter
     @Getter
     private List<Query> queries;
+
+    public PersonalizeExploreListAdapter(Context context) {
+        this.context = context;
+    }
 
     @Override
     public PersonalizeExploreListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
