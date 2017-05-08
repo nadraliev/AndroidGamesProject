@@ -7,16 +7,18 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.agna.ferro.mvp.component.ScreenComponent;
 import com.soutvoid.gamesproject.domain.game.Game;
 import com.soutvoid.gamesproject.ui.base.LoadableContent;
+import com.soutvoid.gamesproject.ui.base.activity.BaseActivityView;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
-import com.soutvoid.gamesproject.ui.base.activity.NoLimitsActivityView;
 import com.soutvoid.gamesproject.ui.base.widgets.PlaceholderView;
 import com.soutvoid.gamesproject.ui.screen.main.widgets.exploreset.widget.ExploreSetView;
 import com.soutvoid.gamesproject.ui.screen.main.widgets.showcase.widget.ShowcaseView;
+import com.soutvoid.gamesproject.ui.screen.personalize.PersonalizeActivityView;
 
 import java.util.ArrayList;
 
@@ -27,7 +29,7 @@ import butterknife.ButterKnife;
 import soutvoid.com.gamesproject.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class MainActivityView extends NoLimitsActivityView implements LoadableContent {
+public class MainActivityView extends BaseActivityView implements LoadableContent {
 
     @Inject
     MainActivityPresenter presenter;
@@ -40,6 +42,8 @@ public class MainActivityView extends NoLimitsActivityView implements LoadableCo
     ShowcaseView showcaseView;
     @BindView(R.id.main_placeholder_view)
     PlaceholderView placeholderView;
+    @BindView(R.id.main_personalize_btn)
+    Button personalizeBtn;
 
     private ArrayList<ExploreSetView> exploreSetViews;
 
@@ -82,10 +86,15 @@ public class MainActivityView extends NoLimitsActivityView implements LoadableCo
 
         ButterKnife.bind(this);
         setupToolbar();
+        setupViews();
     }
 
     private void setupToolbar() {
 
+    }
+
+    private void setupViews() {
+        personalizeBtn.setOnClickListener(v -> PersonalizeActivityView.start(this));
     }
 
     @Override

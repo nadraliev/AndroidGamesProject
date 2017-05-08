@@ -5,9 +5,6 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
-/**
- * Created by andrew on 4/10/17.
- */
 
 public abstract class NoLimitsActivityView extends BaseActivityView {
 

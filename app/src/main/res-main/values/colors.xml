@@ -4,7 +4,9 @@
     <color name="colorPrimaryDark">#8E24AA</color>
     <color name="colorAccent">#009688</color>
     <color name="colorTextPrimary">#ffffff</color>
-    <color name="colorTextPrimaryDark">#000000</color>
+    <color name="colorTextPrimaryDark">#777777</color>
+    <color name="colorTextInverse">#000000</color>
     <color name="colorTransparent">#00000000</color>
     <color name="colorBackground">#ffffff</color>
+    <color name="navigation_bar_color">#99000000</color>
 </resources>

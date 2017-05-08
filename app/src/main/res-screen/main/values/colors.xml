@@ -2,4 +2,5 @@
 <resources>
     <color name="main_explore_set_image_foreground_start_color">#cc000000</color>
     <color name="main_explore_set_header_color">#cc000000</color>
+    <color name="personalize_btn_color">#55000000</color>
 </resources>

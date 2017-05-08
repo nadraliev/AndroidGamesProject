@@ -17,6 +17,7 @@
 
         <activity
             android:name="com.soutvoid.gamesproject.ui.screen.main.MainActivityView"
+            android:theme="@style/AppTheme.NoActionBar.StatusBarTranslucent"
             android:label="@string/title_activity_main">
 
             <intent-filter>
@@ -25,6 +26,10 @@
             </intent-filter>
 
         </activity>
+
+        <activity
+            android:name="com.soutvoid.gamesproject.ui.screen.personalize.PersonalizeActivityView"
+            android:label="@string/personalize"/>
     </application>
 
 </manifest>

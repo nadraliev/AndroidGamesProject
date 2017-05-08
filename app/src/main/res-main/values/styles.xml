@@ -8,4 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar.StatusBarTranslucent" parent="AppTheme">
+        <item name="android:windowActionBar">false</item>
+    </style>
 </resources>
