@@ -10,6 +10,8 @@ import com.soutvoid.gamesproject.interactor.util.Query;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
 import com.soutvoid.gamesproject.ui.common.error.ErrorHandler;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import io.realm.Realm;
@@ -18,11 +20,8 @@ import io.realm.Realm;
 @PerScreen
 public class MainActivityPresenter extends BasePresenter<MainActivityView> {
 
-    private final int DATA_TO_LOAD = 4;
-
     private GameRepository gameRepository;
     private Realm realm;
-    private int dataLoaded = 0;
 
     @Inject
     public MainActivityPresenter(ErrorHandler errorHandler,
@@ -51,8 +50,20 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
                 games -> getView().onSetShowcaseViewGames(games));
     }
 
-    private void dataLoaded() {
-        if (++dataLoaded == DATA_TO_LOAD)
-            getView().hidePlaceholder();
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        refreshExploreSets();
+    }
+
+    private synchronized void refreshExploreSets() {
+        getView().onDeleteAllExploreSets();
+        realm = Realm.getDefaultInstance();
+        List<Query> queries = realm.copyFromRealm(realm.where(Query.class).findAll());
+        realm.close();
+        for (Query query : queries)
+            subscribeNetworkQuery(gameRepository.searchGames(query),
+                    games -> getView().onAddExploreSetView(query.getName(), games));
     }
 }

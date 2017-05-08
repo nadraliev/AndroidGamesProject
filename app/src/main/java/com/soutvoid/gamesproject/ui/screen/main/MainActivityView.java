@@ -147,6 +147,12 @@ public class MainActivityView extends BaseActivityView implements LoadableConten
         return index;
     }
 
+    public void onDeleteAllExploreSets() {
+        if (exploreSetViews != null)
+            exploreSetViews.clear();
+        exploreSetsContainer.removeAllViews();
+    }
+
     public void onSetExploreViewHeader(int index, String header) {
         exploreSetViews.get(index).setHeader(header);
     }
