@@ -1,7 +1,7 @@
 package com.soutvoid.gamesproject.ui.screen.personalize;
 
 import com.agna.ferro.mvp.component.scope.PerScreen;
-import com.soutvoid.gamesproject.interactor.util.Query;
+import com.soutvoid.gamesproject.interactor.util.ExploreQuery;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
 import com.soutvoid.gamesproject.ui.common.error.ErrorHandler;
 
@@ -34,8 +34,8 @@ public class PersonalizeActivityPresenter extends BasePresenter<PersonalizeActiv
 
     private synchronized void refreshQueries() {
         realm = Realm.getDefaultInstance();
-        RealmResults<Query> queries = realm.where(Query.class).findAll();
-        getView().setQueriesContent(realm.copyFromRealm(queries));
+        RealmResults<ExploreQuery> exploreQueries = realm.where(ExploreQuery.class).findAll();
+        getView().setQueriesContent(realm.copyFromRealm(exploreQueries));
         realm.close();
     }
 }

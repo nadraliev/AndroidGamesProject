@@ -2,6 +2,7 @@ package com.soutvoid.gamesproject.ui.screen.editQuery;
 
 import com.agna.ferro.mvp.component.scope.PerScreen;
 import com.soutvoid.gamesproject.domain.game.fields.GameFields;
+import com.soutvoid.gamesproject.interactor.util.ExploreQuery;
 import com.soutvoid.gamesproject.interactor.util.Fields;
 import com.soutvoid.gamesproject.interactor.util.Filter;
 import com.soutvoid.gamesproject.interactor.util.Order;
@@ -29,8 +30,12 @@ public class EditQueryActivityPresenter extends BasePresenter<EditQueryActivityV
     }
 
     private synchronized void gatherAndSaveQuery() {
+        realm = Realm.getDefaultInstance();
+
+        // increment index
+        int nextId = (int) (realm.where(ExploreQuery.class).count());
+
         Query query = new Query(
-                getView().getNameInput(),
                 null,
                 Fields.builder().build(),
                 20,
@@ -38,8 +43,13 @@ public class EditQueryActivityPresenter extends BasePresenter<EditQueryActivityV
                 Order.builder().field(GameFields.POPULARITY.toString()).build(),
                 Filter.builder().field(GameFields.FIRST_RELEASE_DATE.toString()).factor(Filter.Factor.gt.toString()).value("1483228800000").build()
         );
-        realm = Realm.getDefaultInstance();
-        realm.executeTransaction(realm1 -> realm1.copyToRealm(query));
+        ExploreQuery exploreQuery = new ExploreQuery(
+                nextId,
+                getView().getNameInput(),
+                query
+        );
+
+        realm.executeTransaction(realm1 -> realm1.copyToRealm(exploreQuery));
         realm.close();
     }
 }

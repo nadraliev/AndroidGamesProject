@@ -11,11 +11,14 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.agna.ferro.mvp.component.ScreenComponent;
+import com.annimon.stream.Stream;
 import com.soutvoid.gamesproject.domain.game.Game;
 import com.soutvoid.gamesproject.ui.base.LoadableContent;
 import com.soutvoid.gamesproject.ui.base.activity.BaseActivityView;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
 import com.soutvoid.gamesproject.ui.base.widgets.PlaceholderView;
+import com.soutvoid.gamesproject.ui.screen.main.data.ExploreSetData;
+import com.soutvoid.gamesproject.ui.screen.main.data.ExploreSets;
 import com.soutvoid.gamesproject.ui.screen.main.widgets.exploreset.widget.ExploreSetView;
 import com.soutvoid.gamesproject.ui.screen.main.widgets.showcase.widget.ShowcaseView;
 import com.soutvoid.gamesproject.ui.screen.personalize.PersonalizeActivityView;
@@ -85,6 +88,11 @@ public class MainActivityView extends BaseActivityView implements LoadableConten
 
         setupToolbar();
         setupViews();
+        init();
+    }
+
+    private void init() {
+        exploreSetViews = new ArrayList<>();
     }
 
     private void setupToolbar() {
@@ -121,14 +129,16 @@ public class MainActivityView extends BaseActivityView implements LoadableConten
      *
      * @return возвращает номер блока для последующей манипуляции
      */
-    public int onAddExploreSetView() {
-        if (exploreSetViews == null)
-            exploreSetViews = new ArrayList<>();
+    public int onAddExploreSetView(int index) {
         ExploreSetView exploreSetView = new ExploreSetView(this);
         onApplyExploreSetViewDefaults(exploreSetView);
         exploreSetViews.add(exploreSetView);
-        exploreSetsContainer.addView(exploreSetView);
+        exploreSetsContainer.addView(exploreSetView, index);
         return exploreSetViews.size() - 1;
+    }
+
+    public int onAddExploreSetView() {
+        return onAddExploreSetView(exploreSetViews.size());
     }
 
     private void onApplyExploreSetViewDefaults(ExploreSetView exploreSetView) {
@@ -171,6 +181,12 @@ public class MainActivityView extends BaseActivityView implements LoadableConten
 
     public void onAddGamesToExploreSetView(int index, ArrayList<Game> games) {
         exploreSetViews.get(index).addGamesListContent(games);
+    }
+
+    public void onShowExploreSetsData(ExploreSets exploreSets) {
+        Stream.of(exploreSets.getData()).
+                sortBy(ExploreSetData::getPosition)
+                .forEach(data -> onAddExploreSetView(data.getName(), data.getGames()));
     }
 
     public void onSetShowcaseViewGames(ArrayList<Game> games) {

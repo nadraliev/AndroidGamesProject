@@ -1,6 +1,8 @@
 package com.soutvoid.gamesproject.interactor.util;
 
-import java.util.Arrays;
+import com.annimon.stream.Collectors;
+import com.annimon.stream.Stream;
+
 import java.util.List;
 
 import io.realm.RealmList;
@@ -20,10 +22,9 @@ public class RealmWrapUtils {
 
     public static RealmList<RealmString> wrapStrings(List<String> strings) {
         return RealmWrapUtils.convertList(
-                Arrays.asList(strings
-                        .stream()
+                Stream.of(strings)
                         .map(RealmWrapUtils::wrapString)
-                        .toArray(RealmString[]::new)));
+                        .collect(Collectors.toList()));
     }
 
 }

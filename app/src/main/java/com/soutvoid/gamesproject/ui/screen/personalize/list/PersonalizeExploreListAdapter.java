@@ -7,8 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.annimon.stream.Stream;
 import com.google.android.flexbox.FlexboxLayout;
-import com.soutvoid.gamesproject.interactor.util.Query;
+import com.soutvoid.gamesproject.interactor.util.ExploreQuery;
 import com.soutvoid.gamesproject.ui.common.recycler.BindableViewHolder;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class PersonalizeExploreListAdapter extends RecyclerView.Adapter<Personal
     private Context context;
     @Setter
     @Getter
-    private List<Query> queries;
+    private List<ExploreQuery> queries;
 
     public PersonalizeExploreListAdapter(Context context) {
         this.context = context;
@@ -39,7 +40,9 @@ public class PersonalizeExploreListAdapter extends RecyclerView.Adapter<Personal
 
     @Override
     public void onBindViewHolder(PersonalizeExploreListViewHolder holder, int position) {
-        holder.bind(queries.get(position));
+        holder.bind(Stream.of(queries).filter(
+                query -> query.getPosition() == position
+        ).findFirst().get());
     }
 
     @Override
@@ -47,7 +50,7 @@ public class PersonalizeExploreListAdapter extends RecyclerView.Adapter<Personal
         return queries.size();
     }
 
-    public static class PersonalizeExploreListViewHolder extends BindableViewHolder<Query> {
+    public static class PersonalizeExploreListViewHolder extends BindableViewHolder<ExploreQuery> {
 
         @BindView(R.id.personalize_explore_list_container)
         ViewGroup container;
@@ -61,7 +64,7 @@ public class PersonalizeExploreListAdapter extends RecyclerView.Adapter<Personal
         }
 
         @Override
-        public void bind(Query data) {
+        public void bind(ExploreQuery data) {
             name.setText(data.getName());
             //TODO bind tags from query
         }

@@ -8,13 +8,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Query extends RealmObject {
+public class ExploreQuery extends RealmObject {
 
-    private String searchQuery;
-    private Fields fields;
-    private int limit = 20;
-    private int offset;
-    private Order order;
-    private Filter filter;
+    private int position;
+    private String name;
+    private Query query;
 
 }

@@ -10,7 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.agna.ferro.mvp.component.ScreenComponent;
-import com.soutvoid.gamesproject.interactor.util.Query;
+import com.soutvoid.gamesproject.interactor.util.ExploreQuery;
 import com.soutvoid.gamesproject.ui.base.activity.BaseActivityView;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
 import com.soutvoid.gamesproject.ui.screen.editQuery.EditQueryActivityView;
@@ -83,7 +83,7 @@ public class PersonalizeActivityView extends BaseActivityView {
         fab.setOnClickListener(v -> EditQueryActivityView.start(this));
     }
 
-    void setQueriesContent(List<Query> queriesContent) {
+    void setQueriesContent(List<ExploreQuery> queriesContent) {
         adapter.setQueries(queriesContent);
         adapter.notifyDataSetChanged();
     }
