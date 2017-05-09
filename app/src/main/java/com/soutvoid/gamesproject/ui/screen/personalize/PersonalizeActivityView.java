@@ -13,8 +13,8 @@ import com.agna.ferro.mvp.component.ScreenComponent;
 import com.soutvoid.gamesproject.interactor.util.ExploreQuery;
 import com.soutvoid.gamesproject.ui.base.activity.BaseActivityView;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
-import com.soutvoid.gamesproject.ui.screen.editQuery.EditQueryActivityView;
 import com.soutvoid.gamesproject.ui.screen.personalize.list.PersonalizeExploreListAdapter;
+import com.soutvoid.gamesproject.ui.screen.queryEdit.QueryEditActivityView;
 
 import java.util.List;
 
@@ -80,7 +80,7 @@ public class PersonalizeActivityView extends BaseActivityView {
     }
 
     private void setupFab() {
-        fab.setOnClickListener(v -> EditQueryActivityView.start(this));
+        fab.setOnClickListener(v -> QueryEditActivityView.start(this));
     }
 
     void setQueriesContent(List<ExploreQuery> queriesContent) {

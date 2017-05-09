@@ -1,4 +1,4 @@
-package com.soutvoid.gamesproject.ui.screen.editQuery;
+package com.soutvoid.gamesproject.ui.screen.queryEdit;
 
 import com.agna.ferro.mvp.component.ScreenComponent;
 import com.agna.ferro.mvp.component.scope.PerScreen;
@@ -9,5 +9,5 @@ import dagger.Component;
 
 @PerScreen
 @Component(dependencies = AppComponent.class, modules = ActivityViewModule.class)
-public interface EditQueryActivityComponent extends ScreenComponent<EditQueryActivityView> {
+public interface QueryEditActivityComponent extends ScreenComponent<QueryEditActivityView> {
 }

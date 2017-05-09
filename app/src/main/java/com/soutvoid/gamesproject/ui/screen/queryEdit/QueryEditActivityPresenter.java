@@ -1,4 +1,4 @@
-package com.soutvoid.gamesproject.ui.screen.editQuery;
+package com.soutvoid.gamesproject.ui.screen.queryEdit;
 
 import com.agna.ferro.mvp.component.scope.PerScreen;
 import com.soutvoid.gamesproject.domain.game.fields.GameFields;
@@ -15,12 +15,12 @@ import javax.inject.Inject;
 import io.realm.Realm;
 
 @PerScreen
-public class EditQueryActivityPresenter extends BasePresenter<EditQueryActivityView> {
+public class QueryEditActivityPresenter extends BasePresenter<QueryEditActivityView> {
 
     Realm realm;
 
     @Inject
-    public EditQueryActivityPresenter(ErrorHandler errorHandler) {
+    public QueryEditActivityPresenter(ErrorHandler errorHandler) {
         super(errorHandler);
     }
 

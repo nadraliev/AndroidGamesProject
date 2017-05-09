@@ -31,7 +31,7 @@
             android:name="com.soutvoid.gamesproject.ui.screen.personalize.PersonalizeActivityView"
             android:label="@string/personalize"/>
 
-        <activity android:name="com.soutvoid.gamesproject.ui.screen.editQuery.EditQueryActivityView"/>
+        <activity android:name="com.soutvoid.gamesproject.ui.screen.queryEdit.QueryEditActivityView"/>
     </application>
 
 </manifest>

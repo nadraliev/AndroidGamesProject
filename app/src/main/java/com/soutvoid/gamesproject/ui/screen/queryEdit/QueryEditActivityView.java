@@ -1,4 +1,4 @@
-package com.soutvoid.gamesproject.ui.screen.editQuery;
+package com.soutvoid.gamesproject.ui.screen.queryEdit;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,7 +16,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import soutvoid.com.gamesproject.R;
 
-public class EditQueryActivityView extends BaseActivityView {
+public class QueryEditActivityView extends BaseActivityView {
 
     @BindView(R.id.query_edit_name_text_input)
     TextInputLayout name;
@@ -26,10 +26,10 @@ public class EditQueryActivityView extends BaseActivityView {
     Toolbar toolbar;
 
     @Inject
-    EditQueryActivityPresenter presenter;
+    QueryEditActivityPresenter presenter;
 
     public static void start(Context context) {
-        Intent intent = new Intent(context, EditQueryActivityView.class);
+        Intent intent = new Intent(context, QueryEditActivityView.class);
         context.startActivity(intent);
     }
 
@@ -50,7 +50,7 @@ public class EditQueryActivityView extends BaseActivityView {
 
     @Override
     protected ScreenComponent createScreenComponent() {
-        return DaggerEditQueryActivityComponent.builder()
+        return DaggerQueryEditActivityComponent.builder()
                 .activityModule(getActivityModule())
                 .appComponent(getAppComponent())
                 .build();
@@ -61,6 +61,12 @@ public class EditQueryActivityView extends BaseActivityView {
         super.onCreate(savedInstanceState, viewRecreated);
 
         setupViews();
+        setupToolbar();
+    }
+
+    private void setupToolbar() {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void setupViews() {
