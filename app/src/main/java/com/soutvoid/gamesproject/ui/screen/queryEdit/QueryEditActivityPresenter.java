@@ -24,6 +24,11 @@ public class QueryEditActivityPresenter extends BasePresenter<QueryEditActivityV
         super(errorHandler);
     }
 
+    @Override
+    public void onLoad(boolean viewRecreated) {
+        super.onLoad(viewRecreated);
+    }
+
     void onSaveClick() {
         gatherAndSaveQuery();
         getView().finish();

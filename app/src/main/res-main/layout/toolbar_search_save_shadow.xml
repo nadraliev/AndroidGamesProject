@@ -27,6 +27,18 @@
             android:textCursorDrawable="@null"
             android:theme="@style/GrayUnderline"/>
 
+        <EditText
+            android:id="@+id/toolbar_input_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="55dp"
+            android:layout_marginLeft="25dp"
+            android:inputType="text"
+            android:hint="@string/enter_name"
+            android:textColorHint="@color/white_transparent_40"
+            android:textCursorDrawable="@null"
+            android:theme="@style/NoUnderline"/>
+
         <Button
             android:id="@+id/toolbar_save_btn"
             android:layout_width="30dp"

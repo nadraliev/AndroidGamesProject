@@ -3,7 +3,6 @@ package com.soutvoid.gamesproject.ui.screen.queryEdit;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
 
 import com.agna.ferro.mvp.component.ScreenComponent;
 import com.soutvoid.gamesproject.ui.base.activity.BaseActivityView;
@@ -17,8 +16,6 @@ import soutvoid.com.gamesproject.R;
 
 public class QueryEditActivityView extends BaseActivityView {
 
-    @BindView(R.id.query_edit_name_text_input)
-    TextInputLayout name;
     @BindView(R.id.toolbar)
     IgdbToolbar toolbar;
 
@@ -61,7 +58,7 @@ public class QueryEditActivityView extends BaseActivityView {
     }
 
     private void setupToolbar() {
-        toolbar.showPurpleToolbarSave(
+        toolbar.showExpandedPurpleToolbarSaveInput(
                 getString(R.string.new_query),
                 this,
                 v -> presenter.onSaveClick());
@@ -69,10 +66,10 @@ public class QueryEditActivityView extends BaseActivityView {
 
 
     String getNameInput() {
-        return name.getEditText().getText().toString();
+        return toolbar.getInputText();
     }
 
     void setNameInput(String input) {
-        name.getEditText().setText(input);
+        toolbar.setInputText(input);
     }
 }

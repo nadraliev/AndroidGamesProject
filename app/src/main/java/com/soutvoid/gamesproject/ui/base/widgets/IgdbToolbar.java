@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,8 +17,12 @@ import soutvoid.com.gamesproject.R;
 
 public class IgdbToolbar extends Toolbar {
 
+    @Nullable
     @BindView(R.id.toolbar_search_edt)
     EditText searchEdt;
+    @Nullable
+    @BindView(R.id.toolbar_input_edt)
+    EditText inputEdt;
     @Nullable
     @BindView(R.id.toolbar_lists_btn)
     Button listsBtn;
@@ -43,24 +48,37 @@ public class IgdbToolbar extends Toolbar {
     public void showSearchListsToolbar(Activity activity,
                                        OnClickListener onSearchClickListener,
                                        OnClickListener onListsClickListener) {
-        setupToolbar(null, activity, false, true, true, onSearchClickListener, onListsClickListener, null);
+        setupToolbar(null, activity, false, true, true, false, onSearchClickListener, onListsClickListener, null, null);
     }
 
     public void showSearchListsToolbarNoBack(Activity activity,
                                              OnClickListener onSearchClickListener,
                                              OnClickListener onListsClickListener) {
-        setupToolbar(null, activity, false, true, false, onSearchClickListener, onListsClickListener, null);
+        setupToolbar(null, activity, false, true, false, false, onSearchClickListener, onListsClickListener, null, null);
     }
 
     public void showPurpleToolbar(String title,
                                   Activity activity) {
-        setupToolbar(title, activity, true, false, true, null, null, null);
+        setupToolbar(title, activity, true, false, true, false, null, null, null, null);
     }
 
     public void showPurpleToolbarSave(String title,
                                       Activity activity,
                                       OnClickListener onSaveClickListener) {
-        setupToolbar(title, activity, true, false, true, null, null, onSaveClickListener);
+        setupToolbar(title, activity, true, false, true, false, null, null, onSaveClickListener, null);
+    }
+
+    public void showExpandedPurpleToolbarSaveInput(String title,
+                                                   Activity activity,
+                                                   OnClickListener onSaveClickListener,
+                                                   TextWatcher inputTextWatcher) {
+        setupToolbar(title, activity, true, false, true, true, null, null, onSaveClickListener, inputTextWatcher);
+    }
+
+    public void showExpandedPurpleToolbarSaveInput(String title,
+                                                   Activity activity,
+                                                   OnClickListener onSaveClickListener) {
+        setupToolbar(title, activity, true, false, true, true, null, null, onSaveClickListener, null);
     }
 
     private void setupToolbar(String title,
@@ -68,9 +86,11 @@ public class IgdbToolbar extends Toolbar {
                               boolean isPurple,
                               boolean withSearch,
                               boolean withBack,
+                              boolean withInput,
                               OnClickListener onSearchClickListener,
                               OnClickListener onListsClickListener,
-                              OnClickListener onSaveClickListener) {
+                              OnClickListener onSaveClickListener,
+                              TextWatcher inputTextWatcher) {
         if (title != null)
             setTitle(title);
         setNavigationOnClickListener(v -> activity.finish());
@@ -86,6 +106,12 @@ public class IgdbToolbar extends Toolbar {
                 setNavigationIcon(R.drawable.ic_back_dark);
             }
         }
+
+        if (!withInput && inputEdt != null)
+            inputEdt.setVisibility(GONE);
+
+        if (inputTextWatcher != null)
+            inputEdt.addTextChangedListener(inputTextWatcher);
 
         if (onSearchClickListener != null) {
             searchEdt.setVisibility(withSearch ? VISIBLE : GONE);
@@ -109,5 +135,16 @@ public class IgdbToolbar extends Toolbar {
         if (enabled) {
             searchEdt.requestFocus();
         }
+    }
+
+    public String getInputText() {
+        if (inputEdt != null)
+            return inputEdt.getText().toString();
+        else return null;
+    }
+
+    public void setInputText(String str) {
+        if (inputEdt != null)
+            inputEdt.setText(str);
     }
 }

@@ -17,4 +17,10 @@
         <item name="colorControlActivated">@color/black_transparent_40</item>
         <item name="colorControlHighlight">@color/black_transparent_40</item>
     </style>
+
+    <style name="NoUnderline">
+        <item name="colorControlNormal">@color/colorTransparent</item>
+        <item name="colorControlActivated">@color/colorTransparent</item>
+        <item name="colorControlHighlight">@color/colorTransparent</item>
+    </style>
 </resources>
