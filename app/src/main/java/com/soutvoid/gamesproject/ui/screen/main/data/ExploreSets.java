@@ -6,8 +6,10 @@ import com.annimon.stream.Stream;
 import java.util.List;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode
 public class ExploreSets {
 
     private List<ExploreSetData> data;

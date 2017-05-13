@@ -8,13 +8,12 @@ import java.util.ArrayList;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-/**
- * Created by andrew on 2/21/17.
- */
 
 @Data
 @AllArgsConstructor
+@EqualsAndHashCode
 public class Game implements Serializable {
 
     private Integer id;

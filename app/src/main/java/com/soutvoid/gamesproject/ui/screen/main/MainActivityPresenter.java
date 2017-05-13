@@ -31,6 +31,8 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
     private GameRepository gameRepository;
     private Realm realm;
 
+    private ExploreSets currentData;
+
     @Inject
     public MainActivityPresenter(ErrorHandler errorHandler,
                                  GameRepository gameRepository) {
@@ -65,7 +67,6 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
     }
 
     private synchronized void refreshExploreSets() {
-        getView().onDeleteAllExploreSets();
         realm = Realm.getDefaultInstance();
         List<ExploreQuery> exploreQueries = realm.copyFromRealm(realm.where(ExploreQuery.class).findAll());
         realm.close();
@@ -84,7 +85,21 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
                 ExploreSets::new
         );
         subscribeNetworkQuery(responses,
-                data -> getView().onShowExploreSetsData(data));
+                this::updateScreenData);
+    }
+
+    private synchronized void updateScreenData(ExploreSets exploreSets) {
+        if (currentData == null) {
+            getView().onDeleteAllExploreSets();
+            currentData = exploreSets;
+            getView().onShowExploreSetsData(exploreSets);
+        } else {
+            if (!currentData.equals(exploreSets)) {
+                getView().onDeleteAllExploreSets();
+                currentData = exploreSets;
+                getView().onShowExploreSetsData(exploreSets);
+            }
+        }
     }
 
     void onSearchClick() {
