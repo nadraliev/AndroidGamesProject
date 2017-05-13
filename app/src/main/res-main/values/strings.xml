@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">GamesProject</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="server_error_message">Server erro</string>
+    <string name="server_error_message">Server error</string>
     <string name="no_internet_connection_error_message">No internet connection</string>
     <string name="bad_response_error_message">Bad response</string>
     <string name="unexpected_error_error_message">Unexpected error</string>
+    <string name="search_in_igdb">Search in igdb</string>
 </resources>

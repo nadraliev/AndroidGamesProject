@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.soutvoid.gamesproject.ui.base.widgets.IgdbToolbar
+
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginBottom="10dp"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true">
+
+        <EditText
+            android:id="@+id/toolbar_search_edt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="55dp"
+            android:layout_marginLeft="25dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:inputType="text"
+            android:hint="@string/search_in_igdb"
+            android:textColorHint="@color/black_transparent_40"
+            android:textCursorDrawable="@null"
+            android:theme="@style/GrayUnderline"/>
+
+        <Button
+            android:id="@+id/toolbar_lists_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right"
+            android:layout_margin="15dp"
+            android:background="@drawable/ic_play_list_dark"/>
+
+    </com.soutvoid.gamesproject.ui.base.widgets.IgdbToolbar>
+
+    <View
+        android:id="@+id/toolbar_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/background_shadow"/>
+</FrameLayout>

@@ -11,4 +11,10 @@
     <style name="AppTheme.NoActionBar.StatusBarTranslucent" parent="AppTheme">
         <item name="android:windowActionBar">false</item>
     </style>
+
+    <style name="GrayUnderline">
+        <item name="colorControlNormal">@color/black_transparent_40</item>
+        <item name="colorControlActivated">@color/black_transparent_40</item>
+        <item name="colorControlHighlight">@color/black_transparent_40</item>
+    </style>
 </resources>

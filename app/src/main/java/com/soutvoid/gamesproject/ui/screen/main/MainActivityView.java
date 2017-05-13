@@ -36,7 +36,7 @@ public class MainActivityView extends BaseActivityView implements LoadableConten
     @Inject
     MainActivityPresenter presenter;
 
-    @BindView(R.id.main_toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.main_explore_sets_container)
     LinearLayout exploreSetsContainer;

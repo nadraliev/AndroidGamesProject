@@ -24,11 +24,7 @@
                 android:layout_height="wrap_content"
                 />
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/main_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                android:background="@color/colorBackground"/>
+            <include layout="@layout/toolbar_search_lists_shadow"/>
 
             <LinearLayout
                 android:id="@+id/main_explore_sets_container"
