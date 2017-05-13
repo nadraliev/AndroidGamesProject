@@ -2,4 +2,6 @@
 <resources>
     <string name="new_query">New query</string>
     <string name="enter_name">Enter name</string>
+    <string name="released_between">Released between</string>
+    <string name="and">and</string>
 </resources>

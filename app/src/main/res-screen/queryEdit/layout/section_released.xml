@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <ImageView
+        android:id="@+id/section_released_icon"
+        android:layout_width="24dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/ic_time"/>
+
+    <TextView
+        android:id="@+id/section_released_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/section_released_icon"
+        android:layout_alignTop="@id/section_released_icon"
+        android:layout_marginLeft="11dp"
+        android:layout_marginTop="6dp"
+        android:text="@string/released_between"
+        android:textColor="@color/colorTextInverse"
+        android:textSize="17sp"/>
+
+    <TextView
+        android:id="@+id/section_released_from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/section_released_header"
+        android:layout_alignLeft="@id/section_released_header"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorTextInverse"/>
+
+    <TextView
+        android:id="@+id/section_released_and"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/section_released_from"
+        android:layout_toRightOf="@id/section_released_from"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/and"
+        android:textColor="@color/colorTextInverse"/>
+
+    <TextView
+        android:id="@+id/section_released_to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/section_released_from"
+        android:layout_toRightOf="@id/section_released_and"
+        android:textColor="@color/colorTextInverse"/>
+
+
+</RelativeLayout>
