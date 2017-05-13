@@ -35,6 +35,20 @@
             android:textSize="25sp"
             android:textColor="@color/colorTextPrimaryDark"/>
 
+        <Button
+            android:id="@+id/main_explore_set_all_btn"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/all"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:background="@android:color/transparent"
+            android:layout_alignParentRight="true"
+            android:layout_alignBaseline="@id/main_explore_set_header"/>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/main_explore_set_list"
             android:layout_width="match_parent"

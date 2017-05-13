@@ -2,4 +2,5 @@
 <resources>
     <string name="explore_set_view_default_title">Explore</string>
     <string name="personalize">Personalize</string>
+    <string name="all">all</string>
 </resources>
