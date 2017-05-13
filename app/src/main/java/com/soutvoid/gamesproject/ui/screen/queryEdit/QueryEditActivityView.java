@@ -9,6 +9,7 @@ import com.agna.ferro.mvp.component.ScreenComponent;
 import com.soutvoid.gamesproject.ui.base.activity.BaseActivityView;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
 import com.soutvoid.gamesproject.ui.base.widgets.IgdbToolbar;
+import com.soutvoid.gamesproject.ui.screen.queryEdit.data.QueryData;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.date.MonthAdapter;
 
@@ -174,6 +175,14 @@ public class QueryEditActivityView extends BaseActivityView {
 
     MonthAdapter.CalendarDay getReleasedToDate() {
         return releasedToDatePicker.getSelectedDay();
+    }
+
+    QueryData getData() {
+        return new QueryData(
+                getNameInput(),
+                getReleasedFromDate(),
+                getReleasedToDate()
+        );
     }
 
     private String getMonthForInt(int num) {

@@ -9,6 +9,9 @@ import com.soutvoid.gamesproject.interactor.util.Order;
 import com.soutvoid.gamesproject.interactor.util.Query;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
 import com.soutvoid.gamesproject.ui.common.error.ErrorHandler;
+import com.soutvoid.gamesproject.ui.screen.queryEdit.data.QueryData;
+import com.soutvoid.gamesproject.ui.util.CalendarUtils;
+import com.wdullaer.materialdatetimepicker.date.MonthAdapter;
 
 import java.util.Calendar;
 
@@ -45,17 +48,33 @@ public class QueryEditActivityPresenter extends BasePresenter<QueryEditActivityV
         // increment index
         int nextId = (int) (realm.where(ExploreQuery.class).count());
 
+        QueryData data = getView().getData();
+
+        int comparsion = CalendarUtils.compareCalendarDays(data.getReleasedFrom(), data.getReleasedTo());
+
+        MonthAdapter.CalendarDay from = comparsion > 0 ? data.getReleasedTo() : data.getReleasedFrom();
+        MonthAdapter.CalendarDay to = comparsion > 0 ? data.getReleasedFrom() : data.getReleasedTo();
+
+        Filter filter = Filter.builder()
+                .field(GameFields.FIRST_RELEASE_DATE.toString())
+                .factor(Filter.Factor.gt.toString())
+                .value(String.valueOf(CalendarUtils.getCalendarDayInMillis(from)))
+                .field(GameFields.FIRST_RELEASE_DATE.toString())
+                .factor(Filter.Factor.lt.toString())
+                .value(String.valueOf(CalendarUtils.getCalendarDayInMillis(to)))
+                .build();
+
         Query query = new Query(
                 null,
                 Fields.builder().build(),
                 20,
                 0,
                 Order.builder().field(GameFields.POPULARITY.toString()).build(),
-                Filter.builder().field(GameFields.FIRST_RELEASE_DATE.toString()).factor(Filter.Factor.gt.toString()).value("1483228800000").build()
+                filter
         );
         ExploreQuery exploreQuery = new ExploreQuery(
                 nextId,
-                getView().getNameInput(),
+                data.getName(),
                 query
         );
 
