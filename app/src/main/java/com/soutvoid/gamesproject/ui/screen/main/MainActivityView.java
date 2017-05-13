@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -16,6 +15,7 @@ import com.soutvoid.gamesproject.domain.game.Game;
 import com.soutvoid.gamesproject.ui.base.LoadableContent;
 import com.soutvoid.gamesproject.ui.base.activity.BaseActivityView;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
+import com.soutvoid.gamesproject.ui.base.widgets.IgdbToolbar;
 import com.soutvoid.gamesproject.ui.base.widgets.PlaceholderView;
 import com.soutvoid.gamesproject.ui.screen.main.data.ExploreSetData;
 import com.soutvoid.gamesproject.ui.screen.main.data.ExploreSets;
@@ -37,7 +37,7 @@ public class MainActivityView extends BaseActivityView implements LoadableConten
     MainActivityPresenter presenter;
 
     @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    IgdbToolbar toolbar;
     @BindView(R.id.main_explore_sets_container)
     LinearLayout exploreSetsContainer;
     @BindView(R.id.main_showcase_view)
@@ -96,7 +96,9 @@ public class MainActivityView extends BaseActivityView implements LoadableConten
     }
 
     private void setupToolbar() {
-
+        toolbar.showSearchListsToolbarNoBack(this,
+                v -> presenter.onSearchClick(),
+                v -> presenter.onListsClick());
     }
 
     private void setupViews() {

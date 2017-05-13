@@ -7,12 +7,12 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 
 import com.agna.ferro.mvp.component.ScreenComponent;
 import com.soutvoid.gamesproject.interactor.util.ExploreQuery;
 import com.soutvoid.gamesproject.ui.base.activity.BaseActivityView;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
+import com.soutvoid.gamesproject.ui.base.widgets.IgdbToolbar;
 import com.soutvoid.gamesproject.ui.screen.personalize.list.PersonalizeExploreListAdapter;
 import com.soutvoid.gamesproject.ui.screen.queryEdit.QueryEditActivityView;
 
@@ -25,8 +25,8 @@ import soutvoid.com.gamesproject.R;
 
 public class PersonalizeActivityView extends BaseActivityView {
 
-    @BindView(R.id.personalize_toolbar)
-    Toolbar toolbar;
+    @BindView(R.id.toolbar)
+    IgdbToolbar toolbar;
     @BindView(R.id.personalize_explore_list)
     RecyclerView list;
     @BindView(R.id.personalize_fab)
@@ -70,6 +70,7 @@ public class PersonalizeActivityView extends BaseActivityView {
         super.onCreate(savedInstanceState, viewRecreated);
 
         initList();
+        setupToolbar();
         setupFab();
     }
 
@@ -77,6 +78,12 @@ public class PersonalizeActivityView extends BaseActivityView {
         list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         adapter = new PersonalizeExploreListAdapter(this);
         list.setAdapter(adapter);
+    }
+
+    private void setupToolbar() {
+        toolbar.showPurpleToolbar(
+                getString(R.string.personalize),
+                this);
     }
 
     private void setupFab() {

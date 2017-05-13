@@ -17,7 +17,7 @@
             android:id="@+id/toolbar_search_edt"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginRight="55dp"
+            android:layout_marginRight="20dp"
             android:layout_marginLeft="25dp"
             android:focusable="false"
             android:focusableInTouchMode="false"
@@ -26,14 +26,6 @@
             android:textColorHint="@color/black_transparent_40"
             android:textCursorDrawable="@null"
             android:theme="@style/GrayUnderline"/>
-
-        <Button
-            android:id="@+id/toolbar_lists_btn"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="right"
-            android:layout_margin="15dp"
-            android:background="@drawable/ic_play_list_dark"/>
 
     </com.soutvoid.gamesproject.ui.base.widgets.IgdbToolbar>
 

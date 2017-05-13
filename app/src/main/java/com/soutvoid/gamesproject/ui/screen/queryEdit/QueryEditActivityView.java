@@ -4,12 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.widget.Toolbar;
-import android.widget.Button;
 
 import com.agna.ferro.mvp.component.ScreenComponent;
 import com.soutvoid.gamesproject.ui.base.activity.BaseActivityView;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
+import com.soutvoid.gamesproject.ui.base.widgets.IgdbToolbar;
 
 import javax.inject.Inject;
 
@@ -20,10 +19,8 @@ public class QueryEditActivityView extends BaseActivityView {
 
     @BindView(R.id.query_edit_name_text_input)
     TextInputLayout name;
-    @BindView(R.id.query_edit_save)
-    Button save;
-    @BindView(R.id.query_edit_toolbar)
-    Toolbar toolbar;
+    @BindView(R.id.toolbar)
+    IgdbToolbar toolbar;
 
     @Inject
     QueryEditActivityPresenter presenter;
@@ -60,18 +57,16 @@ public class QueryEditActivityView extends BaseActivityView {
     protected void onCreate(Bundle savedInstanceState, boolean viewRecreated) {
         super.onCreate(savedInstanceState, viewRecreated);
 
-        setupViews();
         setupToolbar();
     }
 
     private void setupToolbar() {
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.showPurpleToolbarSave(
+                getString(R.string.new_query),
+                this,
+                v -> presenter.onSaveClick());
     }
 
-    private void setupViews() {
-        save.setOnClickListener(v -> presenter.onSaveClick());
-    }
 
     String getNameInput() {
         return name.getEditText().getText().toString();

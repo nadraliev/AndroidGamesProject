@@ -28,12 +28,12 @@
             android:theme="@style/GrayUnderline"/>
 
         <Button
-            android:id="@+id/toolbar_lists_btn"
+            android:id="@+id/toolbar_save_btn"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="right"
             android:layout_margin="15dp"
-            android:background="@drawable/ic_play_list_dark"/>
+            android:background="@drawable/ic_check_white_24dp"/>
 
     </com.soutvoid.gamesproject.ui.base.widgets.IgdbToolbar>
 

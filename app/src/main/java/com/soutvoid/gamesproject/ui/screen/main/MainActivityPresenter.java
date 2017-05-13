@@ -86,4 +86,12 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
         subscribeNetworkQuery(responses,
                 data -> getView().onShowExploreSetsData(data));
     }
+
+    void onSearchClick() {
+
+    }
+
+    void onListsClick() {
+
+    }
 }
