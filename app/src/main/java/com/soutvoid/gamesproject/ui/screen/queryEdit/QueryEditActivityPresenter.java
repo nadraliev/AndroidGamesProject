@@ -13,8 +13,6 @@ import com.soutvoid.gamesproject.ui.screen.queryEdit.data.QueryData;
 import com.soutvoid.gamesproject.ui.util.CalendarUtils;
 import com.wdullaer.materialdatetimepicker.date.MonthAdapter;
 
-import java.util.Calendar;
-
 import javax.inject.Inject;
 
 import io.realm.Realm;
@@ -32,9 +30,6 @@ public class QueryEditActivityPresenter extends BasePresenter<QueryEditActivityV
     @Override
     public void onLoad(boolean viewRecreated) {
         super.onLoad(viewRecreated);
-
-        updateReleasedFromScreen(Calendar.getInstance());
-        updateReleasedToScreen(Calendar.getInstance());
     }
 
     void onSaveClick() {
@@ -80,29 +75,5 @@ public class QueryEditActivityPresenter extends BasePresenter<QueryEditActivityV
 
         realm.executeTransaction(realm1 -> realm1.copyToRealm(exploreQuery));
         realm.close();
-    }
-
-    void onFromDatePicked(int year, int monthOfYear, int dayOfMonth) {
-        updateReleasedFromScreen(year, monthOfYear, dayOfMonth);
-    }
-
-    private void updateReleasedFromScreen(int year, int monthOfYear, int dayOfMonth) {
-        getView().setReleasedFromText(year, monthOfYear, dayOfMonth);
-    }
-
-    private void updateReleasedFromScreen(Calendar calendar) {
-        getView().setReleasedFromText(calendar);
-    }
-
-    void onToDatePicked(int year, int monthOfYear, int dayOfMonth) {
-        updateReleasedToScreen(year, monthOfYear, dayOfMonth);
-    }
-
-    private void updateReleasedToScreen(int year, int monthOfYear, int dayOfMonth) {
-        getView().setReleasedToText(year, monthOfYear, dayOfMonth);
-    }
-
-    private void updateReleasedToScreen(Calendar calendar) {
-        getView().setReleasedToText(calendar);
     }
 }
