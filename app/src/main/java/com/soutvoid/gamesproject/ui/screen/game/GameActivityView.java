@@ -2,7 +2,10 @@ package com.soutvoid.gamesproject.ui.screen.game;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.agna.ferro.mvp.component.ScreenComponent;
@@ -22,6 +25,8 @@ public class GameActivityView extends BaseActivityView {
     @Inject
     GameActivityPresenter presenter;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.game_image_top)
     ImageView imageTop;
 
@@ -34,6 +39,8 @@ public class GameActivityView extends BaseActivityView {
     @Override
     protected void onCreate(Bundle savedInstanceState, boolean viewRecreated) {
         super.onCreate(savedInstanceState, viewRecreated);
+
+        setupToolbar();
     }
 
     @Override
@@ -57,6 +64,23 @@ public class GameActivityView extends BaseActivityView {
                 .activityModule(getActivityModule())
                 .appComponent(getAppComponent())
                 .build();
+    }
+
+    private void setupToolbar() {
+        if (Build.VERSION.SDK_INT >= 19) {
+            ViewGroup.LayoutParams layoutParams = toolbar.getLayoutParams();
+            layoutParams.height += getStatusBarHeight();
+        }
+
+    }
+
+    private int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
     }
 
     void downloadTopImage(String url) {
