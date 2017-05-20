@@ -11,4 +11,11 @@
 
     <include layout="@layout/section_released"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black_transparent_30"/>
+
+    <include layout="@layout/section_genres"/>
+
 </LinearLayout>
