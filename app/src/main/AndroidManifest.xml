@@ -31,9 +31,12 @@
             android:name="com.soutvoid.gamesproject.ui.screen.personalize.PersonalizeActivityView"
             android:label="@string/personalize"/>
 
-        <activity android:name="com.soutvoid.gamesproject.ui.screen.queryEdit.QueryEditActivityView"/>
+        <activity
+            android:name="com.soutvoid.gamesproject.ui.screen.queryEdit.QueryEditActivityView"/>
 
-        <activity android:name="com.soutvoid.gamesproject.ui.screen.game.GameActivityView"/>
+        <activity
+            android:name="com.soutvoid.gamesproject.ui.screen.game.GameActivityView"
+            android:theme="@style/AppTheme.NoActionBar.StatusBarTranslucent"/>
     </application>
 
 </manifest>

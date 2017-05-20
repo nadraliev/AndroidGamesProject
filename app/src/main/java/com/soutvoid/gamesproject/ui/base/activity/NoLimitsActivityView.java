@@ -10,6 +10,7 @@ public abstract class NoLimitsActivityView extends BaseActivityView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState, boolean viewRecreated) {
+        super.onCreate(savedInstanceState, viewRecreated);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow(); // in Activity's onCreate() for instance
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
