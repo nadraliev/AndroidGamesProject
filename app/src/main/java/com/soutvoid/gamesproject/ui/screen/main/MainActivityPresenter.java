@@ -16,6 +16,7 @@ import com.soutvoid.gamesproject.ui.common.error.ErrorHandler;
 import com.soutvoid.gamesproject.ui.screen.main.data.ExploreSetData;
 import com.soutvoid.gamesproject.ui.screen.main.data.ExploreSets;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -52,7 +53,9 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
                 20,
                 0,
                 Order.builder().field(GameFields.POPULARITY.toString()).build(),
-                Filter.builder().field(GameFields.FIRST_RELEASE_DATE.toString()).factor(Filter.Factor.gt.toString()).value("1483228800000").build()
+                Filter.builder().field(GameFields.FIRST_RELEASE_DATE.toString()).factor(Filter.Factor.gt.toString()).value("1483228800000")
+                        .field(GameFields.FIRST_RELEASE_DATE.toString()).factor(Filter.Factor.lt.toString()).value(String.valueOf(Calendar.getInstance().getTimeInMillis()))
+                        .build()
         );
 
         subscribeNetworkQuery(gameRepository.searchGames(query),
