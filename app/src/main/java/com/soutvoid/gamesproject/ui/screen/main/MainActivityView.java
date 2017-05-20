@@ -17,6 +17,7 @@ import com.soutvoid.gamesproject.ui.base.activity.BaseActivityView;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
 import com.soutvoid.gamesproject.ui.base.widgets.IgdbToolbar;
 import com.soutvoid.gamesproject.ui.base.widgets.PlaceholderView;
+import com.soutvoid.gamesproject.ui.screen.game.GameActivityView;
 import com.soutvoid.gamesproject.ui.screen.main.data.ExploreSetData;
 import com.soutvoid.gamesproject.ui.screen.main.data.ExploreSets;
 import com.soutvoid.gamesproject.ui.screen.main.widgets.exploreset.widget.ExploreSetView;
@@ -103,6 +104,16 @@ public class MainActivityView extends BaseActivityView implements LoadableConten
 
     private void setupViews() {
         personalizeBtn.setOnClickListener(v -> PersonalizeActivityView.start(this));
+        showcaseView.setOnGameClickListener(this::onGameClick);
+    }
+
+    private void onApplyExploreSetViewDefaults(ExploreSetView exploreSetView) {
+        exploreSetView.setHeaderColor(ContextCompat.getColor(this, R.color.main_explore_set_header_color));
+        exploreSetView.setOnGameClickListener(this::onGameClick);
+    }
+
+    private void onGameClick(Game game, View view) {
+        startGameActivity(game);
     }
 
     @Override
@@ -141,10 +152,6 @@ public class MainActivityView extends BaseActivityView implements LoadableConten
 
     public int onAddExploreSetView() {
         return onAddExploreSetView(exploreSetViews.size());
-    }
-
-    private void onApplyExploreSetViewDefaults(ExploreSetView exploreSetView) {
-        exploreSetView.setHeaderColor(ContextCompat.getColor(this, R.color.main_explore_set_header_color));
     }
 
     public int onAddExploreSetView(ArrayList<Game> games) {
@@ -193,5 +200,9 @@ public class MainActivityView extends BaseActivityView implements LoadableConten
 
     public void onSetShowcaseViewGames(ArrayList<Game> games) {
         showcaseView.setGamesListContent(games);
+    }
+
+    public void startGameActivity(Game game) {
+        GameActivityView.start(this, game);
     }
 }

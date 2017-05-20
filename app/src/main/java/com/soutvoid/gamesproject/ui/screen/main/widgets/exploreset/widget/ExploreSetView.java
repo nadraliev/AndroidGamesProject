@@ -18,11 +18,13 @@ import com.bumptech.glide.Glide;
 import com.soutvoid.gamesproject.domain.game.Game;
 import com.soutvoid.gamesproject.interactor.util.ImageUrlBuilder;
 import com.soutvoid.gamesproject.ui.screen.main.widgets.exploreset.list.ExploreSetListAdapter;
+import com.soutvoid.gamesproject.ui.util.OnGameClickListener;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import lombok.Setter;
 import soutvoid.com.gamesproject.R;
 
 public class ExploreSetView extends FrameLayout {
@@ -41,6 +43,9 @@ public class ExploreSetView extends FrameLayout {
     RecyclerView list;
 
     private ExploreSetListAdapter exploreSetListAdapter;
+
+    @Setter
+    private OnGameClickListener onGameClickListener;
 
     public ExploreSetView(Context context) {
         super(context);
@@ -76,6 +81,10 @@ public class ExploreSetView extends FrameLayout {
 
     private void initList(ArrayList<Game> games) {
         exploreSetListAdapter = new ExploreSetListAdapter(context, games);
+        exploreSetListAdapter.setOnListItemClickListener((pos, v) -> {
+            if (onGameClickListener != null)
+                onGameClickListener.onClick(exploreSetListAdapter.getGames().get(pos), v);
+        });
         list.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         list.setAdapter(exploreSetListAdapter);
     }

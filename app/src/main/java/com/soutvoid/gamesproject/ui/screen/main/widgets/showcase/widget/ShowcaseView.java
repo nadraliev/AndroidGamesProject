@@ -12,11 +12,13 @@ import android.widget.FrameLayout;
 import com.soutvoid.gamesproject.domain.game.Game;
 import com.soutvoid.gamesproject.ui.base.widgets.AutoScrollingRecyclerView;
 import com.soutvoid.gamesproject.ui.screen.main.widgets.showcase.list.ShowcaseRecyclerAdapter;
+import com.soutvoid.gamesproject.ui.util.OnGameClickListener;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import lombok.Setter;
 import soutvoid.com.gamesproject.R;
 
 public class ShowcaseView extends FrameLayout {
@@ -33,6 +35,8 @@ public class ShowcaseView extends FrameLayout {
     private int currentPosition = 0;
 
     private ShowcaseRecyclerAdapter showcaseRecyclerAdapter;
+    @Setter
+    private OnGameClickListener onGameClickListener;
     private LinearLayoutManager layoutManager;
 
     public ShowcaseView(Context context) {
@@ -67,6 +71,10 @@ public class ShowcaseView extends FrameLayout {
 
     private void initList(ArrayList<Game> games) {
         showcaseRecyclerAdapter = new ShowcaseRecyclerAdapter(context, games);
+        showcaseRecyclerAdapter.setListener((pos, v) -> {
+            if (onGameClickListener != null)
+                onGameClickListener.onClick(showcaseRecyclerAdapter.getGames().get(pos), v);
+        });
         layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         list.setLayoutManager(layoutManager);
         list.setAdapter(showcaseRecyclerAdapter);
