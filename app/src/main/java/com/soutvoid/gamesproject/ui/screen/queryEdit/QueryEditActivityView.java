@@ -19,6 +19,7 @@ import com.soutvoid.gamesproject.ui.screen.queryEdit.widgets.choosableDate.Choos
 import com.soutvoid.gamesproject.ui.screen.queryEdit.widgets.genreToggleBtn.GenreToggleBtn;
 import com.wdullaer.materialdatetimepicker.date.MonthAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -131,7 +132,8 @@ public class QueryEditActivityView extends BaseActivityView {
         return new QueryData(
                 getNameInput(),
                 getReleasedFromDate(),
-                getReleasedToDate()
+                getReleasedToDate(),
+                getSelectedGenres()
         );
     }
 
@@ -146,5 +148,14 @@ public class QueryEditActivityView extends BaseActivityView {
 
     boolean isReleasedToIncluded() {
         return includeTo.isChecked();
+    }
+
+    List<Integer> getSelectedGenres() {
+        ArrayList<Integer> genres = new ArrayList<>();
+        for (int i = 0; i < genresFlexbox.getChildCount(); i++) {
+            if (((GenreToggleBtn) genresFlexbox.getChildAt(i)).isChecked())
+                genres.add(i);
+        }
+        return genres;
     }
 }

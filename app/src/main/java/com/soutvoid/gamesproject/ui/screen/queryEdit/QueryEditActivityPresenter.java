@@ -3,6 +3,8 @@ package com.soutvoid.gamesproject.ui.screen.queryEdit;
 import android.widget.CompoundButton;
 
 import com.agna.ferro.mvp.component.scope.PerScreen;
+import com.annimon.stream.Collectors;
+import com.annimon.stream.Stream;
 import com.soutvoid.gamesproject.domain.game.fields.GameFields;
 import com.soutvoid.gamesproject.domain.genre.Genre;
 import com.soutvoid.gamesproject.interactor.genre.GenreRepository;
@@ -129,6 +131,7 @@ public class QueryEditActivityPresenter extends BasePresenter<QueryEditActivityV
 
         Filter filter = new Filter();
 
+        //add release dates
         filter.add(
                 GameFields.FIRST_RELEASE_DATE.toString(),
                 Filter.Factor.gt.toString(),
@@ -139,6 +142,18 @@ public class QueryEditActivityPresenter extends BasePresenter<QueryEditActivityV
                     GameFields.FIRST_RELEASE_DATE.toString(),
                     Filter.Factor.lt.toString(),
                     String.valueOf(CalendarUtils.getCalendarDayInMillis(to)));
+
+        //add genres
+        if (data.getSelectedGenres() != null && data.getSelectedGenres().size() > 0) {
+            String genresStr = Stream.of(data.getSelectedGenres())
+                    .map(index -> String.valueOf(genres.get(index).getId()))
+                    .collect(Collectors.joining(","));
+            filter.add(
+                    GameFields.GENRES.toString(),
+                    Filter.Factor.in.toString(),
+                    genresStr
+            );
+        }
 
         return filter;
     }

@@ -77,9 +77,9 @@ public class Filter extends RealmObject {
     @Ignore
     private final String KEY_FILTER = "filter";
 
-    private RealmList<RealmString> fields;
-    private RealmList<RealmString> factors;
-    private RealmList<RealmString> values;
+    private RealmList<RealmString> fields = new RealmList<>();
+    private RealmList<RealmString> factors = new RealmList<>();
+    private RealmList<RealmString> values = new RealmList<>();
 
     public void add(String field, String factor, String value) {
         fields.add(RealmWrapUtils.wrapString(field));
