@@ -81,6 +81,12 @@ public class Filter extends RealmObject {
     private RealmList<RealmString> factors;
     private RealmList<RealmString> values;
 
+    public void add(String field, String factor, String value) {
+        fields.add(RealmWrapUtils.wrapString(field));
+        factors.add(RealmWrapUtils.wrapString(factor));
+        values.add(RealmWrapUtils.wrapString(value));
+    }
+
     public Map<String, String> toMap() {
         HashMap<String, String> result = new HashMap<>();
         int numberOfElements = Math.min(Math.min(fields.size(), factors.size()), values.size());

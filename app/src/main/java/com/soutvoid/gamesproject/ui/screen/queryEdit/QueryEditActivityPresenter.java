@@ -47,19 +47,7 @@ public class QueryEditActivityPresenter extends BasePresenter<QueryEditActivityV
 
         QueryData data = getView().getData();
 
-        int comparsion = CalendarUtils.compareCalendarDays(data.getReleasedFrom(), data.getReleasedTo());
-
-        MonthAdapter.CalendarDay from = comparsion > 0 ? data.getReleasedTo() : data.getReleasedFrom();
-        MonthAdapter.CalendarDay to = comparsion > 0 ? data.getReleasedFrom() : data.getReleasedTo();
-
-        Filter filter = Filter.builder()
-                .field(GameFields.FIRST_RELEASE_DATE.toString())
-                .factor(Filter.Factor.gt.toString())
-                .value(String.valueOf(CalendarUtils.getCalendarDayInMillis(from)))
-                .field(GameFields.FIRST_RELEASE_DATE.toString())
-                .factor(Filter.Factor.lt.toString())
-                .value(String.valueOf(CalendarUtils.getCalendarDayInMillis(to)))
-                .build();
+        Filter filter = buildFilterFromData(data);
 
         Query query = new Query(
                 null,
@@ -77,6 +65,28 @@ public class QueryEditActivityPresenter extends BasePresenter<QueryEditActivityV
 
         realm.executeTransaction(realm1 -> realm1.copyToRealm(exploreQuery));
         realm.close();
+    }
+
+    Filter buildFilterFromData(QueryData data) {
+        int comparsion = CalendarUtils.compareCalendarDays(data.getReleasedFrom(), data.getReleasedTo());
+
+        MonthAdapter.CalendarDay from = comparsion > 0 ? data.getReleasedTo() : data.getReleasedFrom();
+        MonthAdapter.CalendarDay to = comparsion > 0 ? data.getReleasedFrom() : data.getReleasedTo();
+
+        Filter filter = new Filter();
+
+        filter.add(
+                GameFields.FIRST_RELEASE_DATE.toString(),
+                Filter.Factor.gt.toString(),
+                String.valueOf(CalendarUtils.getCalendarDayInMillis(from)));
+
+        if (getView().isReleasedToIncluded())
+            filter.add(
+                    GameFields.FIRST_RELEASE_DATE.toString(),
+                    Filter.Factor.lt.toString(),
+                    String.valueOf(CalendarUtils.getCalendarDayInMillis(to)));
+
+        return filter;
     }
 
     void onReleasedIncludeToClicked(CompoundButton button, boolean isChecked) {

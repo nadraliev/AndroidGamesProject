@@ -124,4 +124,8 @@ public class QueryEditActivityView extends BaseActivityView {
         releasedTo.setTextColor(ContextCompat.getColor(this, textColorId));
         releasedToDate.setTextColor(ContextCompat.getColor(this, textColorId));
     }
+
+    boolean isReleasedToIncluded() {
+        return includeTo.isChecked();
+    }
 }
