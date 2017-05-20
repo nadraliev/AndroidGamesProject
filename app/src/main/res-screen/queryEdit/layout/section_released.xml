@@ -21,37 +21,57 @@
         android:layout_alignTop="@id/section_released_icon"
         android:layout_marginLeft="11dp"
         android:layout_marginTop="6dp"
-        android:text="@string/released_between"
+        android:text="@string/released"
         android:textColor="@color/colorTextInverse"
-        android:textSize="17sp"/>
+        android:textSize="19sp"/>
 
-    <com.soutvoid.gamesproject.ui.screen.queryEdit.widgets.choosableDate.ChoosableDateTextView
+    <TextView
         android:id="@+id/section_released_from"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/section_released_header"
         android:layout_alignLeft="@id/section_released_header"
         android:layout_marginTop="10dp"
-        android:textColor="@color/colorTextInverse"/>
-
-    <TextView
-        android:id="@+id/section_released_and"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/section_released_from"
-        android:layout_toRightOf="@id/section_released_from"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:text="@string/and"
-        android:textColor="@color/colorTextInverse"/>
+        android:textColor="@color/colorTextInverse"
+        android:text="@string/from"/>
 
     <com.soutvoid.gamesproject.ui.screen.queryEdit.widgets.choosableDate.ChoosableDateTextView
+        android:id="@+id/section_released_from_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/section_released_from"
+        android:layout_alignBaseline="@id/section_released_from"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/colorTextInverse"
+        android:textSize="15sp"/>
+
+    <TextView
         android:id="@+id/section_released_to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/section_released_from"
-        android:layout_toRightOf="@id/section_released_and"
-        android:textColor="@color/colorTextInverse"/>
+        android:layout_below="@id/section_released_from"
+        android:layout_alignLeft="@id/section_released_from"
+        android:layout_marginTop="5dp"
+        android:text="@string/to"
+        android:textColor="@color/black_transparent_40"/>
+
+    <com.soutvoid.gamesproject.ui.screen.queryEdit.widgets.choosableDate.ChoosableDateTextView
+        android:id="@+id/section_released_to_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/section_released_to"
+        android:layout_alignBaseline="@id/section_released_to"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/black_transparent_40"
+        android:textSize="15sp"
+        android:enabled="false"/>
+
+    <Switch
+        android:id="@+id/section_released_include_to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignBaseline="@id/section_released_to"/>
 
 
 </RelativeLayout>

@@ -3,6 +3,9 @@ package com.soutvoid.gamesproject.ui.screen.queryEdit;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.widget.Switch;
+import android.widget.TextView;
 
 import com.agna.ferro.mvp.component.ScreenComponent;
 import com.soutvoid.gamesproject.ui.base.activity.BaseActivityView;
@@ -21,10 +24,15 @@ public class QueryEditActivityView extends BaseActivityView {
 
     @BindView(R.id.toolbar)
     IgdbToolbar toolbar;
-    @BindView(R.id.section_released_from)
-    ChoosableDateTextView releasedFrom;
+    @BindView(R.id.section_released_from_date)
+    ChoosableDateTextView releasedFromDate;
+    @BindView(R.id.section_released_to_date)
+    ChoosableDateTextView releasedToDate;
+    @BindView(R.id.section_released_include_to)
+    Switch includeTo;
+
     @BindView(R.id.section_released_to)
-    ChoosableDateTextView releasedTo;
+    TextView releasedTo;
 
     @Inject
     QueryEditActivityPresenter presenter;
@@ -63,6 +71,7 @@ public class QueryEditActivityView extends BaseActivityView {
 
         setupToolbar();
         setupDatePickers();
+        setupViews();
     }
 
     private void setupToolbar() {
@@ -73,8 +82,13 @@ public class QueryEditActivityView extends BaseActivityView {
     }
 
     private void setupDatePickers() {
-        releasedFrom.setActivity(this);
-        releasedTo.setActivity(this);
+        releasedFromDate.setActivity(this);
+        releasedToDate.setActivity(this);
+    }
+
+    private void setupViews() {
+        includeTo.setOnCheckedChangeListener((btn, isChecked) ->
+                presenter.onReleasedIncludeToClicked(btn, isChecked));
     }
 
 
@@ -87,11 +101,11 @@ public class QueryEditActivityView extends BaseActivityView {
     }
 
     MonthAdapter.CalendarDay getReleasedFromDate() {
-        return releasedFrom.getSelectedDay();
+        return releasedFromDate.getSelectedDay();
     }
 
     MonthAdapter.CalendarDay getReleasedToDate() {
-        return releasedTo.getSelectedDay();
+        return releasedToDate.getSelectedDay();
     }
 
     QueryData getData() {
@@ -100,5 +114,14 @@ public class QueryEditActivityView extends BaseActivityView {
                 getReleasedFromDate(),
                 getReleasedToDate()
         );
+    }
+
+    void toggleReleasedToDatePicker(boolean enabled) {
+        releasedToDate.setEnabled(enabled);
+        int textColorId = R.color.black_transparent_40;
+        if (enabled)
+            textColorId = R.color.colorTextInverse;
+        releasedTo.setTextColor(ContextCompat.getColor(this, textColorId));
+        releasedToDate.setTextColor(ContextCompat.getColor(this, textColorId));
     }
 }

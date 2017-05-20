@@ -104,7 +104,8 @@ public class ChoosableDateTextView extends AppCompatTextView implements DatePick
     }
 
     private void onClick() {
-        showDatePicker();
+        if (isEnabled())
+            showDatePicker();
     }
 
     private void showDatePicker() {

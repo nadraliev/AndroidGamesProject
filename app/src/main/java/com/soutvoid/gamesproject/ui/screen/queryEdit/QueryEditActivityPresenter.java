@@ -1,5 +1,7 @@
 package com.soutvoid.gamesproject.ui.screen.queryEdit;
 
+import android.widget.CompoundButton;
+
 import com.agna.ferro.mvp.component.scope.PerScreen;
 import com.soutvoid.gamesproject.domain.game.fields.GameFields;
 import com.soutvoid.gamesproject.interactor.util.ExploreQuery;
@@ -20,7 +22,7 @@ import io.realm.Realm;
 @PerScreen
 public class QueryEditActivityPresenter extends BasePresenter<QueryEditActivityView> {
 
-    Realm realm;
+    private Realm realm;
 
     @Inject
     public QueryEditActivityPresenter(ErrorHandler errorHandler) {
@@ -75,5 +77,9 @@ public class QueryEditActivityPresenter extends BasePresenter<QueryEditActivityV
 
         realm.executeTransaction(realm1 -> realm1.copyToRealm(exploreQuery));
         realm.close();
+    }
+
+    void onReleasedIncludeToClicked(CompoundButton button, boolean isChecked) {
+        getView().toggleReleasedToDatePicker(isChecked);
     }
 }
