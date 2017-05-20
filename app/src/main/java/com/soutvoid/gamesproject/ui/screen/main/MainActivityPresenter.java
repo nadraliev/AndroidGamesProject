@@ -57,6 +57,9 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
 
         subscribeNetworkQuery(gameRepository.searchGames(query),
                 games -> getView().onSetShowcaseViewGames(games));
+
+        if (viewRecreated && currentData != null)
+            getView().onShowExploreSetsData(currentData);
     }
 
     @Override
