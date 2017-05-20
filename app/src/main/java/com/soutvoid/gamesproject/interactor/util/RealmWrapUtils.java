@@ -20,10 +20,21 @@ public class RealmWrapUtils {
         return new RealmString(string);
     }
 
+    public static RealmLong wrapLong(long val) {
+        return new RealmLong(val);
+    }
+
     public static RealmList<RealmString> wrapStrings(List<String> strings) {
         return RealmWrapUtils.convertList(
                 Stream.of(strings)
                         .map(RealmWrapUtils::wrapString)
+                        .collect(Collectors.toList()));
+    }
+
+    public static RealmList<RealmLong> wrapLongs(List<Long> Longs) {
+        return RealmWrapUtils.convertList(
+                Stream.of(Longs)
+                        .map(RealmWrapUtils::wrapLong)
                         .collect(Collectors.toList()));
     }
 

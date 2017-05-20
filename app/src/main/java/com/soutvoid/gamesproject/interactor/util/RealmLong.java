@@ -10,8 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class RealmString extends RealmObject {
-    private String value;
-
-
+public class RealmLong extends RealmObject {
+    private long value;
 }

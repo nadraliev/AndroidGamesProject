@@ -8,12 +8,18 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.agna.ferro.mvp.component.ScreenComponent;
+import com.annimon.stream.Stream;
+import com.google.android.flexbox.FlexboxLayout;
+import com.soutvoid.gamesproject.domain.genre.Genre;
 import com.soutvoid.gamesproject.ui.base.activity.BaseActivityView;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
 import com.soutvoid.gamesproject.ui.base.widgets.IgdbToolbar;
 import com.soutvoid.gamesproject.ui.screen.queryEdit.data.QueryData;
 import com.soutvoid.gamesproject.ui.screen.queryEdit.widgets.choosableDate.ChoosableDateTextView;
+import com.soutvoid.gamesproject.ui.screen.queryEdit.widgets.genreToggleBtn.GenreToggleBtn;
 import com.wdullaer.materialdatetimepicker.date.MonthAdapter;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -33,6 +39,9 @@ public class QueryEditActivityView extends BaseActivityView {
 
     @BindView(R.id.section_released_to)
     TextView releasedTo;
+
+    @BindView(R.id.section_genres_flexbox)
+    FlexboxLayout genresFlexbox;
 
     @Inject
     QueryEditActivityPresenter presenter;
@@ -106,6 +115,16 @@ public class QueryEditActivityView extends BaseActivityView {
 
     MonthAdapter.CalendarDay getReleasedToDate() {
         return releasedToDate.getSelectedDay();
+    }
+
+    void setGenresList(List<Genre> genres) {
+        Stream.of(genres).forEach(
+                genre -> {
+                    GenreToggleBtn genreToggleBtn = new GenreToggleBtn(this);
+                    genreToggleBtn.setText(genre.getName());
+                    genresFlexbox.addView(genreToggleBtn);
+                }
+        );
     }
 
     QueryData getData() {

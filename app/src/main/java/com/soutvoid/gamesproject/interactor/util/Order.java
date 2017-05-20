@@ -55,6 +55,9 @@ public class Order extends RealmObject {
 
     @Override
     public String toString() {
-        return getField() + FIELDS_ORDER_SEPARATOR + getOrderDirection().toString();
+        if (getField() != null)
+            return getField() + FIELDS_ORDER_SEPARATOR + getOrderDirection().toString();
+        else
+            return null;
     }
 }
