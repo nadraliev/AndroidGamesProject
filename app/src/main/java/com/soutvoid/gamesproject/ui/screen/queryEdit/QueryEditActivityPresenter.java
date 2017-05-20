@@ -24,7 +24,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.realm.Realm;
-import rx.Observable;
 
 @PerScreen
 public class QueryEditActivityPresenter extends BasePresenter<QueryEditActivityView> {
@@ -44,15 +43,9 @@ public class QueryEditActivityPresenter extends BasePresenter<QueryEditActivityV
     public void onLoad(boolean viewRecreated) {
         super.onLoad(viewRecreated);
 
-        subscribeNetworkQuery(
-                getGenresFromDb(),
-                genres1 -> {
-                    genres = genres1;
-                    updateGenresDBIfNeeded();
-                    updateGenresScreenData();
-                }
-        );
-
+        genres = getGenresFromDb();
+        updateGenresDBIfNeeded();
+        updateGenresScreenData();
     }
 
     private void updateGenresDBIfNeeded() {
@@ -67,23 +60,26 @@ public class QueryEditActivityPresenter extends BasePresenter<QueryEditActivityV
                         Order.builder().build()
                 ),
                 genresFromNet -> {
-                    if (!genres.equals(genresFromNet))
+                    if (!genres.equals(genresFromNet)) {
                         realm.executeTransaction(
                                 realm1 -> {
                                     realm1.delete(Genre.class);
                                     realm1.copyToRealm(genresFromNet);
                                 });
+                        genres = genresFromNet;
+                        updateGenresScreenData();
+                    }
                     realm.close();
                 },
                 t -> realm.close()
         );
     }
 
-    private Observable<List<Genre>> getGenresFromDb() {
+    private List<Genre> getGenresFromDb() {
         realm = Realm.getDefaultInstance();
         List<Genre> genres = realm.copyFromRealm(realm.where(Genre.class).findAll());
         realm.close();
-        return Observable.just(genres);
+        return genres;
     }
 
     private void updateGenresScreenData() {
