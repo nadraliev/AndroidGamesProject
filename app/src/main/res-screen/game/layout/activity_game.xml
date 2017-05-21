@@ -35,25 +35,48 @@
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
-        <RelativeLayout
-            android:id="@+id/game_app_bar_title_placeholder"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_gravity="bottom|center_horizontal"
             android:background="@color/colorBackground">
 
+            <View
+                android:id="@+id/game_reveal_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
-            <TextView
-                android:id="@+id/game_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="140dp"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/colorTextInverse"
-                android:textSize="25sp"/>
+            <io.codetail.widget.RevealFrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <View
+                    android:id="@+id/game_reveal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </io.codetail.widget.RevealFrameLayout>
+
+            <RelativeLayout
+                android:id="@+id/game_app_bar_title_placeholder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom|center_horizontal"
+                android:background="@color/colorTransparent">
 
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/game_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="140dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/colorTextInverse"
+                    android:textSize="25sp"/>
+
+
+            </RelativeLayout>
+
+        </FrameLayout>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -85,14 +108,14 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="140dp"
         android:orientation="horizontal"
+        android:paddingTop="20dp"
+        app:endY="40dp"
         app:layout_anchor="@id/game_title"
         app:layout_anchorGravity="bottom"
         app:layout_behavior="com.soutvoid.gamesproject.ui.screen.game.behaviors.FadingViewBehavior"
-        app:endY="40dp"
-        app:startY="10dp"
-        android:layout_marginLeft="140dp"
-        android:paddingTop="20dp">
+        app:startY="10dp">
 
         <TextView
             android:id="@+id/game_year"
@@ -103,10 +126,10 @@
             android:id="@+id/game_year_status_separator"
             android:layout_width="8dp"
             android:layout_height="8dp"
-            android:background="@drawable/circle"
-            android:layout_marginTop="6dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/circle"/>
 
         <TextView
             android:id="@+id/game_status"

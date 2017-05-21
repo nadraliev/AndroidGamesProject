@@ -25,6 +25,8 @@ import java.io.File;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import io.codetail.animation.SupportAnimator;
+import io.codetail.animation.ViewAnimationUtils;
 import soutvoid.com.gamesproject.R;
 
 public class GameActivityView extends BaseActivityView {
@@ -44,6 +46,10 @@ public class GameActivityView extends BaseActivityView {
     TextView status;
     @BindView(R.id.game_app_bar_title_placeholder)
     View appBarTitlePlaceholder;
+    @BindView(R.id.game_reveal_background)
+    View revealBackground;
+    @BindView(R.id.game_reveal)
+    View reveal;
     @BindView(R.id.game_year_status_separator)
     View yearStatusSeparator;
 
@@ -139,7 +145,41 @@ public class GameActivityView extends BaseActivityView {
     }
 
     void setAppBarColor(int color) {
-        appBarTitlePlaceholder.setBackgroundColor(color);
+        int fromColor = appBarTitlePlaceholder.getSolidColor();
+
+        SupportAnimator animator = ViewAnimationUtils.createCircularReveal(
+                reveal,
+                appBarTitlePlaceholder.getMeasuredWidth() / 2,
+                appBarTitlePlaceholder.getMeasuredHeight() / 2, 0,
+                appBarTitlePlaceholder.getMeasuredWidth() / 2
+        );
+
+        animator.addListener(new SupportAnimator.AnimatorListener() {
+            @Override
+            public void onAnimationStart() {
+                reveal.setBackgroundColor(color);
+            }
+
+            @Override
+            public void onAnimationEnd() {
+
+            }
+
+            @Override
+            public void onAnimationCancel() {
+
+            }
+
+            @Override
+            public void onAnimationRepeat() {
+
+            }
+        });
+
+        revealBackground.setBackgroundColor(fromColor);
+        animator.setDuration(200);
+        animator.start();
+        reveal.setVisibility(View.VISIBLE);
     }
 
     void setTitleTextColor(int color) {
