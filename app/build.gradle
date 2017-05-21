@@ -10,17 +10,18 @@ buildscript {
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
     maven { url 'https://github.com/uPhyca/stetho-realm/raw/master/maven-repo' }
+    mavenCentral()
 }
 
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.getkeepsafe.dexcount'
-apply plugin: 'kotlin-android'
 apply plugin: 'io.fabric'
 apply plugin: 'realm-android'
 
@@ -99,7 +100,6 @@ dependencies {
     def playServicesVersion = '10.0.1'
 
     //Testing Library, Apt Versions
-    def kotlinVersion = '1.0.3'
     def mockitoVersion = '1.10.19'
     def assertJVersion = '3.5.1'
 
@@ -171,14 +171,12 @@ dependencies {
     //--------------------------------- test dependencies ------------------------------------------
     //unit test
     testApt "com.google.dagger:dagger-compiler:${daggerVersion}"
-    testCompile "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
     testCompile "junit:junit:4.12"
     testCompile "org.mockito:mockito-core:${mockitoVersion}"
     testCompile "org.assertj:assertj-core:${assertJVersion}"
 
     //instrumental test
     androidTestApt "com.google.dagger:dagger-compiler:${daggerVersion}"
-    androidTestCompile "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
 
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
     androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2.2'
@@ -187,6 +185,7 @@ dependencies {
 
     //debug
     debugCompile "com.github.brianPlummer:tinydancer:0.1.0"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
 }
 
