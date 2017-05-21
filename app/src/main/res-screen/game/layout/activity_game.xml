@@ -20,46 +20,66 @@
             <com.soutvoid.gamesproject.ui.base.widgets.FixedAspectRatioFrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:ratio="1.778"
-                app:layout_collapseMode="parallax">
+                app:layout_collapseMode="parallax"
+                app:ratio="1.778">
 
                 <ImageView
                     android:id="@+id/game_image_top"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:layout_collapseMode="parallax"
-                    android:scaleType="centerCrop"/>
+                    android:scaleType="centerCrop"
+                    app:layout_collapseMode="parallax"/>
 
             </com.soutvoid.gamesproject.ui.base.widgets.FixedAspectRatioFrameLayout>
 
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
-        <FrameLayout
+        <RelativeLayout
             android:id="@+id/game_app_bar_title_placeholder"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_gravity="bottom|center_horizontal"
             android:background="@color/colorBackground">
 
-            <LinearLayout
+
+            <TextView
+                android:id="@+id/game_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="150dp"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical">
+                android:layout_marginLeft="140dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorTextInverse"
+                android:textSize="25sp"/>
 
-                <TextView
-                    android:id="@+id/game_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="sdgfdg"
-                    android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/game_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/game_title"
+                android:layout_below="@id/game_title"
+                android:layout_marginTop="5dp"/>
 
-            </LinearLayout>
+            <View
+                android:id="@+id/game_year_status_separator"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:background="@drawable/circle"
+                android:layout_below="@id/game_title"
+                android:layout_toRightOf="@id/game_year"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"/>
 
-        </FrameLayout>
+            <TextView
+                android:id="@+id/game_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/game_year"
+                android:layout_toRightOf="@id/game_year_status_separator"/>
+
+
+        </RelativeLayout>
 
     </android.support.design.widget.AppBarLayout>
 

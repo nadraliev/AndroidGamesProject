@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.agna.ferro.mvp.component.ScreenComponent;
 import com.bumptech.glide.Glide;
@@ -26,6 +27,12 @@ public class GameActivityView extends BaseActivityView {
     ImageView imageTop;
     @BindView(R.id.game_cover)
     ImageView cover;
+    @BindView(R.id.game_title)
+    TextView title;
+    @BindView(R.id.game_year)
+    TextView year;
+    @BindView(R.id.game_status)
+    TextView status;
 
     public static void start(Context context, Game game) {
         Intent intent = new Intent(context, GameActivityView.class);
@@ -91,4 +98,17 @@ public class GameActivityView extends BaseActivityView {
                 .load(new ImageUrlBuilder().parse(url).setSize(ImageUrlBuilder.ImageSize.cover_big).build())
                 .into(cover);
     }
+
+    void showTitle(String str) {
+        title.setText(str);
+    }
+
+    void showYear(String str) {
+        year.setText(str);
+    }
+
+    void showStatus(String str) {
+        status.setText(str);
+    }
+
 }
