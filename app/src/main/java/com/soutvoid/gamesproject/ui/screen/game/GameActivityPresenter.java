@@ -6,6 +6,7 @@ import com.soutvoid.gamesproject.domain.game.enums.GameStatus;
 import com.soutvoid.gamesproject.ui.base.activity.BasePresenter;
 import com.soutvoid.gamesproject.ui.common.error.ErrorHandler;
 
+import java.io.File;
 import java.util.Calendar;
 
 import javax.inject.Inject;
@@ -38,6 +39,7 @@ public class GameActivityPresenter extends BasePresenter<GameActivityView> {
         if (game.getScreenshots() != null && game.getScreenshots().size() > 0)
             getView().downloadTopImage(game.getScreenshots().get(0).getUrl());
 
+
         if (game.getCover() != null)
             getView().downloadCover(game.getCover().getUrl());
 
@@ -57,5 +59,10 @@ public class GameActivityPresenter extends BasePresenter<GameActivityView> {
             else status = GameStatus.values()[4].getValue();
         }
         getView().showStatus(status);
+    }
+
+    void mainImageDownloaded(File file) {
+        getView().showTopImage(file);
+        getView().colorAsMainImage(file);
     }
 }
