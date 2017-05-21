@@ -1,5 +1,6 @@
 package com.soutvoid.gamesproject.domain.game;
 
+import java.io.Serializable;
 import java.lang.reflect.Field;
 
 import lombok.AllArgsConstructor;
@@ -11,7 +12,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class TimeToBeat {
+public class TimeToBeat implements Serializable {
 
     private Long hastly;
     private Long normally;

@@ -17,13 +17,20 @@
             android:layout_height="match_parent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <ImageView
-                android:id="@+id/game_image_top"
+            <com.soutvoid.gamesproject.ui.base.widgets.FixedAspectRatioFrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_collapseMode="parallax"/>
+                android:layout_height="0dp"
+                app:ratio="1.778"
+                app:layout_collapseMode="parallax">
 
+                <ImageView
+                    android:id="@+id/game_image_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_collapseMode="parallax"
+                    android:scaleType="centerCrop"/>
 
+            </com.soutvoid.gamesproject.ui.base.widgets.FixedAspectRatioFrameLayout>
 
 
         </android.support.design.widget.CollapsingToolbarLayout>
@@ -32,15 +39,15 @@
             android:id="@+id/game_app_bar_title_placeholder"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="@color/colorBackground"
-            android:layout_gravity="bottom|center_horizontal">
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="@color/colorBackground">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginLeft="150dp"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/game_title"
@@ -72,11 +79,13 @@
     <ImageView
         android:id="@+id/game_cover"
         android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_height="142dp"
         android:layout_marginLeft="20dp"
-        app:layout_behavior="com.soutvoid.gamesproject.ui.screen.game.behaviors.FadingViewBehavior"
+        android:background="@color/color_backdrop"
+        android:scaleType="centerCrop"
+        app:endY="20dp"
         app:layout_anchor="@id/game_app_bar_title_placeholder"
-        app:startY="10dp"
-        app:endY="20dp"/>
+        app:layout_behavior="com.soutvoid.gamesproject.ui.screen.game.behaviors.FadingViewBehavior"
+        app:startY="10dp"/>
 
 </android.support.design.widget.CoordinatorLayout>

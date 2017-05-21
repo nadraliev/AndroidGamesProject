@@ -11,6 +11,8 @@
     <color name="colorBackground">#ffffff</color>
     <color name="navigation_bar_color">#99000000</color>
 
+    <color name="color_backdrop">#999</color>
+
     <color name="white_transparent_30">#48ffffff</color>
     <color name="white_transparent_40">#66ffffff</color>
 
