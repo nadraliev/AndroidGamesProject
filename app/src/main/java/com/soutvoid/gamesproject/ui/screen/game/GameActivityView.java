@@ -2,10 +2,7 @@ package com.soutvoid.gamesproject.ui.screen.game;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.agna.ferro.mvp.component.ScreenComponent;
@@ -25,10 +22,10 @@ public class GameActivityView extends BaseActivityView {
     @Inject
     GameActivityPresenter presenter;
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.game_image_top)
     ImageView imageTop;
+    @BindView(R.id.game_cover)
+    ImageView cover;
 
     public static void start(Context context, Game game) {
         Intent intent = new Intent(context, GameActivityView.class);
@@ -40,7 +37,7 @@ public class GameActivityView extends BaseActivityView {
     protected void onCreate(Bundle savedInstanceState, boolean viewRecreated) {
         super.onCreate(savedInstanceState, viewRecreated);
 
-        setupToolbar();
+        //setupToolbar();
     }
 
     @Override
@@ -66,13 +63,13 @@ public class GameActivityView extends BaseActivityView {
                 .build();
     }
 
-    private void setupToolbar() {
-        if (Build.VERSION.SDK_INT >= 19) {
-            ViewGroup.LayoutParams layoutParams = toolbar.getLayoutParams();
-            layoutParams.height += getStatusBarHeight();
-        }
-
-    }
+//    private void setupToolbar() {
+//        if (Build.VERSION.SDK_INT >= 19) {
+//            ViewGroup.LayoutParams layoutParams = toolbar.getLayoutParams();
+//            layoutParams.height += getStatusBarHeight();
+//        }
+//
+//    }
 
     private int getStatusBarHeight() {
         int result = 0;
@@ -87,5 +84,11 @@ public class GameActivityView extends BaseActivityView {
         Glide.with(this)
                 .load(new ImageUrlBuilder().parse(url).setSize(ImageUrlBuilder.ImageSize.screenshot_big).build())
                 .into(imageTop);
+    }
+
+    void downloadCover(String url) {
+        Glide.with(this)
+                .load(new ImageUrlBuilder().parse(url).setSize(ImageUrlBuilder.ImageSize.cover_big).build())
+                .into(cover);
     }
 }

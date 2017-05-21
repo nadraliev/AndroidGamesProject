@@ -13,12 +13,9 @@ import java.text.DateFormatSymbols;
 import java.util.Calendar;
 import java.util.Locale;
 
-import lombok.Setter;
-
 public class ChoosableDateTextView extends AppCompatTextView implements DatePickerDialog.OnDateSetListener {
 
     private DatePickerDialog datePickerDialog;
-    @Setter
     private DatePickerDialog.OnDateSetListener onDateSetListener;
 
     private Context context;

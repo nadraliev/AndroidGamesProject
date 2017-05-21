@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FadingViewBehavior">
+        <attr name="endY" format="dimension"/>
+        <attr name="startY" format="dimension"/>
+    </declare-styleable>
+</resources>

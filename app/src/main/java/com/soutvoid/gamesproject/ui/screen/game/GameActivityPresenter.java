@@ -30,5 +30,8 @@ public class GameActivityPresenter extends BasePresenter<GameActivityView> {
 
         if (game.getScreenshots() != null && game.getScreenshots().size() > 0)
             getView().downloadTopImage(game.getScreenshots().get(0).getUrl());
+
+        if (game.getCover() != null)
+            getView().downloadCover(game.getCover().getUrl());
     }
 }
