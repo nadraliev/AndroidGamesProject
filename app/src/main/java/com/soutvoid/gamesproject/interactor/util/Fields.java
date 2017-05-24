@@ -23,7 +23,7 @@ public class Fields extends RealmObject {
     }
 
     Fields(List<String> fields) {
-        this.fields = RealmWrapUtils.wrapStrings(fields);
+        this.fields = RealmWrapUtils.INSTANCE.wrapStrings(fields);
     }
 
     public static FieldsBuilder builder() {

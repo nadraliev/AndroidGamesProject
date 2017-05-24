@@ -20,7 +20,6 @@ repositories {
 
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
-apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.getkeepsafe.dexcount'
 apply plugin: 'io.fabric'
 apply plugin: 'realm-android'
@@ -65,14 +64,10 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
     sourceSets {
         test.java.srcDirs += "src/test/kotlin"
         androidTest.java.srcDirs += "src/androidTest/kotlin"
+        main.java.srcDirs += [file("$buildDir/generated/source/kapt/main")]
 
         main {
             res.srcDirs += "src/main/res-main"
@@ -83,10 +78,8 @@ android {
     }
 }
 
-retrolambda {
-    javaVersion JavaVersion.VERSION_1_7
-    defaultMethods false
-    incremental true
+kapt {
+    generateStubs = true
 }
 
 dependencies {
@@ -105,9 +98,9 @@ dependencies {
 
     //------------------------------------ dependencies --------------------------------------------
     //apt
-    apt "com.google.dagger:dagger-compiler:${daggerVersion}"
+    kapt "com.google.dagger:dagger-compiler:${daggerVersion}"
     apt "org.projectlombok:lombok:${lombokVersion}"
-    apt 'com.jakewharton:butterknife-compiler:8.5.1'
+    kapt 'com.jakewharton:butterknife-compiler:8.5.1'
 
     //provided
     provided "org.projectlombok:lombok:${lombokVersion}"
@@ -167,6 +160,9 @@ dependencies {
     compile 'com.facebook.stetho:stetho:1.5.0'
     compile 'com.uphyca:stetho_realm:2.0.0'
     compile 'com.google.android:flexbox:0.2.6'
+    compile('com.github.ozodrukh:CircularReveal:2.0.1@aar') {
+        transitive = true;
+    }
 
     //--------------------------------- test dependencies ------------------------------------------
     //unit test

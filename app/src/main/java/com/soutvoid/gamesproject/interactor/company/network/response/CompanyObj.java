@@ -60,7 +60,7 @@ public class CompanyObj implements Transformable<Company> {
                 url,
                 createdAt,
                 updatedAt,
-                TransformUtil.transform(logo),
+                TransformUtil.INSTANCE.transform(logo),
                 description,
                 country,
                 website,

@@ -40,7 +40,7 @@ public class ExploreSetListAdapter extends RecyclerView.Adapter<ExploreSetListAd
     }
 
     @Override
-    public void onBindViewHolder(ExploreSetListViewHolder holder, int position) {
+    public void onBindViewHolder(final ExploreSetListViewHolder holder, final int position) {
         holder.bind(games.get(position));
 
         holder.container.setOnClickListener(new View.OnClickListener() {

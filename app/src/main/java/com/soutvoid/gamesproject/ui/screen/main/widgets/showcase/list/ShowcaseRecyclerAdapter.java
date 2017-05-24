@@ -39,7 +39,7 @@ public class ShowcaseRecyclerAdapter extends RecyclerView.Adapter<ShowcaseRecycl
     }
 
     @Override
-    public void onBindViewHolder(ShowcaseRecyclerViewHolder holder, int position) {
+    public void onBindViewHolder(ShowcaseRecyclerViewHolder holder, final int position) {
         holder.bind(games.get(position));
 
         holder.container.setOnClickListener(new View.OnClickListener() {

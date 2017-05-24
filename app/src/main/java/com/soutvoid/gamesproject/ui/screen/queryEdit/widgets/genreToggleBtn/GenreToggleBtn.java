@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import lombok.Getter;
 import soutvoid.com.gamesproject.R;
 
 public class GenreToggleBtn extends FrameLayout {
@@ -21,7 +20,6 @@ public class GenreToggleBtn extends FrameLayout {
     @BindView(R.id.genre_toggle_btn_text)
     TextView textView;
 
-    @Getter
     private boolean checked;
 
     private boolean touched;
@@ -95,5 +93,9 @@ public class GenreToggleBtn extends FrameLayout {
 
     public String getText() {
         return textView.getText().toString();
+    }
+
+    public boolean isChecked() {
+        return this.checked;
     }
 }

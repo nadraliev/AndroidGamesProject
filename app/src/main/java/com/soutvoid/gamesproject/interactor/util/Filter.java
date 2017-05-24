@@ -16,9 +16,9 @@ import io.realm.annotations.Ignore;
 public class Filter extends RealmObject {
 
     Filter(List<String> fields, List<String> factors, List<String> values) {
-        this.fields = RealmWrapUtils.wrapStrings(fields);
-        this.factors = RealmWrapUtils.wrapStrings(factors);
-        this.values = RealmWrapUtils.wrapStrings(values);
+        this.fields = RealmWrapUtils.INSTANCE.wrapStrings(fields);
+        this.factors = RealmWrapUtils.INSTANCE.wrapStrings(factors);
+        this.values = RealmWrapUtils.INSTANCE.wrapStrings(values);
     }
 
     public Filter() {
@@ -82,9 +82,9 @@ public class Filter extends RealmObject {
     private RealmList<RealmString> values = new RealmList<>();
 
     public void add(String field, String factor, String value) {
-        fields.add(RealmWrapUtils.wrapString(field));
-        factors.add(RealmWrapUtils.wrapString(factor));
-        values.add(RealmWrapUtils.wrapString(value));
+        fields.add(RealmWrapUtils.INSTANCE.wrapString(field));
+        factors.add(RealmWrapUtils.INSTANCE.wrapString(factor));
+        values.add(RealmWrapUtils.INSTANCE.wrapString(value));
     }
 
     public Map<String, String> toMap() {

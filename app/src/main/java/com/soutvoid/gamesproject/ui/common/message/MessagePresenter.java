@@ -34,7 +34,7 @@ public class MessagePresenter {
 
     public void show(String message) {
         View v = getView();
-        Snackbar snackbar = Snackbar.make(v, TransformUtil.sanitizeHtmlString(message), Snackbar.LENGTH_LONG);
+        Snackbar snackbar = Snackbar.make(v, TransformUtil.INSTANCE.sanitizeHtmlString(message), Snackbar.LENGTH_LONG);
         setMultilineSnackbar(snackbar);
         snackbar.show();
     }

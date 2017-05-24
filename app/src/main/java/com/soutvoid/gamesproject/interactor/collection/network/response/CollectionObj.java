@@ -38,7 +38,7 @@ public class CollectionObj implements Transformable<Collection> {
                 url,
                 createdAt,
                 updatedAt,
-                TransformUtil.transformCollection(games)
+                TransformUtil.INSTANCE.transformCollection(games)
         );
     }
 }
